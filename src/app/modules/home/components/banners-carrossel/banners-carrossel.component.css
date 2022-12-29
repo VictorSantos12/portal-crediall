@@ -1,0 +1,15 @@
+.card {
+  border: none;
+  border-radius: 20px;
+  background-color: rgb(223, 220, 220);
+}
+
+.banner-button {
+  height: 40px;
+  width: 180px;
+  border: none;
+  max-width: 200px;
+  min-width: 80px;
+  border-radius: 20px;
+  background-color: rgb(219, 57, 133);
+}
