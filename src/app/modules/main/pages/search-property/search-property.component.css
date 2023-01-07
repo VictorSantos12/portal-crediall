@@ -1,0 +1,132 @@
+
+/* FIRST */
+
+.first {
+  height: auto;
+  min-height: 84vh;
+}
+
+.mobile {
+  display: none;
+}
+
+.search-form-field {
+  display: flex;
+  padding-inline: 10px;
+  flex-direction: column;
+  align-items: flex-start;
+
+  height: 80px;
+  color: #012942;
+  border: #012942;
+  border-width: 1px;
+  border-style: solid;
+  text-decoration: #ffffff;
+  background-color: transparent;
+}
+
+input {
+  border: none;
+}
+
+select {
+  border: none;
+}
+
+/* SECOND  */
+
+.second {
+  height: auto;
+  color: #012942;
+  background-color: rgba(143, 31, 153, 0)
+}
+
+.event-card-left {
+  height: 400px;
+  width: 500px;
+  min-width: 15%;
+  background-size: cover;
+  background-color: #380f91;
+  background-position: center; 
+  background-repeat: no-repeat;
+  background-image: url("/../../assets/img/property_hall.png");
+}
+
+.event-card-right {
+  height: auto;
+  min-width: 15%;
+  color: #380f91;
+  text-align: start;
+  background-color: #E0D9C3;
+}
+
+.event-card-right-section {
+  display: flex;
+  margin-top: 10px;
+  max-height: 40px;
+  min-width: 150px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* SIXTH */
+
+.sixth {
+  height: auto;
+  color: #012942;
+  background-color: #F5F5F5
+}
+
+#map {
+  height: 300px;
+  width: auto;
+  max-width: 600px;
+}
+
+.input-group {
+  width: auto;
+  max-width: 600px;
+  background-color: transparent;
+}
+
+/* UTILITIES */
+
+.title {
+  font-weight: 700;
+  font-size: 25px;
+}
+
+.sub-title {
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.small-sub-title {
+  font-weight: 100;
+  font-size: 12px;
+}
+
+.simple-elevated-button {
+  color: white;
+  font-weight: 500;
+  background-color: #012942;
+}
+
+.simple-elevated-red-button {
+  color: white;
+  font-weight: 500;
+  min-width: 100px;
+  background-color: #C30000;
+}
+
+/* MEDIA QUERY */
+
+@media screen and (max-width: 1060px) {
+  .web {
+    display: none;
+  }
+
+  .mobile {
+    display: flex;
+  }
+}

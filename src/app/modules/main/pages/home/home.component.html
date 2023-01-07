@@ -1,0 +1,300 @@
+<app-app-nav-bar></app-app-nav-bar>
+
+<div class="first col-md-12 p-4">
+  <div class="d-flex justify-content-center align-items-center">
+   
+    <div class="d-flex justify-content-start align-items-center" style="height: 80vh; width: 60%; position: absolute;">
+      <div class="web-simulator p-4">
+        <div class="d-flex flex-column align-items-center justify-content-evenly">
+          <p class="fs-1 fw-bold text-white">
+            O melhor lugar<br> 
+            para seu<br> 
+            investimento
+          </p>
+          <p class="fw-semibold text-white">
+            Financie até 80% do seu novo imóvel, com
+            <br>menos burocracia e mais flexibilidade.
+           </p>
+          <button type="button" class="simple-elevated-button btn">
+            Simular agora
+          </button>
+        </div>
+      </div>
+
+      <div class="mobile-simulator p-4">
+        <div class="d-flex flex-column align-items-center justify-content-evenly">
+          <p class="fs-1 fw-bold text-white">
+            O melhor lugar<br> 
+            para seu<br> 
+            investimento
+          </p>
+          <p class="fw-semibold text-white">
+            Financie até 80% do seu novo imóvel, com
+            <br>menos burocracia e mais flexibilidade.
+           </p>
+          <button type="button" class="simple-elevated-button btn">
+            Simular agora
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="banner-img w-100"></div>
+  </div>
+</div>
+
+<div class="second col-md-12 p-4">
+  <div class="column text-center">
+    <p class="title">Salão de Imóveis</p>
+    <div class="d-flex felx-column flex-wrap justify-content-center p-4">
+      <div class="event-card-left"></div>
+      <div class="event-card-right">
+        <div class="d-flex flex-column p-4">
+          <div class="text-end">
+            <a href="#" class="btn p-0">
+              <p class="fw-bold">1/2<i class="bi bi-chevron-right"></i></p>
+            </a>
+          </div>
+          <p class="fw-bold fs-4 pb-2">Salão de Imóveis - Rio de Janeiro</p>
+          <p class="fw-bold fs-6 pb-5">Texto sobre o evento (criar um resumo sobre o evento).</p>
+          <div class="d-flex flex-row pb-4">
+            <img src="../../../assets/icons/Pin.png" style="height: 25px; width: 20px;">
+            <p style="line-height: 18px;">
+              <span class="fw-bold">
+                &nbsp;&nbsp;Via Parque Shopping - Estacionamento
+              </span>
+              <br>
+              <span class="small-sub-title fw-semibold">
+                Avenida Ayrton Senna, 3000, Barra da Tijuca, Rio de Janeiro, RJ
+              </span>
+            </p>
+          </div>
+          <div class="d-flex flex-row flex-wrap justify-content-evenly align-items-center">
+            <div class="event-card-right-section">
+              <button type="button" class="simple-elevated-red-button btn">
+                Saiba mais
+              </button>
+            </div>
+            <div class="event-card-right-section">
+              <img src="../../../assets/icons/calendar.png">
+              <p class="fs-6 fw-semibold">&nbsp;&nbsp;31/01 a 02/02</p>
+            </div>
+            <div class="event-card-right-section">
+              <img src="../../../assets/icons/clock.png">
+              <p class="fs-6 fw-semibold">&nbsp;&nbsp;10h às 22h</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="third col-md-12 p-4">
+  <div class="column text-center">
+    <div class="column">
+      <p class="title">Realização</p>
+      <div class="d-flex felx-column flex-wrap justify-content-evenly pb-5">
+        <img class="pt-5" src="../../../assets/img/kreditos-imobi.png" style="height: 100px; width: 135px;">
+        <img class="pt-5" src="../../../assets/img/homer.png" style="height: 100px; width: 135px;">
+        <img class="pt-5" src="../../../assets/img/logo_crediall_complete.png" style="height: 70px; width: 150px;">
+      </div>
+    </div>
+    <div class="column p-4">
+      <p class="title">Participação</p>
+      <div class="d-flex felx-column flex-wrap justify-content-evenly pb-5">
+        <img class="pt-5" src="../../../assets/img/rede_dor.png">
+        <img class="pt-5" src="../../../assets/img/coren.png">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="fourth col-md-12 p-5">
+  <div class="d-flex flex-column align-items-center text-center">
+    <p class="title pb-3">Encontre um imóvel próximo de você!</p>
+
+    <!-- WEB FORM -->
+
+    <div id="web">
+      <form [formGroup]="propertySearchForm" (submit)="searchProperty()" class="d-flex flex-column flex-wrap align-items-center w-75">
+        <div class="input-group w-75">
+          <div class="search-form-field" style="width: 99.5%; border-radius: 10px 10px 0px 0px;">
+            <label class="form-label pt-1"><i class="bi bi-geo-alt-fill"></i>&nbsp;Endereço</label>
+            <input formControlName="address" type="text" class="form-control input-style" placeholder="Endereço, Bairro, Condomínio">
+          </div>
+        </div>
+        <div class="input-group w-75">
+          <div class="search-form-field" style="width: 30%; border-radius: 0px 0px 0px 10px;">
+            <label class="form-label pt-1"><i class="bi bi-house-fill"></i>&nbsp;Tipo do imóvel</label>
+            <div class="d-flex flex-row align-items-center w-100">
+              <select formControlName="property_type" class="input-style form-control">
+                <option value="0" selected>Apartamento</option>
+                <option value="1">Apartamento</option>
+                <option value="1">Apartamento</option>
+                <option value="1">Apartamento</option>
+              </select>
+              &nbsp;
+              <i class="bi bi-chevron-down"></i>
+            </div>
+          </div>
+          <div class="search-form-field" style="width: 30%;">
+            <label class="form-label pt-1"><i class="bi bi-currency-dollar"></i>&nbsp;Imóvel até</label>
+            <input formControlName="price" type="text" class="form-control input-style" placeholder="Insira o valor">
+          </div>
+          <div class="search-form-field" style="width: 20%;">
+            <label class="form-label pt-1">&nbsp;Quartos</label>
+            <div class="d-flex flex-row align-items-center w-100">
+              <select formControlName="rooms" class="input-style form-control">
+                <option value="0" selected>0+</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+              &nbsp;
+              <i class="bi bi-chevron-down"></i>
+            </div>
+          </div>
+          <div class="search-form-field" style="width: 20%; border-radius: 0px 0px 10px 0px;">
+            <label class="form-label pt-1"><i class="bi bi-car-front-fill"></i>&nbsp;Vagas</label>
+            <div class="d-flex flex-row align-items-center w-100">
+              <select formControlName="parking_spot" class="input-style form-control">
+                <option value="0" selected>0+</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+              &nbsp;
+              <i class="bi bi-chevron-down"></i>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="simple-elevated-red-button btn mt-5">
+          Buscar imóveis
+        </button>
+      </form>
+    </div>
+
+    <!-- MOBILE FORM -->
+    
+    <div id="mobile">
+      <form [formGroup]="propertySearchForm" (submit)="searchProperty()" class="d-flex flex-column flex-wrap align-items-center w-100">
+        <div class="input-group w-100 mb-3">
+          <div class="search-form-field rounded-3 w-100">
+            <label class="form-label pt-1"><i class="bi bi-geo-alt-fill"></i>&nbsp;Endereço</label>
+            <input formControlName="address" type="text" class="form-control input-style" placeholder="Endereço, Bairro, Condomínio">
+          </div>
+        </div>
+        <div class="input-group w-100">
+          <div class="search-form-field rounded-3 w-100 mb-3">
+            <label class="form-label pt-1"><i class="bi bi-house-fill"></i>&nbsp;Tipo do imóvel</label>
+            <div class="d-flex flex-row align-items-center w-100">
+              <select formControlName="property_type" class="input-style form-control">
+                <option value="0" selected>Apartamento</option>
+                <option value="1">Apartamento</option>
+                <option value="2">Apartamento</option>
+                <option value="3">Apartamento</option>
+              </select>
+              &nbsp;
+              <i class="bi bi-chevron-down"></i>
+            </div>
+          </div>
+          <div class="search-form-field rounded-3 w-100 mb-3">
+            <label class="form-label pt-1"><i class="bi bi-currency-dollar"></i>&nbsp;Imóvel até</label>
+            <input formControlName="price" type="text" class="form-control input-style" placeholder="Insira o valor">
+          </div>
+          <div class="search-form-field rounded-3 w-50">
+            <label class="form-label pt-1">&nbsp;Quartos</label>
+            <div class="d-flex flex-row align-items-center w-100">
+              <select formControlName="rooms" class="input-style form-control">
+                <option value="0" selected>0+</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+              &nbsp;
+              <i class="bi bi-chevron-down"></i>
+            </div>
+          </div>
+          <div class="search-form-field rounded-3 w-50">
+            <label class="form-label pt-1"><i class="bi bi-car-front-fill"></i>&nbsp;Vagas</label>
+            <div class="d-flex flex-row align-items-center w-100">
+              <select formControlName="parking_spot" class="input-style form-control">
+                <option value="0" selected>0+</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+              &nbsp;
+              <i class="bi bi-chevron-down"></i>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="simple-elevated-red-button btn mt-5">
+          Buscar imóveis
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="fifth col-md-12 p-5">
+  <div class="column text-center">
+    <p class="title">Nossos Parceiros</p>
+    <p class="sub-title">Os maiores bancos do cenário nacional estão com a gente</p>
+    <div class="p-4">
+      <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+  
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="sixth col-md-12 p-4">
+  <div class="d-flex flex-row flex-wrap text-center">
+    <div class="col-md-4 col-12">
+      <div class="column p-4">
+        <img class="pb-5" src="../../../assets/img/logo_crediall_complete.png">
+        <div class="d-flex flex-row justify-content-center pb-5">
+          <a href="https://www.linkedin.com/feed/">
+            <img src="../../../assets/icons/linkdin.png">
+          </a>
+          &nbsp;&nbsp;&nbsp;
+          <a href="https://pt-br.facebook.com/">
+            <img src="../../../assets/icons/facebook.png">
+          </a>
+          &nbsp;&nbsp;&nbsp;
+          <a href="https://www.instagram.com/">
+            <img src="../../../assets/icons/instagram.png">
+          </a>
+        </div>
+        <p class="sub-title">Tel: (21) 98283-0243</p>
+      </div>
+    </div>
+    <div class="col-md-4 col-12">
+      <div class="d-flex justify-content-center">
+        <div class="column p-4">
+          <div id="map"></div>
+          <div class="d-flex flex-row text-start pt-4" style="max-width: 600px;">
+            <img src="../../../assets/icons/adress-pin.png" style="height: 35px; width: 35px;">
+            &nbsp;&nbsp;
+            <p class="sub-title">Av. José Silva de Azevedo Neto, 200, Bl 2, Sala 403 Barra da Tijuca - Rio de Janeiro / RJ – CEP: 22775-056</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-12">
+      <div class="column text-start p-4">
+        <p class="sub-title">ASSINAR</p>
+        <p class="sub-title">Receba notícias e atualizações sobre a Crediall por e-mail.</p>
+        <form>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control border-dark">
+            <button class="btn simple-elevated-button" type="button">Assinar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

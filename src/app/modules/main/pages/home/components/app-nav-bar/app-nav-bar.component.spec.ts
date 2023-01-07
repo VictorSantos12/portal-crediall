@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PesquisaImoveisComponent } from './pesquisa-imoveis.component';
+import { AppNavBarComponent } from './app-nav-bar.component';
 
-describe('PesquisaImoveisComponent', () => {
-  let component: PesquisaImoveisComponent;
-  let fixture: ComponentFixture<PesquisaImoveisComponent>;
+describe('AppNavBarComponent', () => {
+  let component: AppNavBarComponent;
+  let fixture: ComponentFixture<AppNavBarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PesquisaImoveisComponent ]
+      declarations: [ AppNavBarComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PesquisaImoveisComponent);
+    fixture = TestBed.createComponent(AppNavBarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
