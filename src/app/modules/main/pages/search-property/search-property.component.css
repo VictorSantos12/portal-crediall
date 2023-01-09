@@ -121,7 +121,7 @@ select {
 
 /* MEDIA QUERY */
 
-@media screen and (max-width: 1060px) {
+@media screen and (max-width: 1160px) {
   .web {
     display: none;
   }

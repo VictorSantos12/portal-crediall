@@ -128,10 +128,8 @@
             <label class="form-label pt-1"><i class="bi bi-house-fill"></i>&nbsp;Tipo do imóvel</label>
             <div class="d-flex flex-row align-items-center w-100">
               <select formControlName="property_type" class="input-style form-control">
-                <option value="0" selected>Apartamento</option>
-                <option value="1">Apartamento</option>
-                <option value="1">Apartamento</option>
-                <option value="1">Apartamento</option>
+                <option value="0" selected>Todos</option>
+                <option *ngFor="let col of propertyTypes" value="{{col.id}}">{{col.name}}</option>
               </select>
               &nbsp;
               <i class="bi bi-chevron-down"></i>
@@ -145,10 +143,11 @@
             <label class="form-label pt-1">&nbsp;Quartos</label>
             <div class="d-flex flex-row align-items-center w-100">
               <select formControlName="rooms" class="input-style form-control">
-                <option value="0" selected>0+</option>
+                <option value="" selected>0+</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
+                <option value="4">4</option>
               </select>
               &nbsp;
               <i class="bi bi-chevron-down"></i>
@@ -158,7 +157,7 @@
             <label class="form-label pt-1"><i class="bi bi-car-front-fill"></i>&nbsp;Vagas</label>
             <div class="d-flex flex-row align-items-center w-100">
               <select formControlName="parking_spot" class="input-style form-control">
-                <option value="0" selected>0+</option>
+                <option value="" selected>0+</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -189,10 +188,8 @@
             <label class="form-label pt-1"><i class="bi bi-house-fill"></i>&nbsp;Tipo do imóvel</label>
             <div class="d-flex flex-row align-items-center w-100">
               <select formControlName="property_type" class="input-style form-control">
-                <option value="0" selected>Apartamento</option>
-                <option value="1">Apartamento</option>
-                <option value="2">Apartamento</option>
-                <option value="3">Apartamento</option>
+                <option value="0" selected>Todos</option>
+                <option *ngFor="let col of propertyTypes" value="{{col.id}}">{{col.name}}</option>
               </select>
               &nbsp;
               <i class="bi bi-chevron-down"></i>
@@ -206,10 +203,11 @@
             <label class="form-label pt-1">&nbsp;Quartos</label>
             <div class="d-flex flex-row align-items-center w-100">
               <select formControlName="rooms" class="input-style form-control">
-                <option value="0" selected>0+</option>
+                <option value="" selected>0+</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
+                <option value="4">4</option>
               </select>
               &nbsp;
               <i class="bi bi-chevron-down"></i>
@@ -219,7 +217,7 @@
             <label class="form-label pt-1"><i class="bi bi-car-front-fill"></i>&nbsp;Vagas</label>
             <div class="d-flex flex-row align-items-center w-100">
               <select formControlName="parking_spot" class="input-style form-control">
-                <option value="0" selected>0+</option>
+                <option value="" selected>0+</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>

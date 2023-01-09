@@ -19,25 +19,33 @@
         <div class="search-form-field rounded">
           <label class="form-label">Estado</label>
           <div class="d-flex flex-row align-items-center w-100">
-            <input formControlName="state" class="input-style form-control">
+            <select formControlName="state" class="input-style form-control" (change)="stateChanged()">
+              <option value="">Todos</option>
+              <option *ngFor="let col of states" value="{{col.name}}">{{col.name}}</option>
+            </select>
+            &nbsp;
+            <i class="bi bi-chevron-down"></i>
           </div>
         </div>
         &nbsp;&nbsp;
-        <div class="search-form-field rounded">
+        <div class="search-form-field rounded" style="min-width: 180px; max-width: 250px;">
           <label class="form-label">Cidade</label>
           <div class="d-flex flex-row align-items-center w-100">
-            <input formControlName="city" class="input-style form-control">
+            <select formControlName="city" class="input-style form-control" (change)="cityChanged()">
+              <option value="">Todas</option>
+              <option *ngFor="let col of cities" value="{{col.name}}">{{col.name}}</option>
+            </select>
+            &nbsp;
+            <i class="bi bi-chevron-down"></i>
           </div>
         </div>
         &nbsp;&nbsp;
         <div class="search-form-field rounded" style="min-width: 180px;">
           <label class="form-label">Bairro</label>
           <div class="d-flex flex-row align-items-center w-100">
-            <select formControlName="neighborhood" class="input-style form-control">
-              <option value="0" selected>Todos</option>
-              <option value="1">Todos</option>
-              <option value="1">Todos</option>
-              <option value="1">Todos</option>
+            <select formControlName="district" class="input-style form-control" (change)="districtChanged()">
+              <option value="">Todos</option>
+              <option *ngFor="let col of districts" value="{{col.name}}">{{col.name}}</option>
             </select>
             &nbsp;
             <i class="bi bi-chevron-down"></i>
@@ -47,11 +55,9 @@
         <div class="search-form-field rounded" style="min-width: 180px;">
           <label class="form-label">Tipologia</label>
           <div class="d-flex flex-row align-items-center w-100">
-            <select formControlName="typology" class="input-style form-control">
-              <option value="0" selected>Apartamento</option>
-              <option value="1">Apartamento</option>
-              <option value="1">Apartamento</option>
-              <option value="1">Apartamento</option>
+            <select formControlName="typology" class="input-style form-control" (change)="typologyChanged()">
+              <option value="" selected>Todas</option>
+              <option *ngFor="let col of propertyTypes" value="{{col.id}}" selected>{{col.name}}</option>
             </select>
             &nbsp;
             <i class="bi bi-chevron-down"></i>
@@ -68,11 +74,12 @@
         <div class="search-form-field rounded">
           <label class="form-label">Quartos</label>
           <div class="d-flex flex-row align-items-center w-100">
-            <select formControlName="rooms" class="input-style form-control">
+            <select formControlName="rooms" class="input-style form-control" (change)="roomChanged()">
               <option value="0" selected>0+</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
+              <option value="4">4</option>
             </select>
             &nbsp;
             <i class="bi bi-chevron-down"></i>
@@ -82,7 +89,7 @@
         <div class="search-form-field rounded">
           <label class="form-label">Vagas</label>
           <div class="d-flex flex-row align-items-center w-100">
-            <select formControlName="parking_spot" class="input-style form-control">
+            <select formControlName="parking_spot" class="input-style form-control" (change)="parkingSpotChanged()">
               <option value="0" selected>0+</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -96,11 +103,9 @@
         <div class="search-form-field rounded" style="min-width: 180px;">
           <label class="form-label">Incorporadoras</label>
           <div class="d-flex flex-row align-items-center w-100">
-            <select formControlName="incorporators" class="input-style form-control">
-              <option value="0" selected>Todas</option>
-              <option value="1">Todas</option>
-              <option value="2">Todas</option>
-              <option value="3">Todas</option>
+            <select formControlName="property_developer" class="input-style form-control" (change)="propertyDeveloperChanged()">
+              <option value="">Todas</option>
+              <option *ngFor="let col of propertyDevelopers" value="{{col.id}}">{{col.name}}</option>
             </select>
             &nbsp;
             <i class="bi bi-chevron-down"></i>
@@ -117,23 +122,31 @@
         <div class="search-form-field rounded col-md-4 col-12">
           <label class="form-label">Estado</label>
           <div class="d-flex flex-row align-items-center w-100">
-            <input formControlName="state" class="input-style form-control">
+            <select formControlName="state" class="input-style form-control" (change)="stateChanged()">
+              <option value="">Todos</option>
+              <option *ngFor="let col of states" value="{{col.name}}">{{col.name}}</option>
+            </select>
+            &nbsp;
+            <i class="bi bi-chevron-down"></i>
           </div>
         </div>
         <div class="search-form-field rounded col-md-4 col-12">
           <label class="form-label">Cidade</label>
           <div class="d-flex flex-row align-items-center w-100">
-            <input formControlName="city" class="input-style form-control">
+            <select formControlName="city" class="input-style form-control" (change)="cityChanged()">
+              <option value="">Todas</option>
+              <option *ngFor="let col of cities" value="{{col.name}}">{{col.name}}</option>
+            </select>
+            &nbsp;
+            <i class="bi bi-chevron-down"></i>
           </div>
         </div>
         <div class="search-form-field rounded col-md-4 col-12">
           <label class="form-label">Bairro</label>
           <div class="d-flex flex-row align-items-center w-100">
-            <select formControlName="neighborhood" class="input-style form-control">
-              <option value="0" selected>Todos</option>
-              <option value="1">Todos</option>
-              <option value="1">Todos</option>
-              <option value="1">Todos</option>
+            <select formControlName="district" class="input-style form-control" (change)="districtChanged()">
+              <option value="">Todos</option>
+              <option *ngFor="let col of districts" value="{{col.name}}">{{col.name}}</option>
             </select>
             &nbsp;
             <i class="bi bi-chevron-down"></i>
@@ -144,12 +157,10 @@
        <div class="search-form-field rounded">
          <label class="form-label">Tipologia</label>
          <div class="d-flex flex-row align-items-center w-100">
-           <select formControlName="typology" class="input-style form-control">
-             <option value="0" selected>Apartamento</option>
-             <option value="1">Apartamento</option>
-             <option value="1">Apartamento</option>
-             <option value="1">Apartamento</option>
-           </select>
+          <select formControlName="typology" class="input-style form-control" (change)="typologyChanged()">
+            <option value="" selected>Todas</option>
+            <option *ngFor="let col of propertyTypes" value="{{col.id}}">{{col.name}}</option>
+          </select>
            &nbsp;
            <i class="bi bi-chevron-down"></i>
          </div>
@@ -165,11 +176,12 @@
         <div class="search-form-field rounded col-md-4 col-6">
           <label class="form-label">Quartos</label>
           <div class="d-flex flex-row align-items-center w-100">
-            <select formControlName="rooms" class="input-style form-control">
+            <select formControlName="rooms" class="input-style form-control" (change)="roomChanged()">
               <option value="0" selected>0+</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
+              <option value="4">4</option>
             </select>
             &nbsp;
             <i class="bi bi-chevron-down"></i>
@@ -178,7 +190,7 @@
         <div class="search-form-field rounded col-md-4 col-6">
           <label class="form-label">Vagas</label>
           <div class="d-flex flex-row align-items-center w-100">
-            <select formControlName="parking_spot" class="input-style form-control">
+            <select formControlName="parking_spot" class="input-style form-control" (change)="parkingSpotChanged()">
               <option value="0" selected>0+</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -193,11 +205,9 @@
        <div class="search-form-field rounded" style="min-width: 180px;">
          <label class="form-label">Incorporadoras</label>
          <div class="d-flex flex-row align-items-center w-100">
-           <select formControlName="incorporators" class="input-style form-control">
-             <option value="0" selected>Todas</option>
-             <option value="1">Todas</option>
-             <option value="2">Todas</option>
-             <option value="3">Todas</option>
+           <select formControlName="property_developer" class="input-style form-control" (change)="propertyDeveloperChanged()">
+            <option value="">Todas</option>
+            <option *ngFor="let col of propertyDevelopers" value="{{col.id}}">{{col.name}}</option>
            </select>
            &nbsp;
            <i class="bi bi-chevron-down"></i>
@@ -209,13 +219,19 @@
     
     <!-- RESULT -->
 
-    <app-search-result *ngIf="false"></app-search-result>
+    <app-search-result *ngIf="!gettingPropertiesList && propertiesList.length > 0" [propertiesList]="propertiesList"></app-search-result>
     
     <!-- LOADING -->
 
-    <div class="d-flex align-items-center w-100">
+    <div *ngIf="gettingPropertiesList && propertiesList.length == 0" class="d-flex align-items-center w-100">
       <div class="w-100 p-5 text-center">
         <div class="spinner-border" style="height: 4rem; width: 4rem; color: #012942;"></div>
+      </div>
+    </div>
+
+    <div *ngIf="!gettingPropertiesList && propertiesList.length == 0" class="d-flex align-items-center w-100">
+      <div class="w-100 p-5 text-center">
+        <p class="fs-4 fw-semibold text-muted">Nenhum resultado encontrado</p>
       </div>
     </div>
 

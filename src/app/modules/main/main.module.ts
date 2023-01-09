@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppNavBarComponent } from './pages/home/components/app-nav-bar/app-nav-bar.component';
 import { SearchPropertyComponent } from './pages/search-property/search-property.component';
 import { SearchResultComponent } from './pages/search-property/components/search-result/search-result.component';
+import { MainService } from './shared/main.service';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { SearchResultComponent } from './pages/search-property/components/search
     CommonModule,
     MainRoutingModule,
     ReactiveFormsModule,
-  ]
+  ],
+  providers: [MainService]
 })
 export class MainModule { }

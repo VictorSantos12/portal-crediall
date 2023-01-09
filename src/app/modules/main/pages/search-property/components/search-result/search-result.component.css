@@ -1,9 +1,23 @@
 .card {
   height: 640px;
-  min-width: 25%;
-  width: 19rem;
+  width: 320px;
+  max-width: 320px;
+}
+
+.row {
+  width: 80%;
 }
 
 .card-img-top {
   height: 250px;
+}
+
+.location {
+  height: 50px;
+  display: -webkit-box; 
+  -webkit-line-clamp: 1.5; 
+  -webkit-box-orient: vertical; 
+  overflow: hidden;
+  font-weight: 500;
+  color: gray;
 }

@@ -1,14 +1,34 @@
 <div class="col-12 mt-4 p-4">
-  <div class="d-flex flex-row flex-wrap justify-content-start">
-    <div class="row">
+  <div class="d-flex flex-row flex-wrap justify-content-center">
+    <div class="row justify-content-center">
 
-      <div class="card border border-dark rounded-3 p-0 m-2">
+      <div *ngFor="let col of propertiesList" class="card border border-dark rounded-3 p-0 m-3">
         <div class="d-flex justify-content-center w-100 rounded-top p-1" style="height:22px; background-color: #012942;">
           <p class="text-white" style="font-size: 11px;">
             IMÓVEL DE INCORPORADORA
           </p>
         </div>
-        <img src="../../../assets/img/logo_crediall_complete.png" class="card-img-top">
+        
+        <img src="{{col.medias[0].url}}" class="card-img-top">
+
+        <!-- <div id="carouselExampleIndicators" class="carousel slide card-img-top" data-bs-ride="true">
+          <div class="carousel-inner">
+
+            <div *ngFor="let media of col.medias" class="carousel-item active">
+              <img src="{{media.url}}" class="d-block">
+            </div>
+
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div> -->
+
         <div class="card-body justify-content-center">
 
           <div class="d-flex flex-row justify-content-between pb-2" style="height:22px;">
@@ -32,22 +52,22 @@
               </span>
             </p>
           </div>
-          <p class="fw-semibold text-secondary pb-2">
-            Barra da Tijuca, Rio de Janeiro - RJ
+          <p class="location pb-2">
+            {{col.location}}
           </p>
           <p class="pb-2" style="line-height: 18px;">
             <span class="fs-5 fw-semibold">
-              A partir de R$ 499.000
+              A partir de R$ {{getFormattedPrice(col.price.minimumPrice)}}
             </span>
             <br>
             <span class="text-secondary">
-              Commissão de até 2,5%
+              Commissão de até {{getFormattedPercent(col.commission)}}
             </span>
           </p>
           <div class="column pb-2">
-            <label class="form-label pt-1"><i class="bi bi-house-fill"></i>&nbsp;3</label>
+            <label class="form-label pt-1"><i class="bi bi-house-fill"></i>&nbsp;{{col.size.roomsCount}}</label>
             &nbsp;
-            <label class="form-label pt-1"><i class="bi bi-car-front-fill"></i>&nbsp;1</label>
+            <label class="form-label pt-1"><i class="bi bi-car-front-fill"></i>&nbsp;{{col.size.parkingSpotsCount}}</label>
           </div>
           <div class="d-flex flex-row pb-2">
             <p style="line-height: 18px;">
@@ -55,7 +75,7 @@
                 Empreendimento:
               </span>
               <span class="fw-bold">
-                Even
+                {{col.propertyDeveloper.name}}
               </span>
             </p>
           </div>
