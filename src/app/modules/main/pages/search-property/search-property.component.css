@@ -49,7 +49,7 @@ select {
   background-color: #380f91;
   background-position: center; 
   background-repeat: no-repeat;
-  background-image: url("assets/img/property_hall.png");
+  background-image: url("/assets/img/property_hall.png");
 }
 
 .event-card-right {
