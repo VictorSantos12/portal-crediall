@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  api_url: 'https://api-test.homer.com.br'
+  homer_api_url: 'https://api-test.homer.com.br',
+  logbits_api_url: 'https://api.desenv.app.logbits.com.br'
 };
 
 /*

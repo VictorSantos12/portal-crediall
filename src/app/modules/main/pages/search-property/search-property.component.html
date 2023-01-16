@@ -20,8 +20,7 @@
           <label class="form-label">Estado</label>
           <div class="d-flex flex-row align-items-center w-100">
             <select formControlName="state" class="input-style form-control" (change)="stateChanged()">
-              <option value="">Todos</option>
-              <option *ngFor="let col of states" value="{{col.name}}">{{col.name}}</option>
+              <option value="Rio de Janeiro">Rio de Janeiro</option>
             </select>
             &nbsp;
             <i class="bi bi-chevron-down"></i>
@@ -32,7 +31,6 @@
           <label class="form-label">Cidade</label>
           <div class="d-flex flex-row align-items-center w-100">
             <select formControlName="city" class="input-style form-control" (change)="cityChanged()">
-              <option value="">Todas</option>
               <option *ngFor="let col of cities" value="{{col.name}}">{{col.name}}</option>
             </select>
             &nbsp;
@@ -123,8 +121,7 @@
           <label class="form-label">Estado</label>
           <div class="d-flex flex-row align-items-center w-100">
             <select formControlName="state" class="input-style form-control" (change)="stateChanged()">
-              <option value="">Todos</option>
-              <option *ngFor="let col of states" value="{{col.name}}">{{col.name}}</option>
+              <option value="Rio de Janeiro">Rio de Janeiro</option>
             </select>
             &nbsp;
             <i class="bi bi-chevron-down"></i>
@@ -134,7 +131,6 @@
           <label class="form-label">Cidade</label>
           <div class="d-flex flex-row align-items-center w-100">
             <select formControlName="city" class="input-style form-control" (change)="cityChanged()">
-              <option value="">Todas</option>
               <option *ngFor="let col of cities" value="{{col.name}}">{{col.name}}</option>
             </select>
             &nbsp;

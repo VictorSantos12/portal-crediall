@@ -7,13 +7,15 @@ import { AppNavBarComponent } from './pages/home/components/app-nav-bar/app-nav-
 import { SearchPropertyComponent } from './pages/search-property/search-property.component';
 import { SearchResultComponent } from './pages/search-property/components/search-result/search-result.component';
 import { MainService } from './shared/main.service';
+import { SimulateInvestmentComponent } from './pages/simulate-investment/simulate-investment.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     AppNavBarComponent,
     SearchPropertyComponent,
-    SearchResultComponent
+    SearchResultComponent,
+    SimulateInvestmentComponent
   ],
   imports: [
     CommonModule,

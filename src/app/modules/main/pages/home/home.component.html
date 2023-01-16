@@ -15,7 +15,7 @@
             Financie até 80% do seu novo imóvel, com
             <br>menos burocracia e mais flexibilidade.
            </p>
-          <button type="button" class="simple-elevated-button btn">
+          <button type="button" class="simple-elevated-button btn" (click)="simulateInvestiment()">
             Simular agora
           </button>
         </div>
@@ -32,7 +32,7 @@
             Financie até 80% do seu novo imóvel, com
             <br>menos burocracia e mais flexibilidade.
            </p>
-          <button type="button" class="simple-elevated-button btn">
+          <button type="button" class="simple-elevated-button btn" (click)="simulateInvestiment()">
             Simular agora
           </button>
         </div>
@@ -119,8 +119,15 @@
       <form [formGroup]="propertySearchForm" (submit)="searchProperty()" class="d-flex flex-column flex-wrap align-items-center w-75">
         <div class="input-group w-75">
           <div class="search-form-field" style="width: 99.5%; border-radius: 10px 10px 0px 0px;">
-            <label class="form-label pt-1"><i class="bi bi-geo-alt-fill"></i>&nbsp;Endereço</label>
-            <input formControlName="address" type="text" class="form-control input-style" placeholder="Endereço, Bairro, Condomínio">
+            <label class="form-label">Cidade</label>
+            <div class="d-flex flex-row align-items-center w-100">
+              <select formControlName="city" class="input-style form-control">
+                <option value="">Todas</option>
+                <option *ngFor="let col of cities" value="{{col.name}}">{{col.name}}</option>
+              </select>
+              &nbsp;
+              <i class="bi bi-chevron-down"></i>
+            </div>
           </div>
         </div>
         <div class="input-group w-75">
@@ -179,8 +186,15 @@
       <form [formGroup]="propertySearchForm" (submit)="searchProperty()" class="d-flex flex-column flex-wrap align-items-center w-100">
         <div class="input-group w-100 mb-3">
           <div class="search-form-field rounded-3 w-100">
-            <label class="form-label pt-1"><i class="bi bi-geo-alt-fill"></i>&nbsp;Endereço</label>
-            <input formControlName="address" type="text" class="form-control input-style" placeholder="Endereço, Bairro, Condomínio">
+            <label class="form-label">Cidade</label>
+            <div class="d-flex flex-row align-items-center w-100">
+              <select formControlName="city" class="input-style form-control">
+                <option value="">Todas</option>
+                <option *ngFor="let col of cities" value="{{col.name}}">{{col.name}}</option>
+              </select>
+              &nbsp;
+              <i class="bi bi-chevron-down"></i>
+            </div>
           </div>
         </div>
         <div class="input-group w-100">

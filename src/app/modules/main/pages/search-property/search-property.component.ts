@@ -56,7 +56,6 @@ export class SearchPropertyComponent implements OnInit {
   }
 
   getProperties() {
-    this.getStates();
     this.getCities(this.propertySearchForm.get('state')?.value);
     this.getDistrict(this.propertySearchForm.get('city')?.value, this.propertySearchForm.get('state')?.value);
     this.getPropertyTypes();

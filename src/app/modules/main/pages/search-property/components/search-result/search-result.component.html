@@ -9,7 +9,7 @@
           </p>
         </div>
         
-        <img src="{{col.medias[0].url}}" class="card-img-top">
+        <img src="{{col.medias[0].url}}" class="card-img-top rounded-0">
 
         <!-- <div id="carouselExampleIndicators" class="carousel slide card-img-top" data-bs-ride="true">
           <div class="carousel-inner">
@@ -60,9 +60,6 @@
               A partir de R$ {{getFormattedPrice(col.price.minimumPrice)}}
             </span>
             <br>
-            <span class="text-secondary">
-              Commissão de até {{getFormattedPercent(col.commission)}}
-            </span>
           </p>
           <div class="column pb-2">
             <label class="form-label pt-1"><i class="bi bi-house-fill"></i>&nbsp;{{col.size.roomsCount}}</label>

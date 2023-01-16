@@ -1,14 +1,13 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpConfigInterceptor } from './http-config.interceptor';
+
+import { LogbitsConfigInterceptor } from './logbits-config.interceptor';
 
 describe('HttpConfigInterceptor', () => {
   beforeEach(() => TestBed.configureTestingModule({
-    providers: [
-      HttpConfigInterceptor
-      ]
+    providers: [LogbitsConfigInterceptor]
   }));
   it('should create an instance', () => {
-    const interceptor: HttpConfigInterceptor = TestBed.inject(HttpConfigInterceptor);
+    const interceptor: LogbitsConfigInterceptor = TestBed.inject(LogbitsConfigInterceptor);
     expect(interceptor).toBeTruthy(); 
    });
 });
