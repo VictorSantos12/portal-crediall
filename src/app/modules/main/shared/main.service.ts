@@ -62,11 +62,5 @@ export class MainService {
     );
   }
 
-  // simulateInvestiment(min: number, max: number, date: string, deadline: number): Observable<SimulatorResult> {
-  //   return this.http.get<SimulatorResult>(
-  //     `https://api.desenv.app.logbits.com.br/simulador/SimuladorFinanciamento/${min}/${max}/${date}/${deadline}`
-  //   );
-  // }
-
 }
 

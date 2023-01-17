@@ -76,10 +76,18 @@ export class SimulateInvestmentComponent implements OnInit {
   }
   
   listDetails(index: number){
-
     this.openInstallmentsDetails[index] = !this.openInstallmentsDetails[index];
+  }
 
-  
+  mascaraDecimalValor(i: number) {
+
+    const formatter = new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL' 
+    });
+
+    const formatted = formatter.format(i);
+    return formatted;
   }
 
 }

@@ -18,11 +18,11 @@
         <div class="card shadow-sm border-0 p-3">
           <div class="search-form-field p-2">
             <label class="text-uppercase pb-1"><i class="bi bi-currency-dollar"></i>&nbsp;Valor do Imóvel</label>
-            <input formControlName="propertyPrice" type="text" class="form-control input-style" placeholder="Insira o valor" [ngStyle]="form['propertyPrice'].dirty && form['propertyPrice'].hasError('required') || formError ? {'border-color':'red'} : {'':''}">
+            <input formControlName="propertyPrice" type="number" class="form-control input-style" placeholder="Insira o valor" [ngStyle]="form['propertyPrice'].dirty && form['propertyPrice'].hasError('required') || formError ? {'border-color':'red'} : {'':''}">
           </div>
           <div class="search-form-field p-2">
             <label class="text-uppercase pb-1"><i class="bi bi-currency-dollar"></i>&nbsp;Valor do Financiamento</label>
-            <input formControlName="financingPrice" type="text" class="form-control input-style" placeholder="Insira o valor" [ngStyle]="form['financingPrice'].dirty && form['financingPrice'].hasError('required') || formError ? {'border-color':'red'} : {'':''}">
+            <input formControlName="financingPrice" type="number" class="form-control input-style" placeholder="Insira o valor" [ngStyle]="form['financingPrice'].dirty && form['financingPrice'].hasError('required') || formError ? {'border-color':'red'} : {'':''}">
           </div>
           <div class="d-flex col-md-12 align-items-center justify-content-start col-md-6 p-3 w-100" *ngIf="simulatorForm.get('financingPrice')?.value != '' ">
             <label class="text-uppercase pb-1 w-100">Renda Mínima</label>
@@ -59,11 +59,11 @@
           <div class="d-flex flex-row align-items-center flex-wrap w-100"> 
             <div class="search-form-field d-flex p-2">
               <label class="text-uppercase pb-1"><i class="bi bi-currency-dollar"></i>&nbsp;Valor do Imóvel</label>
-              <input formControlName="propertyPrice" type="text" class="form-control input-style" placeholder="Insira o valor" [ngStyle]="form['propertyPrice'].dirty && form['propertyPrice'].hasError('required') || formError ? {'border-color':'red'} : {'':''}">
+              <input formControlName="propertyPrice" type="number" class="form-control input-style" placeholder="Insira o valor" [ngStyle]="form['propertyPrice'].dirty && form['propertyPrice'].hasError('required') || formError ? {'border-color':'red'} : {'':''}">
             </div>
             <div class="search-form-field d-flex p-2">
               <label class="text-uppercase pb-1"><i class="bi bi-currency-dollar"></i>&nbsp;Valor do Financiamento</label>
-              <input formControlName="financingPrice" type="text" class="form-control input-style" placeholder="Insira o valor" [ngStyle]="form['financingPrice'].dirty && form['financingPrice'].hasError('required') || formError ? {'border-color':'red'} : {'':''}">
+              <input formControlName="financingPrice" type="number" class="form-control input-style" placeholder="Insira o valor" [ngStyle]="form['financingPrice'].dirty && form['financingPrice'].hasError('required') || formError ? {'border-color':'red'} : {'':''}">
             </div>
             <div class="search-form-field d-flex p-2">
               <label class="text-uppercase pb-1"><i class="bi bi-calendar-event"></i>&nbsp;Data de Nascimento</label>
