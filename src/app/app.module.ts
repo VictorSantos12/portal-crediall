@@ -9,6 +9,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HomerConfigInterceptor } from './core/interceptors/homer/homer-config.interceptor';
 import { LogbitsConfigInterceptor } from './core/interceptors/logbits/logbits-config.interceptor';
+import { NgxMaskDirective } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { LogbitsConfigInterceptor } from './core/interceptors/logbits/logbits-co
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    NgxMaskDirective
   ],
   providers: [
     {

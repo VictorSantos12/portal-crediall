@@ -144,7 +144,14 @@
           </div>
           <div class="search-form-field" style="width: 30%;">
             <label class="form-label pt-1"><i class="bi bi-currency-dollar"></i>&nbsp;Imóvel até</label>
-            <input formControlName="price" type="number" class="form-control input-style" placeholder="Insira o valor">
+            <input formControlName="price" type="number" class="form-control input-style" placeholder="Insira o valor"
+              matInput
+              mask="separator.2"
+              [thousandSeparator]="'.'"
+              [decimalMarker]="','"
+              prefix="R$ "
+              type="text"
+              [dropSpecialCharacters]="true">
           </div>
           <div class="search-form-field" style="width: 20%;">
             <label class="form-label pt-1">&nbsp;Quartos</label>

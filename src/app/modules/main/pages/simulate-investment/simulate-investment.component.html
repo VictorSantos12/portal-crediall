@@ -18,16 +18,32 @@
         <div class="card shadow-sm border-0 p-3">
           <div class="search-form-field p-2">
             <label class="text-uppercase pb-1"><i class="bi bi-currency-dollar"></i>&nbsp;Valor do Imóvel</label>
-            <input formControlName="propertyPrice" type="number" class="form-control input-style" placeholder="Insira o valor" [ngStyle]="form['propertyPrice'].dirty && form['propertyPrice'].hasError('required') || formError ? {'border-color':'red'} : {'':''}">
+            <input formControlName="propertyPrice" type="number" class="form-control input-style" placeholder="Insira o valor"
+              matInput
+              mask="separator.2"
+              [thousandSeparator]="','"
+              prefix="R$ "
+              type="text"
+              [dropSpecialCharacters]="true" 
+              [ngStyle]="form['propertyPrice'].dirty && form['propertyPrice'].hasError('required') || formError ? {'border-color':'red'} : {'':''}"
+             >
           </div>
           <div class="search-form-field p-2">
             <label class="text-uppercase pb-1"><i class="bi bi-currency-dollar"></i>&nbsp;Valor do Financiamento</label>
-            <input formControlName="financingPrice" type="number" class="form-control input-style" placeholder="Insira o valor" [ngStyle]="form['financingPrice'].dirty && form['financingPrice'].hasError('required') || formError ? {'border-color':'red'} : {'':''}">
+            <input formControlName="financingPrice" type="number" class="form-control input-style" placeholder="Insira o valor" 
+              matInput
+              mask="separator.2"
+              [thousandSeparator]="','"
+              prefix="R$ "
+              type="text"
+              [dropSpecialCharacters]="true" 
+              [ngStyle]="form['financingPrice'].dirty && form['financingPrice'].hasError('required') || formError ? {'border-color':'red'} : {'':''}"
+            >
           </div>
           <div class="d-flex col-md-12 align-items-center justify-content-start col-md-6 p-3 w-100" *ngIf="simulatorForm.get('financingPrice')?.value != '' ">
             <label class="text-uppercase pb-1 w-100">Renda Mínima</label>
-            <div class="fw-semibold text-end fs-5 w-100" style="color: #0F71F2;">
-              R$ {{simulatorForm.get('financingPrice')?.value * 0.36}} 
+            <div class="fw-semibold text-end fs-5 w-100"  mask="separator.2" style="color: #0F71F2;">
+              R$ {{simulatorForm.get('financingPrice')?.value * 0.36 | mask: 'separator':','}} 
             </div>
           </div>
           <div class="search-form-field p-2">
@@ -35,7 +51,7 @@
             <input formControlName="birthDate" type="date" name="birthDate" min="1900-12-12" max="9999-12-12" id="birthDate" class="form-control" [ngStyle]="form['birthDate'].dirty && form['birthDate'].hasError('required') || formError ? {'border-color':'red'} : {'':''}">
           </div>
           <div class="search-form-field p-2 mb-2">
-            <label class="text-uppercase pb-1">Prazo</label>
+            <label class="text-uppercase pb-1">Meses</label>
             <input formControlName="months" type="range" min="12" max="420" class="form-range" id="customRange1">
             <div class="fw-semibold text-start fs-5 w-100" style="color: #0F71F2;">
               {{simulatorForm.get('months')?.value}}
@@ -59,11 +75,25 @@
           <div class="d-flex flex-row align-items-center flex-wrap w-100"> 
             <div class="search-form-field d-flex p-2">
               <label class="text-uppercase pb-1"><i class="bi bi-currency-dollar"></i>&nbsp;Valor do Imóvel</label>
-              <input formControlName="propertyPrice" type="number" class="form-control input-style" placeholder="Insira o valor" [ngStyle]="form['propertyPrice'].dirty && form['propertyPrice'].hasError('required') || formError ? {'border-color':'red'} : {'':''}">
+              <input formControlName="propertyPrice" type="number" class="form-control input-style" placeholder="Insira o valor" 
+                matInput
+                mask="separator.2"
+                [thousandSeparator]="','"
+                prefix="R$ "
+                type="text"
+                [dropSpecialCharacters]="true"
+                [ngStyle]="form['propertyPrice'].dirty && form['propertyPrice'].hasError('required') || formError ? {'border-color':'red'} : {'':''}">
             </div>
             <div class="search-form-field d-flex p-2">
               <label class="text-uppercase pb-1"><i class="bi bi-currency-dollar"></i>&nbsp;Valor do Financiamento</label>
-              <input formControlName="financingPrice" type="number" class="form-control input-style" placeholder="Insira o valor" [ngStyle]="form['financingPrice'].dirty && form['financingPrice'].hasError('required') || formError ? {'border-color':'red'} : {'':''}">
+              <input formControlName="financingPrice" type="number" class="form-control input-style" placeholder="Insira o valor"           
+                matInput
+                mask="separator.2"
+                [thousandSeparator]="','"
+                prefix="R$ "
+                type="text"
+                [dropSpecialCharacters]="true" 
+                [ngStyle]="form['financingPrice'].dirty && form['financingPrice'].hasError('required') || formError ? {'border-color':'red'} : {'':''}">
             </div>
             <div class="search-form-field d-flex p-2">
               <label class="text-uppercase pb-1"><i class="bi bi-calendar-event"></i>&nbsp;Data de Nascimento</label>
@@ -78,8 +108,8 @@
             </div>
             <div class="d-flex col-md-12 align-items-center justify-content-start col-md-6 p-3 w-100" *ngIf="simulatorForm.get('financingPrice')?.value != '' ">
               <label class="text-uppercase pb-1 w-100">Renda Mínima</label>
-              <div class="fw-semibold text-end fs-5 w-100" style="color: #0F71F2;">
-                R$ {{simulatorForm.get('financingPrice')?.value * 0.36}} 
+              <div class="fw-semibold text-end fs-5 w-100" mask="separator.2" style="color: #0F71F2;">
+                R$ {{simulatorForm.get('financingPrice')?.value * 0.36 | mask: 'separator':','}} 
               </div>
             </div>
             <button class="simple-elevated-red-button btn m-2" type="submit">
@@ -99,11 +129,11 @@
            <div class="t-head mb-2">
             <div class="d-flex justify-content-around">
               <th class="col-2 fw-normal text-muted">Banco</th>
+              <th class="col-2 fw-normal text-muted">Parcela</th>
               <th class="col-2 fw-normal text-muted">Amortização</th>
               <th class="col-2 fw-normal text-muted">Juros</th>
               <th class="col-2 fw-normal text-muted">Prestação Final</th>
               <th class="col-2 fw-normal text-muted">Saldo Devedor</th>
-              <th class="col-2 fw-normal text-muted">Parcela</th>
             </div>
            </div>
            <!-- ROWS -->
@@ -112,6 +142,10 @@
                <td class="col-2" class="col-2 d-flex align-items-center justify-content-start p-2">
                  <img src="/assets/img/logo_caixa-3.png" style="width: 80px;">
                </td>
+               <td class="col-2 d-flex align-items-center justify-content-between" style="height: 80px;">
+                {{col.parcela}}
+         
+              </td>
                <td class="col-2 d-flex align-items-center justify-content-start">
                  {{col.amortizacao}}
                </td>
@@ -124,16 +158,13 @@
                <td class="col-2 d-flex align-items-center justify-content-start">
                  {{col.saldoDevedor}}
                </td>
-               <td class="col-2 d-flex align-items-center justify-content-between" style="height: 80px;">
-                 {{col.parcela}}
                  <!-- <button class="btn btn-primary m-2" type="button" data-bs-toggle="collapse" [attr.data-target]="'#collapse' + i" aria-expanded="true" [attr.aria-controls]="'collapse' + i" (click)='listDetails(i)'>
-                   Detalhes
-                 </button> -->
-               </td>
+                  Detalhes
+                </button> -->
              </div>
-             <div class="collapse mt-1 p-2" [attr.id]="'collapse' + i" [class.show]='openInstallmentsDetails[i]' [attr.aria-labelledby]="'heading' + i">
+             <!-- <div class="collapse mt-1 p-2" [attr.id]="'collapse' + i" [class.show]='openInstallmentsDetails[i]' [attr.aria-labelledby]="'heading' + i">
               Some placeholder content for the second collapse component of this multi-collapse example. This panel is hidden by default but revealed when the user activates the relevant trigger.
-             </div>
+             </div> -->
            </div>
          </div>
        </div>
