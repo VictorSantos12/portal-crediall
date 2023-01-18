@@ -9,6 +9,7 @@ import { MainService } from '../../shared/main.service';
 import { RequestResult } from '../../shared/models/request_result';
 import { PropertyType } from '../../shared/models/property-type/property-type';
 import { City } from '../../shared/models/city/city';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -22,16 +23,18 @@ export class HomeComponent implements OnInit {
   cities: City[] = [];
   propertyTypes: PropertyType[] = [];
 
-  constructor(private formBuilder: FormBuilder, private myRoute: Router, private mainService: MainService) {
-
+  constructor(
+    private formBuilder: FormBuilder, 
+    private myRoute: Router, 
+    private mainService: MainService, 
+  ) {
     this.propertySearchForm = this.formBuilder.group({
       city: ['Rio de Janeiro', Validators.compose([Validators.required])],
-      property_type: [0, Validators.compose([Validators.required])],
+      typology: [1, Validators.compose([Validators.required])],
       price: ['', Validators.compose([Validators.required])],
-      rooms: ['', Validators.compose([Validators.required])],
-      parking_spot: [''],
+      rooms: ['1', Validators.compose([Validators.required])],
+      parking_spot: ['1'],
     });
-
   }
 
   ngOnInit(): void {
@@ -66,14 +69,15 @@ export class HomeComponent implements OnInit {
         showCloseButton: true,
       })
     } else {
-      
-      this.myRoute.navigate([`/home/search-property/${{
-         "city": this.propertySearchForm.get('city')?.value,
-         "property_type": this.propertySearchForm.get('property_type')?.value,
-         "price": this.propertySearchForm.get('price')?.value,
-         "rooms": this.propertySearchForm.get('rooms')?.value,
-         "parking_spot": this.propertySearchForm.get('parking_spot')?.value,
-       }}`
+
+      let city = this.propertySearchForm.get('city')?.value;
+      let typology = this.propertySearchForm.get('typology')?.value;
+      let price = this.propertySearchForm.get('price')?.value;
+      let rooms = this.propertySearchForm.get('rooms')?.value;
+      let parking_spot = this.propertySearchForm.get('parking_spot')?.value;
+
+      this.myRoute.navigate([`/home/search-property/${city}/${typology}/${price}/${rooms}/${parking_spot}`
+
      ]);
     }
   }

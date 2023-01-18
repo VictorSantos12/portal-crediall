@@ -44,7 +44,7 @@
   background-color: #380f91;
   background-position: center; 
   background-repeat: no-repeat;
-  background-image: url("/assets/img/property_hall.png");
+  background-image: url("/assets/img/banner2_salaodeimoveis.png");
 }
 
 .event-card-right {
@@ -117,6 +117,10 @@ input[type='number'] {
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
+}
+
+select {
+  background-image: url("/assets/icons/arrow-down.png")
 }
 
 /* FIFTH */

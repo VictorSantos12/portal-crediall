@@ -1,4 +1,4 @@
-<div class="d-flex align-items-baseline justify-content-between p-3 w-100">
+<div id="nav-bar" class="d-flex align-items-baseline justify-content-between p-3 w-100">
   <a routerLink="/home/" style="font-size: 25px; color:#012942;">
     <i class="fa fa-arrow-circle-left mb-4" aria-hidden="true"></i>
   </a>  
@@ -19,94 +19,86 @@
         <div class="search-form-field rounded">
           <label class="form-label">Estado</label>
           <div class="d-flex flex-row align-items-center w-100">
-            <select formControlName="state" class="input-style form-control" (change)="stateChanged()">
+            <select formControlName="state" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="stateChanged()">
               <option value="Rio de Janeiro">Rio de Janeiro</option>
             </select>
-            &nbsp;
-            <i class="bi bi-chevron-down"></i>
           </div>
         </div>
         &nbsp;&nbsp;
         <div class="search-form-field rounded" style="min-width: 180px; max-width: 250px;">
           <label class="form-label">Cidade</label>
           <div class="d-flex flex-row align-items-center w-100">
-            <select formControlName="city" class="input-style form-control" (change)="cityChanged()">
+            <select formControlName="city" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="cityChanged()">
               <option *ngFor="let col of cities" value="{{col.name}}">{{col.name}}</option>
             </select>
-            &nbsp;
-            <i class="bi bi-chevron-down"></i>
           </div>
         </div>
         &nbsp;&nbsp;
         <div class="search-form-field rounded" style="min-width: 180px;">
           <label class="form-label">Bairro</label>
           <div class="d-flex flex-row align-items-center w-100">
-            <select formControlName="district" class="input-style form-control" (change)="districtChanged()">
+            <select formControlName="district" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="districtChanged()">
               <option value="">Todos</option>
               <option *ngFor="let col of districts" value="{{col.name}}">{{col.name}}</option>
             </select>
-            &nbsp;
-            <i class="bi bi-chevron-down"></i>
           </div>
         </div>
         &nbsp;&nbsp;
         <div class="search-form-field rounded" style="min-width: 180px;">
           <label class="form-label">Tipologia</label>
           <div class="d-flex flex-row align-items-center w-100">
-            <select formControlName="typology" class="input-style form-control" (change)="typologyChanged()">
+            <select formControlName="typology" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="typologyChanged()">
               <option value="" selected>Todas</option>
               <option *ngFor="let col of propertyTypes" value="{{col.id}}" selected>{{col.name}}</option>
             </select>
-            &nbsp;
-            <i class="bi bi-chevron-down"></i>
           </div>
         </div>
         &nbsp;&nbsp;
         <div class="search-form-field rounded" style="max-width: 180px;">
           <label class="form-label">Valor Máx</label>
           <div class="d-flex flex-row align-items-baseline w-100">
-            <p>R$</p>&nbsp;<input formControlName="price" class="input-style form-control">
+            <input formControlName="price" type="number" class="input-style form-control" [(ngModel)]="price" (ngModelChange)="priceChanged($event)"      
+              matInput
+              type="text"
+              prefix="R$ "
+              mask="separator.2"
+              [decimalMarker]="','"
+              [thousandSeparator]="'.'"
+              [dropSpecialCharacters]="true">
           </div>
         </div>
         &nbsp;&nbsp;
         <div class="search-form-field rounded">
           <label class="form-label">Quartos</label>
           <div class="d-flex flex-row align-items-center w-100">
-            <select formControlName="rooms" class="input-style form-control" (change)="roomChanged()">
-              <option value="0" selected>0+</option>
+            <select formControlName="rooms" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="roomChanged()">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="4">4</option>
             </select>
-            &nbsp;
-            <i class="bi bi-chevron-down"></i>
           </div>
         </div>
         &nbsp;&nbsp;
         <div class="search-form-field rounded">
           <label class="form-label">Vagas</label>
           <div class="d-flex flex-row align-items-center w-100">
-            <select formControlName="parking_spot" class="input-style form-control" (change)="parkingSpotChanged()">
+            <select formControlName="parking_spot" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="parkingSpotChanged()">
               <option value="0" selected>0+</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
             </select>
-            &nbsp;
-            <i class="bi bi-chevron-down"></i>
           </div>
         </div>
         &nbsp;&nbsp;
         <div class="search-form-field rounded" style="min-width: 180px;">
           <label class="form-label">Incorporadoras</label>
           <div class="d-flex flex-row align-items-center w-100">
-            <select formControlName="property_developer" class="input-style form-control" (change)="propertyDeveloperChanged()">
+            <select formControlName="property_developer" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="propertyDeveloperChanged()">
               <option value="">Todas</option>
               <option *ngFor="let col of propertyDevelopers" value="{{col.id}}">{{col.name}}</option>
             </select>
-            &nbsp;
-            <i class="bi bi-chevron-down"></i>
           </div>
         </div>
       </div>
@@ -120,32 +112,26 @@
         <div class="search-form-field rounded col-md-4 col-12">
           <label class="form-label">Estado</label>
           <div class="d-flex flex-row align-items-center w-100">
-            <select formControlName="state" class="input-style form-control" (change)="stateChanged()">
+            <select formControlName="state" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="stateChanged()">
               <option value="Rio de Janeiro">Rio de Janeiro</option>
             </select>
-            &nbsp;
-            <i class="bi bi-chevron-down"></i>
           </div>
         </div>
         <div class="search-form-field rounded col-md-4 col-12">
           <label class="form-label">Cidade</label>
           <div class="d-flex flex-row align-items-center w-100">
-            <select formControlName="city" class="input-style form-control" (change)="cityChanged()">
+            <select formControlName="city" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="cityChanged()">
               <option *ngFor="let col of cities" value="{{col.name}}">{{col.name}}</option>
             </select>
-            &nbsp;
-            <i class="bi bi-chevron-down"></i>
           </div>
         </div>
         <div class="search-form-field rounded col-md-4 col-12">
           <label class="form-label">Bairro</label>
           <div class="d-flex flex-row align-items-center w-100">
-            <select formControlName="district" class="input-style form-control" (change)="districtChanged()">
+            <select formControlName="district" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="districtChanged()">
               <option value="">Todos</option>
               <option *ngFor="let col of districts" value="{{col.name}}">{{col.name}}</option>
             </select>
-            &nbsp;
-            <i class="bi bi-chevron-down"></i>
           </div>
         </div>
        </div>
@@ -153,12 +139,10 @@
        <div class="search-form-field rounded">
          <label class="form-label">Tipologia</label>
          <div class="d-flex flex-row align-items-center w-100">
-          <select formControlName="typology" class="input-style form-control" (change)="typologyChanged()">
+          <select formControlName="typology" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="typologyChanged()">
             <option value="" selected>Todas</option>
             <option *ngFor="let col of propertyTypes" value="{{col.id}}">{{col.name}}</option>
           </select>
-           &nbsp;
-           <i class="bi bi-chevron-down"></i>
          </div>
        </div>
        &nbsp;&nbsp;
@@ -166,34 +150,36 @@
         <div class="search-form-field rounded col-md-4 col-12">
           <label class="form-label">Valor Máx</label>
           <div class="d-flex flex-row align-items-baseline w-100">
-            <p>R$</p>&nbsp;<input formControlName="price" class="input-style form-control">
+             <input formControlName="price" class="input-style form-control" [(ngModel)]="price" (ngModelChange)="priceChanged($event)"
+              matInput
+              type="text"
+              prefix="R$ "
+              mask="separator.2"
+              [decimalMarker]="','"
+              [thousandSeparator]="'.'"
+              [dropSpecialCharacters]="true">
           </div>
         </div>
         <div class="search-form-field rounded col-md-4 col-6">
           <label class="form-label">Quartos</label>
           <div class="d-flex flex-row align-items-center w-100">
-            <select formControlName="rooms" class="input-style form-control" (change)="roomChanged()">
-              <option value="0" selected>0+</option>
+            <select formControlName="rooms" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="roomChanged()">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="4">4</option>
             </select>
-            &nbsp;
-            <i class="bi bi-chevron-down"></i>
           </div>
         </div>
         <div class="search-form-field rounded col-md-4 col-6">
           <label class="form-label">Vagas</label>
           <div class="d-flex flex-row align-items-center w-100">
-            <select formControlName="parking_spot" class="input-style form-control" (change)="parkingSpotChanged()">
+            <select formControlName="parking_spot" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="parkingSpotChanged()">
               <option value="0" selected>0+</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
             </select>
-            &nbsp;
-            <i class="bi bi-chevron-down"></i>
           </div>
         </div>
        </div>
@@ -201,12 +187,10 @@
        <div class="search-form-field rounded" style="min-width: 180px;">
          <label class="form-label">Incorporadoras</label>
          <div class="d-flex flex-row align-items-center w-100">
-           <select formControlName="property_developer" class="input-style form-control" (change)="propertyDeveloperChanged()">
+           <select formControlName="property_developer" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="propertyDeveloperChanged()">
             <option value="">Todas</option>
             <option *ngFor="let col of propertyDevelopers" value="{{col.id}}">{{col.name}}</option>
            </select>
-           &nbsp;
-           <i class="bi bi-chevron-down"></i>
          </div>
        </div>
       </div>
@@ -287,15 +271,15 @@
       <div class="column p-4">
         <img class="pb-5" src="/assets/img/logo_crediall_complete.png">
         <div class="d-flex flex-row justify-content-center pb-5">
-          <a href="https://www.linkedin.com/feed/">
+          <a href="https://www.linkedin.com/in/crediall-solu%C3%A7%C3%B5es-em-cr%C3%A9dito-49a6681ba/?originalSubdomain=br">
             <img src="/assets/icons/linkdin.png">
           </a>
           &nbsp;&nbsp;&nbsp;
-          <a href="https://pt-br.facebook.com/">
+          <a href="https://www.facebook.com/credialltechoficial">
             <img src="/assets/icons/facebook.png">
           </a>
           &nbsp;&nbsp;&nbsp;
-          <a href="https://www.instagram.com/">
+          <a href="https://www.instagram.com/credialltechoficial/">
             <img src="/assets/icons/instagram.png">
           </a>
         </div>

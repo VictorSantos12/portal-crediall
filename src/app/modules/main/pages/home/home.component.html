@@ -42,7 +42,7 @@
   </div>
 </div>
 
-<div class="second col-md-12 p-4">
+<div id="estateHall" class="second col-md-12 p-4">
   <div class="column text-center">
     <p class="title">Salão de Imóveis</p>
     <div class="d-flex felx-column flex-wrap justify-content-center p-4">
@@ -95,7 +95,7 @@
       <p class="title">Realização</p>
       <div class="d-flex felx-column flex-wrap justify-content-evenly pb-5">
         <img class="pt-5" src="/assets/img/kreditos-imobi.png" style="height: 100px; width: 135px;">
-        <img class="pt-5" src="/assets/img/homer.png" style="height: 100px; width: 135px;">
+        <img class="pt-5" src="/assets/img/logo_homer.png" style="height: 100px; width: 135px;">
         <img class="pt-5" src="/assets/img/logo_crediall_complete.png" style="height: 70px; width: 150px;">
       </div>
     </div>
@@ -109,7 +109,7 @@
   </div>
 </div>
 
-<div class="fourth col-md-12 p-5">
+<div id="findProperty" class="fourth col-md-12 p-5">
   <div class="d-flex flex-column align-items-center text-center">
     <p class="title pb-3">Encontre um imóvel próximo de você!</p>
 
@@ -121,12 +121,9 @@
           <div class="search-form-field" style="width: 99.5%; border-radius: 10px 10px 0px 0px;">
             <label class="form-label">Cidade</label>
             <div class="d-flex flex-row align-items-center w-100">
-              <select formControlName="city" class="input-style form-control">
-                <option value="">Todas</option>
+              <select formControlName="city" class="input-style form-control form-select" aria-label=".form-select-lg example">
                 <option *ngFor="let col of cities" value="{{col.name}}">{{col.name}}</option>
               </select>
-              &nbsp;
-              <i class="bi bi-chevron-down"></i>
             </div>
           </div>
         </div>
@@ -134,50 +131,42 @@
           <div class="search-form-field" style="width: 30%; border-radius: 0px 0px 0px 10px;">
             <label class="form-label pt-1"><i class="bi bi-house-fill"></i>&nbsp;Tipo do imóvel</label>
             <div class="d-flex flex-row align-items-center w-100">
-              <select formControlName="property_type" class="input-style form-control">
-                <option value="0" selected>Todos</option>
+              <select formControlName="typology" class="input-style form-control form-select" aria-label=".form-select-lg example">
                 <option *ngFor="let col of propertyTypes" value="{{col.id}}">{{col.name}}</option>
               </select>
-              &nbsp;
-              <i class="bi bi-chevron-down"></i>
             </div>
           </div>
           <div class="search-form-field" style="width: 30%;">
             <label class="form-label pt-1"><i class="bi bi-currency-dollar"></i>&nbsp;Imóvel até</label>
             <input formControlName="price" type="number" class="form-control input-style" placeholder="Insira o valor"
-              matInput
-              mask="separator.2"
-              [thousandSeparator]="'.'"
-              [decimalMarker]="','"
-              prefix="R$ "
-              type="text"
-              [dropSpecialCharacters]="true">
+             matInput
+             type="text"
+             prefix="R$ "
+             mask="separator.2"
+             [decimalMarker]="','"
+             [thousandSeparator]="'.'"
+             [dropSpecialCharacters]="true">
           </div>
           <div class="search-form-field" style="width: 20%;">
             <label class="form-label pt-1">&nbsp;Quartos</label>
             <div class="d-flex flex-row align-items-center w-100">
-              <select formControlName="rooms" class="input-style form-control">
-                <option value="" selected>0+</option>
+              <select formControlName="rooms" class="input-style form-control form-select" aria-label=".form-select-lg example">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
               </select>
-              &nbsp;
-              <i class="bi bi-chevron-down"></i>
             </div>
           </div>
           <div class="search-form-field" style="width: 20%; border-radius: 0px 0px 10px 0px;">
             <label class="form-label pt-1"><i class="bi bi-car-front-fill"></i>&nbsp;Vagas</label>
             <div class="d-flex flex-row align-items-center w-100">
-              <select formControlName="parking_spot" class="input-style form-control">
+              <select formControlName="parking_spot" class="input-style form-control form-select" aria-label=".form-select-lg example">
                 <option value="" selected>0+</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
               </select>
-              &nbsp;
-              <i class="bi bi-chevron-down"></i>
             </div>
           </div>
         </div>
@@ -195,12 +184,10 @@
           <div class="search-form-field rounded-3 w-100">
             <label class="form-label">Cidade</label>
             <div class="d-flex flex-row align-items-center w-100">
-              <select formControlName="city" class="input-style form-control">
+              <select formControlName="city" class="input-style form-control form-select" aria-label=".form-select-lg example">
                 <option value="">Todas</option>
                 <option *ngFor="let col of cities" value="{{col.name}}">{{col.name}}</option>
               </select>
-              &nbsp;
-              <i class="bi bi-chevron-down"></i>
             </div>
           </div>
         </div>
@@ -208,43 +195,45 @@
           <div class="search-form-field rounded-3 w-100 mb-3">
             <label class="form-label pt-1"><i class="bi bi-house-fill"></i>&nbsp;Tipo do imóvel</label>
             <div class="d-flex flex-row align-items-center w-100">
-              <select formControlName="property_type" class="input-style form-control">
+              <select formControlName="typology" class="input-style form-control form-select" aria-label=".form-select-lg example">
                 <option value="0" selected>Todos</option>
                 <option *ngFor="let col of propertyTypes" value="{{col.id}}">{{col.name}}</option>
               </select>
-              &nbsp;
-              <i class="bi bi-chevron-down"></i>
             </div>
           </div>
           <div class="search-form-field rounded-3 w-100 mb-3">
             <label class="form-label pt-1"><i class="bi bi-currency-dollar"></i>&nbsp;Imóvel até</label>
-            <input formControlName="price" type="number" class="form-control input-style" placeholder="Insira o valor">
+            <input formControlName="price" type="number" class="form-control input-style" placeholder="Insira o valor"
+              matInput
+              type="text"
+              prefix="R$ "
+              mask="separator.2"
+              [decimalMarker]="','"
+              [thousandSeparator]="'.'"
+              [dropSpecialCharacters]="true">
           </div>
-          <div class="search-form-field rounded-3 w-50">
+          <div class="search-form-field flex-fill rounded-3">
             <label class="form-label pt-1">&nbsp;Quartos</label>
             <div class="d-flex flex-row align-items-center w-100">
-              <select formControlName="rooms" class="input-style form-control">
-                <option value="" selected>0+</option>
+              <select formControlName="rooms" class="input-style form-control form-select" aria-label=".form-select-lg example">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
               </select>
-              &nbsp;
-              <i class="bi bi-chevron-down"></i>
             </div>
           </div>
-          <div class="search-form-field rounded-3 w-50">
+          &nbsp;
+          &nbsp;
+          <div class="search-form-field flex-fill rounded-3">
             <label class="form-label pt-1"><i class="bi bi-car-front-fill"></i>&nbsp;Vagas</label>
             <div class="d-flex flex-row align-items-center w-100">
-              <select formControlName="parking_spot" class="input-style form-control">
+              <select formControlName="parking_spot" class="input-style form-control form-select" aria-label=".form-select-lg example">
                 <option value="" selected>0+</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
               </select>
-              &nbsp;
-              <i class="bi bi-chevron-down"></i>
             </div>
           </div>
         </div>
@@ -256,7 +245,7 @@
   </div>
 </div>
 
-<div class="fifth col-md-12 p-5">
+<div id="partners" class="fifth col-md-12 p-5">
   <div class="column text-center">
     <p class="title">Nossos Parceiros</p>
     <p class="sub-title">Um dos maiores bancos do cenário nacional está com a gente</p>
@@ -276,15 +265,15 @@
       <div class="column p-4">
         <img class="pb-5" src="/assets/img/logo_crediall_complete.png">
         <div class="d-flex flex-row justify-content-center pb-5">
-          <a href="https://www.linkedin.com/feed/">
+          <a href="https://www.linkedin.com/in/crediall-solu%C3%A7%C3%B5es-em-cr%C3%A9dito-49a6681ba/?originalSubdomain=br">
             <img src="/assets/icons/linkdin.png">
           </a>
           &nbsp;&nbsp;&nbsp;
-          <a href="https://pt-br.facebook.com/">
+          <a href="https://www.facebook.com/credialltechoficial">
             <img src="/assets/icons/facebook.png">
           </a>
           &nbsp;&nbsp;&nbsp;
-          <a href="https://www.instagram.com/">
+          <a href="https://www.instagram.com/credialltechoficial/">
             <img src="/assets/icons/instagram.png">
           </a>
         </div>

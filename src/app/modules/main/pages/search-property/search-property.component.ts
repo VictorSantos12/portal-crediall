@@ -12,6 +12,8 @@ import { PropertyType } from '../../shared/models/property-type/property-type';
 import { PropertyDeveloper } from '../../shared/models/property/property-developer';
 import { RequestPropertyResult } from '../../shared/models/property/request-property-result';
 import { Property } from '../../shared/models/property/property';
+import { debounceTime, filter, Observable, Subscription, switchMap } from 'rxjs';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-search-property',
@@ -32,35 +34,54 @@ export class SearchPropertyComponent implements OnInit {
 
   propertiesList: Property[] = [];
 
-  constructor(private currentRoute: ActivatedRoute, private formBuilder: FormBuilder, private mainService: MainService) {
+  price: string = '';
+
+  subscription: Observable<RequestPropertyResult> = new Observable();
+
+  get form() {
+    return this.propertySearchForm.controls;
+  }
+
+  constructor(
+    private currentRoute: ActivatedRoute,
+    private formBuilder: FormBuilder,
+    private mainService: MainService,
+  ) {
     this.propertySearchForm = this.formBuilder.group({
       state: ['Rio de Janeiro'],
-      city: ['Rio de Janeiro'],
+      city: [''],
       district: [''],
       typology: [''],
-      price: [0],
+      price: [''],
       rooms: [0],
       parking_spot: [0],
-      property_developer: [''],
+      property_developer: ['1'],
     });
    }
 
   ngOnInit(): void {
-
-    console.log(this.currentRoute.snapshot.params['property-parameters'])
     
-    this.getProperties();
 
+    this.form['city'].setValue(this.currentRoute.snapshot.params['city']);
+    this.form['typology'].setValue(this.currentRoute.snapshot.params['typology']);
+    this.form['price'].setValue(this.currentRoute.snapshot.params['price']);
+    this.form['rooms'].setValue(this.currentRoute.snapshot.params['rooms']);
+    this.form['parking_spot'].setValue(this.currentRoute.snapshot.params['parking_spot']);
+    
+    this.price = this.currentRoute.snapshot.params['price'];
+
+    this.getProperties();
     this.loadMap();
     
   }
+
 
   getProperties() {
     this.getCities(this.propertySearchForm.get('state')?.value);
     this.getDistrict(this.propertySearchForm.get('city')?.value, this.propertySearchForm.get('state')?.value);
     this.getPropertyTypes();
     this.getPropertyDevelopers();
-
+    
     this.getPropertiesList();
   }
    
@@ -70,18 +91,14 @@ export class SearchPropertyComponent implements OnInit {
     this.mainService.getStates()
     .subscribe((data: RequestResult) => {
       this.states = data.result;
-    }).add(() => {
-
-    });
+    }).add(() => {});
   }
 
   getCities(state: string) {
     this.mainService.getCities(state)
     .subscribe((data: RequestResult) => {
       this.cities = data.result;
-    }).add(() => {
-
-    });
+    }).add(() => {});
   }
 
   getDistrict(city: string, state: string) {
@@ -110,10 +127,14 @@ export class SearchPropertyComponent implements OnInit {
 
     });
   }
+ 
+  // SEARCH ROUTINES
 
   getPropertiesList() {
     
     this.gettingPropertiesList = true;
+    
+    this.cancelPendingRequests();
 
     let params = {
       'limit': 20,
@@ -122,21 +143,27 @@ export class SearchPropertyComponent implements OnInit {
       'state': this.propertySearchForm.get('state')?.value,
       'city': this.propertySearchForm.get('city')?.value,
       'district': this.propertySearchForm.get('district')?.value,
-      'minimumPrice': parseFloat(this.propertySearchForm.get('price')?.value),
+      'minimumPrice': 3000,
       'maximumPrice': parseFloat(this.propertySearchForm.get('price')?.value),
       'parkingSpots': parseInt(this.propertySearchForm.get('parking_spot')?.value),
       'propertyDeveloperId': parseInt(this.propertySearchForm.get('property_developer')?.value),
-      'propertyStateId': parseInt(this.propertySearchForm.get('state')?.value),
+      'propertyStateId': 1,
       'propertyTypeId': parseInt(this.propertySearchForm.get('typology')?.value),
       'rooms': parseInt(this.propertySearchForm.get('rooms')?.value),
     }
+
+    // this.subscription 
     
     this.mainService.getPropertiesList(params)
     .subscribe((data: RequestPropertyResult) => {
       this.propertiesList = data.result.results;
     }).add(() => {
       this.gettingPropertiesList = false;
-    });
+    })
+  }
+  
+  cancelPendingRequests() {
+    // this.request.unsubscribe();
   }
 
   // CHANGE ROUTINES
@@ -173,8 +200,12 @@ export class SearchPropertyComponent implements OnInit {
     this.getPropertiesList();
   }
 
-  priceChanged() {
-    this.getPropertiesList();
+  priceChanged(data: string) {
+    this.gettingPropertiesList = true;
+    setTimeout(() => {
+      this.getPropertiesList();
+      this.gettingPropertiesList = false;
+    }, 5000);
   }
 
   roomChanged() {

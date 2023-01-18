@@ -20,10 +20,11 @@
             <label class="text-uppercase pb-1"><i class="bi bi-currency-dollar"></i>&nbsp;Valor do Imóvel</label>
             <input formControlName="propertyPrice" type="number" class="form-control input-style" placeholder="Insira o valor"
               matInput
-              mask="separator.2"
-              [thousandSeparator]="','"
-              prefix="R$ "
               type="text"
+              prefix="R$ "
+              mask="separator.2"
+              [decimalMarker]="','"
+              [thousandSeparator]="'.'"
               [dropSpecialCharacters]="true" 
               [ngStyle]="form['propertyPrice'].dirty && form['propertyPrice'].hasError('required') || formError ? {'border-color':'red'} : {'':''}"
              >
@@ -32,10 +33,11 @@
             <label class="text-uppercase pb-1"><i class="bi bi-currency-dollar"></i>&nbsp;Valor do Financiamento</label>
             <input formControlName="financingPrice" type="number" class="form-control input-style" placeholder="Insira o valor" 
               matInput
-              mask="separator.2"
-              [thousandSeparator]="','"
-              prefix="R$ "
               type="text"
+              prefix="R$ "
+              mask="separator.2"
+              [decimalMarker]="','"
+              [thousandSeparator]="'.'"
               [dropSpecialCharacters]="true" 
               [ngStyle]="form['financingPrice'].dirty && form['financingPrice'].hasError('required') || formError ? {'border-color':'red'} : {'':''}"
             >
@@ -43,7 +45,7 @@
           <div class="d-flex col-md-12 align-items-center justify-content-start col-md-6 p-3 w-100" *ngIf="simulatorForm.get('financingPrice')?.value != '' ">
             <label class="text-uppercase pb-1 w-100">Renda Mínima</label>
             <div class="fw-semibold text-end fs-5 w-100"  mask="separator.2" style="color: #0F71F2;">
-              R$ {{simulatorForm.get('financingPrice')?.value * 0.36 | mask: 'separator':','}} 
+              {{ (simulatorForm.get('financingPrice')?.value * 0.36).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }} 
             </div>
           </div>
           <div class="search-form-field p-2">
@@ -77,21 +79,23 @@
               <label class="text-uppercase pb-1"><i class="bi bi-currency-dollar"></i>&nbsp;Valor do Imóvel</label>
               <input formControlName="propertyPrice" type="number" class="form-control input-style" placeholder="Insira o valor" 
                 matInput
-                mask="separator.2"
-                [thousandSeparator]="','"
-                prefix="R$ "
                 type="text"
-                [dropSpecialCharacters]="true"
+                prefix="R$ "
+                mask="separator.2"
+                [decimalMarker]="','"
+                [thousandSeparator]="'.'"
+                [dropSpecialCharacters]="true" 
                 [ngStyle]="form['propertyPrice'].dirty && form['propertyPrice'].hasError('required') || formError ? {'border-color':'red'} : {'':''}">
             </div>
             <div class="search-form-field d-flex p-2">
               <label class="text-uppercase pb-1"><i class="bi bi-currency-dollar"></i>&nbsp;Valor do Financiamento</label>
               <input formControlName="financingPrice" type="number" class="form-control input-style" placeholder="Insira o valor"           
                 matInput
-                mask="separator.2"
-                [thousandSeparator]="','"
-                prefix="R$ "
                 type="text"
+                prefix="R$ "
+                mask="separator.2"
+                [decimalMarker]="','"
+                [thousandSeparator]="'.'"
                 [dropSpecialCharacters]="true" 
                 [ngStyle]="form['financingPrice'].dirty && form['financingPrice'].hasError('required') || formError ? {'border-color':'red'} : {'':''}">
             </div>
@@ -108,8 +112,8 @@
             </div>
             <div class="d-flex col-md-12 align-items-center justify-content-start col-md-6 p-3 w-100" *ngIf="simulatorForm.get('financingPrice')?.value != '' ">
               <label class="text-uppercase pb-1 w-100">Renda Mínima</label>
-              <div class="fw-semibold text-end fs-5 w-100" mask="separator.2" style="color: #0F71F2;">
-                R$ {{simulatorForm.get('financingPrice')?.value * 0.36 | mask: 'separator':','}} 
+              <div class="fw-semibold text-end fs-5 w-100" style="color: #0F71F2;">
+                {{ (simulatorForm.get('financingPrice')?.value * 0.36).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}} 
               </div>
             </div>
             <button class="simple-elevated-red-button btn m-2" type="submit">
@@ -158,13 +162,7 @@
                <td class="col-2 d-flex align-items-center justify-content-start">
                  {{col.saldoDevedor}}
                </td>
-                 <!-- <button class="btn btn-primary m-2" type="button" data-bs-toggle="collapse" [attr.data-target]="'#collapse' + i" aria-expanded="true" [attr.aria-controls]="'collapse' + i" (click)='listDetails(i)'>
-                  Detalhes
-                </button> -->
              </div>
-             <!-- <div class="collapse mt-1 p-2" [attr.id]="'collapse' + i" [class.show]='openInstallmentsDetails[i]' [attr.aria-labelledby]="'heading' + i">
-              Some placeholder content for the second collapse component of this multi-collapse example. This panel is hidden by default but revealed when the user activates the relevant trigger.
-             </div> -->
            </div>
          </div>
        </div>
