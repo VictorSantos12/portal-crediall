@@ -225,8 +225,8 @@ export class SearchPropertyComponent implements OnInit {
     this.getPropertiesList();
   }
 
-  priceChanged(data: string) {
-    this.gettingPropertiesList = true;
+  priceChanged() {
+    
     setTimeout(() => {
       this.getPropertiesList();
       this.gettingPropertiesList = false;

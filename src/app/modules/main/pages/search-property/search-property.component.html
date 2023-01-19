@@ -57,7 +57,7 @@
         <div class="search-form-field rounded" style="max-width: 180px;">
           <label class="form-label">Valor Máx</label>
           <div class="d-flex flex-row align-items-baseline w-100">
-            <input class="input-style form-control" formControlName="price"
+            <input class="input-style form-control" formControlName="price" (change)="priceChanged()"
               matInput
               type="text" 
               prefix="R$ " 
