@@ -57,14 +57,14 @@
         <div class="search-form-field rounded" style="max-width: 180px;">
           <label class="form-label">Valor Máx</label>
           <div class="d-flex flex-row align-items-baseline w-100">
-            <input formControlName="price" type="number" class="input-style form-control" [(ngModel)]="price" (ngModelChange)="priceChanged($event)"      
+            <input class="input-style form-control" formControlName="price"
               matInput
-              type="text"
-              prefix="R$ "
-              mask="separator.2"
-              [decimalMarker]="','"
-              [thousandSeparator]="'.'"
-              [dropSpecialCharacters]="true">
+              type="text" 
+              prefix="R$ " 
+              mask="separator" 
+              thousandSeparator="." 
+              placeholder="Insira o valor" 
+              (keyup)="propertyPriceCurrencyMask($event.target)">
           </div>
         </div>
         &nbsp;&nbsp;
@@ -150,14 +150,14 @@
         <div class="search-form-field rounded col-md-4 col-12">
           <label class="form-label">Valor Máx</label>
           <div class="d-flex flex-row align-items-baseline w-100">
-             <input formControlName="price" class="input-style form-control" [(ngModel)]="price" (ngModelChange)="priceChanged($event)"
-              matInput
-              type="text"
-              prefix="R$ "
-              mask="separator.2"
-              [decimalMarker]="','"
-              [thousandSeparator]="'.'"
-              [dropSpecialCharacters]="true">
+             <input class="input-style form-control" formControlName="price" 
+               matInput
+               type="text" 
+               prefix="R$ " 
+               mask="separator" 
+               thousandSeparator="." 
+               placeholder="Insira o valor" 
+               (keyup)="propertyPriceCurrencyMask($event.target)">
           </div>
         </div>
         <div class="search-form-field rounded col-md-4 col-6">

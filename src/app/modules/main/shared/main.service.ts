@@ -54,11 +54,7 @@ export class MainService {
 
   // https://api-test.homer.com.br/v1/
 
-  // getPropertiesList(params: any): Observable<RequestPropertyResult>{
-  //   return this.http.get<RequestPropertyResult>(`https://api-test.homer.com.br/v1/new-constructions/q?limit=20&offset=0`,);
-  // }
-
-  simulateInvestiment(min: number, max: number, date: string, deadline: number): Observable<SimulatorResult> {
+  simulateInvestment(min: number, max: number, date: string, deadline: number): Observable<SimulatorResult> {
     return this.http.get<SimulatorResult>(
       `https://api.desenv.app.logbits.com.br/simulador/SimuladorFinanciamento/${min}/${max}/${date}/${deadline}`
     );

@@ -1,39 +1,40 @@
-<div class="col-12 mt-4 p-4">
+<div class="col-md-12 mt-4 p-4">
   <div class="d-flex flex-row flex-wrap justify-content-center">
     <div class="row justify-content-center">
 
-      <div *ngFor="let col of propertiesList" class="card border border-dark rounded-3 p-0 m-3">
+      <div class="card border border-dark rounded-3 p-0 m-3" *ngFor="let col of propertiesList; let i = index;">
         <div class="d-flex justify-content-center w-100 rounded-top p-1" style="height:22px; background-color: #012942;">
           <p class="text-white" style="font-size: 11px;">
             IMÓVEL DE INCORPORADORA
           </p>
         </div>
         
-        <img src="{{col.medias[0].url}}" class="card-img-top rounded-0">
-
-        <!-- <div id="carouselExampleIndicators" class="carousel slide card-img-top" data-bs-ride="true">
-          <div class="carousel-inner">
-
-            <div *ngFor="let media of col.medias" class="carousel-item active">
-              <img src="{{media.url}}" class="d-block">
+        <div class="card-img-top">
+          <div class="carousel slide carousel-fade" [attr.id]="'carousel-' + i" data-bs-ride="true">
+            <div class="carousel-indicators">
+              <button *ngFor="let media of col.medias; let m = index;" type="button" [attr.data-bs-target]="'#carousel-' + i" data-bs-slide-to="i" class="active" aria-current="true" aria-label="Slide 1"></button>
             </div>
-
+            <div class="carousel-inner">
+              <div class="carousel-item" *ngFor="let media of col.medias; let m = index;" [ngClass]="{'active': m == 0 }">
+                <img class="d-flex flex-fill img-fluid w-100" src="{{media.url}}" style="height: 250px;">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carousel-' + i" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#carousel-' + i" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div> -->
+        </div>
 
         <div class="card-body justify-content-center">
 
           <div class="d-flex flex-row justify-content-between pb-2" style="height:22px;">
             <div class="d-flex align-items-center">
-              <img src="/assets/icons/logo_homer.png">
+              <img src="/assets/icons/homer.png">
               &nbsp;&nbsp;
               <p class="fs-5 fw-semibold pt-4">HOMER</p>
             </div>
@@ -57,12 +58,12 @@
           </p>
           <p class="pb-2" style="line-height: 18px;">
             <span class="fs-5 fw-semibold">
-              A partir de R$ {{getFormattedPrice(col.price.minimumPrice)}}
+              A partir de {{getFormattedPrice(col.price.minimumPrice)}}
             </span>
             <br>
           </p>
           <div class="column pb-2">
-            <label class="form-label pt-1"><i class="bi bi-house-fill"></i>&nbsp;{{col.size.roomsCount}}</label>
+            <label class="form-label pt-1"><i class="bi bi-lamp"></i>&nbsp;{{col.size.roomsCount}}</label>
             &nbsp;
             <label class="form-label pt-1"><i class="bi bi-car-front-fill"></i>&nbsp;{{col.size.parkingSpotsCount}}</label>
           </div>

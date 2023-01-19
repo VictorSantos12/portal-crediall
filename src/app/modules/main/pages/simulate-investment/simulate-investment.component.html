@@ -17,35 +17,34 @@
       <form [formGroup]="simulatorForm" (submit)="validateSimulatorFormFields()">
         <div class="card shadow-sm border-0 p-3">
           <div class="search-form-field p-2">
-            <label class="text-uppercase pb-1"><i class="bi bi-currency-dollar"></i>&nbsp;Valor do Imóvel</label>
-            <input formControlName="propertyPrice" type="number" class="form-control input-style" placeholder="Insira o valor"
+            <label class="text-uppercase pb-1">R$&nbsp;Valor do Imóvel</label>
+            <input class="form-control input-style" formControlName="propertyPrice"
               matInput
-              type="text"
-              prefix="R$ "
-              mask="separator.2"
-              [decimalMarker]="','"
-              [thousandSeparator]="'.'"
-              [dropSpecialCharacters]="true" 
+              type="text" 
+              prefix="R$ " 
+              mask="separator" 
+              thousandSeparator="." 
+              placeholder="Insira o valor" 
+              (keyup)="propertyPriceCurrencyMask($event.target)"
               [ngStyle]="form['propertyPrice'].dirty && form['propertyPrice'].hasError('required') || formError ? {'border-color':'red'} : {'':''}"
              >
           </div>
           <div class="search-form-field p-2">
-            <label class="text-uppercase pb-1"><i class="bi bi-currency-dollar"></i>&nbsp;Valor do Financiamento</label>
-            <input formControlName="financingPrice" type="number" class="form-control input-style" placeholder="Insira o valor" 
+            <label class="text-uppercase pb-1">R$&nbsp;Valor do Financiamento</label>
+            <input formControlName="financingPrice" class="form-control input-style"
               matInput
-              type="text"
-              prefix="R$ "
-              mask="separator.2"
-              [decimalMarker]="','"
-              [thousandSeparator]="'.'"
-              [dropSpecialCharacters]="true" 
-              [ngStyle]="form['financingPrice'].dirty && form['financingPrice'].hasError('required') || formError ? {'border-color':'red'} : {'':''}"
-            >
+              type="text" 
+              prefix="R$ " 
+              mask="separator" 
+              thousandSeparator="." 
+              placeholder="Insira o valor" 
+              (keyup)="financingPriceCurrencyMask($event.target)"
+              [ngStyle]="form['financingPrice'].dirty && form['financingPrice'].hasError('required') || formError ? {'border-color':'red'} : {'':''}">
           </div>
           <div class="d-flex col-md-12 align-items-center justify-content-start col-md-6 p-3 w-100" *ngIf="simulatorForm.get('financingPrice')?.value != '' ">
             <label class="text-uppercase pb-1 w-100">Renda Mínima</label>
             <div class="fw-semibold text-end fs-5 w-100"  mask="separator.2" style="color: #0F71F2;">
-              {{ (simulatorForm.get('financingPrice')?.value * 0.36).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }} 
+              {{ (financingPrice * 0.36).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }} 
             </div>
           </div>
           <div class="search-form-field p-2">
@@ -75,34 +74,38 @@
       <form [formGroup]="simulatorForm" (submit)="validateSimulatorFormFields()">
         <div class="card shadow-sm border-0 p-3">
           <div class="d-flex flex-row align-items-center flex-wrap w-100"> 
+
             <div class="search-form-field d-flex p-2">
-              <label class="text-uppercase pb-1"><i class="bi bi-currency-dollar"></i>&nbsp;Valor do Imóvel</label>
-              <input formControlName="propertyPrice" type="number" class="form-control input-style" placeholder="Insira o valor" 
-                matInput
-                type="text"
-                prefix="R$ "
-                mask="separator.2"
-                [decimalMarker]="','"
-                [thousandSeparator]="'.'"
-                [dropSpecialCharacters]="true" 
-                [ngStyle]="form['propertyPrice'].dirty && form['propertyPrice'].hasError('required') || formError ? {'border-color':'red'} : {'':''}">
+              <label class="text-uppercase pb-1">R$&nbsp;Valor do Imóvel</label>
+               <input class="form-control input-style" formControlName="propertyPrice" 
+               matInput
+               type="text" 
+               prefix="R$ " 
+               mask="separator" 
+               thousandSeparator="." 
+               placeholder="Insira o valor" 
+               (keyup)="propertyPriceCurrencyMask($event.target)"
+               [ngStyle]="form['propertyPrice'].dirty && form['propertyPrice'].hasError('required') || formError ? {'border-color':'red'} : {'':''}">
             </div>
+
             <div class="search-form-field d-flex p-2">
-              <label class="text-uppercase pb-1"><i class="bi bi-currency-dollar"></i>&nbsp;Valor do Financiamento</label>
-              <input formControlName="financingPrice" type="number" class="form-control input-style" placeholder="Insira o valor"           
+              <label class="text-uppercase pb-1">R$&nbsp;Valor do Financiamento</label>
+              <input class="form-control input-style" formControlName="financingPrice"       
                 matInput
-                type="text"
-                prefix="R$ "
-                mask="separator.2"
-                [decimalMarker]="','"
-                [thousandSeparator]="'.'"
-                [dropSpecialCharacters]="true" 
+                type="text" 
+                prefix="R$ " 
+                mask="separator" 
+                thousandSeparator="." 
+                placeholder="Insira o valor" 
+                (keyup)="financingPriceCurrencyMask($event.target)"
                 [ngStyle]="form['financingPrice'].dirty && form['financingPrice'].hasError('required') || formError ? {'border-color':'red'} : {'':''}">
             </div>
+
             <div class="search-form-field d-flex p-2">
               <label class="text-uppercase pb-1"><i class="bi bi-calendar-event"></i>&nbsp;Data de Nascimento</label>
               <input formControlName="birthDate" type="date" name="birthDate" min="1900-12-12" max="9999-12-12" id="birthDate" class="form-control" [ngStyle]="form['birthDate'].dirty && form['birthDate'].hasError('required') || formError ? {'border-color':'red'} : {'':''}">
             </div>
+
             <div class="search-form-field d-flex p-2 mb-2">
               <label class="text-uppercase pb-1">Meses</label>
               <input formControlName="months" type="range" min="12" max="420" class="form-range" id="customRange1">
@@ -110,10 +113,11 @@
                  {{simulatorForm.get('months')?.value}}
               </div>
             </div>
+
             <div class="d-flex col-md-12 align-items-center justify-content-start col-md-6 p-3 w-100" *ngIf="simulatorForm.get('financingPrice')?.value != '' ">
               <label class="text-uppercase pb-1 w-100">Renda Mínima</label>
               <div class="fw-semibold text-end fs-5 w-100" style="color: #0F71F2;">
-                {{ (simulatorForm.get('financingPrice')?.value * 0.36).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}} 
+                {{ (financingPrice * 0.36).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }}
               </div>
             </div>
             <button class="simple-elevated-red-button btn m-2" type="submit">

@@ -21,7 +21,9 @@ export class SimulateInvestmentComponent implements OnInit {
   gettingInstallments: boolean = false;
 
   openInstallmentsDetails: boolean[] = [];
- 
+
+  financingPrice: any;
+  
   get form() {
     return this.simulatorForm.controls;
   }
@@ -51,19 +53,19 @@ export class SimulateInvestmentComponent implements OnInit {
       })
     } else {
       this.formError = false;
-      this.simulateInvestiment();
+      this.simulateInvestment();
     }
   }
 
-  simulateInvestiment() {
+  simulateInvestment() {
     this.gettingInstallments = true;
 
-    let propertyPrice =  parseFloat(this.simulatorForm.get('propertyPrice')?.value);
-    let financingPrice = parseFloat(this.simulatorForm.get('financingPrice')?.value);
+    let propertyPrice =  parseInt(this.simulatorForm.get('propertyPrice')?.value);
+    let financingPrice = parseInt(this.simulatorForm.get('financingPrice')?.value);
     let birthDate = this.simulatorForm.get('birthDate')?.value;
     let months = parseInt(this.simulatorForm.get('months')?.value);
 
-    this.mainService.simulateInvestiment(propertyPrice, financingPrice, this.dateInverter(birthDate), months)
+    this.mainService.simulateInvestment(propertyPrice, financingPrice, this.dateInverter(birthDate), months)
     .subscribe((data: SimulatorResult) => {
       this.installments = data.parcelas;
     }).add(() => {
@@ -79,5 +81,57 @@ export class SimulateInvestmentComponent implements OnInit {
     this.openInstallmentsDetails[index] = !this.openInstallmentsDetails[index];
   }
   
+  propertyPriceCurrencyMask(i: any) {
+  
+    var valor = i.value
+
+    valor = valor + '';
+
+    valor = valor.replace(/[\D]+/g,'');
+
+    if(valor.trim() != ''){
+      valor = parseFloat(valor);
+    }
+    valor = valor + '';
+    valor = valor.replace(/([0-9]{2})$/g, ",$1");
+
+    if (valor.length > 13) {
+      valor = valor.replace(/([0-9]{3}),([0-9]{2}$)/g, ".$1,$2");
+    }
+    
+    this.simulatorForm.controls['propertyPrice'].setValue(valor);
+
+    let value = Number(valor.replace(',', '.'));
+
+    console.log(value);
+
+  }
+
+  financingPriceCurrencyMask(i: any) {
+    
+    var valor = i.value
+
+    valor = valor + '';
+
+    valor = valor.replace(/[\D]+/g,'');
+
+    if(valor.trim() != ''){
+      valor = parseFloat(valor);
+    }
+    valor = valor + '';
+    valor = valor.replace(/([0-9]{2})$/g, ",$1");
+
+    if (valor.length > 13) {
+      valor = valor.replace(/([0-9]{3}),([0-9]{2}$)/g, ".$1,$2");
+    }
+    this.simulatorForm.controls['financingPrice'].setValue(valor);
+    
+    let value = Number(valor.replace(',', '.'));
+
+    console.log(value);
+
+    this.financingPrice = value;
+
+  }  
 
 }

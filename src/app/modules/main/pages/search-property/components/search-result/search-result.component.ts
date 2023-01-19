@@ -10,6 +10,8 @@ export class SearchResultComponent implements OnInit {
   
   @Input()
   propertiesList: Property[] = [];
+  
+  openInstallmentsDetails: boolean[] = [];
 
   constructor() { }
 

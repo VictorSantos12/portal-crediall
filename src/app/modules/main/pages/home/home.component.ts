@@ -82,8 +82,33 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  simulateInvestiment() {
-    this.myRoute.navigate([`/simulate-investiment`]);
+  propertyPriceCurrencyMask(i: any) {
+    
+    var valor = i.value
+
+    valor = valor + '';
+
+    valor = valor.replace(/[\D]+/g,'');
+
+    if(valor.trim() != ''){
+      valor = parseFloat(valor);
+    }
+    valor = valor + '';
+    valor = valor.replace(/([0-9]{2})$/g, ",$1");
+
+    if (valor.length > 13) {
+      valor = valor.replace(/([0-9]{3}),([0-9]{2}$)/g, ".$1,$2");
+    }
+    this.propertySearchForm.controls['price'].setValue(valor);
+    
+    let value = Number(valor.replace(',', '.'));
+
+    console.log(value);
+
+  }  
+
+  simulateInvestment() {
+    this.myRoute.navigate([`/simulate-investment`]);
   }
 
   loadMap() {

@@ -9,19 +9,19 @@
     min-width: 300px;
     background-color: transparent;
   }
-
+ 
   input {
     height: 70px;
   }
 
-  input[type='number'] {
+  /* input[type='number'] {
     appearance:textfield;
-  }
+  } */
   
-  input::-webkit-outer-spin-button,
+  /* input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
       -webkit-appearance: none;
-  }
+  } */
 
   .simple-elevated-red-button {
     color: white;

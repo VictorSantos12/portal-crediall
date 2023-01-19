@@ -60,8 +60,7 @@ export class SearchPropertyComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    
-
+  
     this.form['city'].setValue(this.currentRoute.snapshot.params['city']);
     this.form['typology'].setValue(this.currentRoute.snapshot.params['typology']);
     this.form['price'].setValue(this.currentRoute.snapshot.params['price']);
@@ -74,7 +73,6 @@ export class SearchPropertyComponent implements OnInit {
     this.loadMap();
     
   }
-
 
   getProperties() {
     this.getCities(this.propertySearchForm.get('state')?.value);
@@ -128,6 +126,33 @@ export class SearchPropertyComponent implements OnInit {
     });
   }
  
+
+  propertyPriceCurrencyMask(i: any) {
+  
+    var valor = i.value
+
+    valor = valor + '';
+
+    valor = valor.replace(/[\D]+/g,'');
+
+    if(valor.trim() != ''){
+      valor = parseFloat(valor);
+    }
+    valor = valor + '';
+    valor = valor.replace(/([0-9]{2})$/g, ",$1");
+
+    if (valor.length > 13) {
+      valor = valor.replace(/([0-9]{3}),([0-9]{2}$)/g, ".$1,$2");
+    }
+    
+    this.propertySearchForm.controls['price'].setValue(valor);
+
+    let value = Number(valor.replace(',', '.'));
+
+    console.log(value);
+
+  }
+
   // SEARCH ROUTINES
 
   getPropertiesList() {
@@ -139,17 +164,17 @@ export class SearchPropertyComponent implements OnInit {
     let params = {
       'limit': 20,
       'offset': 0,
-      'area': 200,
+      'area': 100,
       'state': this.propertySearchForm.get('state')?.value,
       'city': this.propertySearchForm.get('city')?.value,
-      'district': this.propertySearchForm.get('district')?.value,
-      'minimumPrice': 3000,
-      'maximumPrice': parseFloat(this.propertySearchForm.get('price')?.value),
-      'parkingSpots': parseInt(this.propertySearchForm.get('parking_spot')?.value),
-      'propertyDeveloperId': parseInt(this.propertySearchForm.get('property_developer')?.value),
-      'propertyStateId': 1,
-      'propertyTypeId': parseInt(this.propertySearchForm.get('typology')?.value),
-      'rooms': parseInt(this.propertySearchForm.get('rooms')?.value),
+      // 'district': this.propertySearchForm.get('district')?.value,
+      // 'minimumPrice': 3000,
+      // 'maximumPrice': parseFloat(this.propertySearchForm.get('price')?.value),
+      // 'parkingSpots': parseInt(this.propertySearchForm.get('parking_spot')?.value),
+      // 'propertyDeveloperId': parseInt(this.propertySearchForm.get('property_developer')?.value),
+      // 'propertyStateId': 1,
+      // 'propertyTypeId': parseInt(this.propertySearchForm.get('typology')?.value),
+      // 'rooms': parseInt(this.propertySearchForm.get('rooms')?.value),
     }
 
     // this.subscription 
@@ -220,6 +245,7 @@ export class SearchPropertyComponent implements OnInit {
     this.getPropertiesList();
   }
 
+  //  
 
   loadMap() {
     this.loader.loadCallback(e => {

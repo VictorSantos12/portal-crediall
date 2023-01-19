@@ -8,7 +8,7 @@ import { SearchPropertyComponent } from './pages/search-property/search-property
 import { SearchResultComponent } from './pages/search-property/components/search-result/search-result.component';
 import { MainService } from './shared/main.service';
 import { SimulateInvestmentComponent } from './pages/simulate-investment/simulate-investment.component';
-import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { NgxMaskModule} from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -22,13 +22,10 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
     CommonModule,
     MainRoutingModule,
     ReactiveFormsModule,
-    NgxMaskDirective, 
-    NgxMaskPipe
+    NgxMaskModule.forRoot(),
   ],
   providers: [
     MainService,
-    provideNgxMask()
-
   ]
 })
 export class MainModule { }
