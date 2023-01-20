@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Loader } from '@googlemaps/js-api-loader';
 import { ActivatedRoute } from '@angular/router';
 
@@ -12,7 +12,7 @@ import { PropertyType } from '../../shared/models/property-type/property-type';
 import { PropertyDeveloper } from '../../shared/models/property/property-developer';
 import { RequestPropertyResult } from '../../shared/models/property/request-property-result';
 import { Property } from '../../shared/models/property/property';
-import { debounceTime, filter, fromEvent, Observable, Subject, Subscription, switchMap } from 'rxjs';
+import { debounceTime, Subject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-search-property',
@@ -22,6 +22,8 @@ import { debounceTime, filter, fromEvent, Observable, Subject, Subscription, swi
 export class SearchPropertyComponent implements OnInit {
   
   propertySearchForm: FormGroup;
+
+  property: Property = new Property();
   
   states: State[] = [];
   cities: City[] = [];
@@ -58,7 +60,7 @@ export class SearchPropertyComponent implements OnInit {
       parking_spot: [0],
       property_developer: [''],
     });
-   }
+  }
 
   ngOnInit(): void {
   
@@ -190,18 +192,6 @@ export class SearchPropertyComponent implements OnInit {
   
   // CHANGE ROUTINES
 
-  stateChanged() {
-
-    this.getCities(this.propertySearchForm.get('state')?.value);
-    this.getDistrict(this.propertySearchForm.get('city')?.value, this.propertySearchForm.get('state')?.value);
-
-    this.propertySearchForm.controls['city'].setValue('');
-    this.propertySearchForm.controls['district'].setValue('');
-
-    this.getPropertiesList();
-
-  }
-
   cityChanged() {
 
     this.getDistrict(
@@ -214,36 +204,15 @@ export class SearchPropertyComponent implements OnInit {
 
   }
 
-  districtChanged() {
-    this.getPropertiesList();
-  }
-
-  typologyChanged() {
-    this.getPropertiesList();
-  }
-  
-  
   priceChanged() {
     this.propertyPrice.next('');
   }
 
-  areaChanged() {
-    this.getPropertiesList();
+  emitProperty(property: Property) {
+    this.property = property;
   }
 
-  roomChanged() {
-    this.getPropertiesList();
-  }
-
-  parkingSpotChanged() {
-    this.getPropertiesList();
-  }
-
-  propertyDeveloperChanged() {
-    this.getPropertiesList();
-  }
-
-  //  
+  //  MAP
 
   loadMap() {
     this.loader.loadCallback(e => {

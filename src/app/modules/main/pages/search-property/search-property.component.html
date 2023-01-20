@@ -19,7 +19,7 @@
         <div class="search-form-field rounded">
           <label class="form-label">Estado</label>
           <div class="d-flex flex-row align-items-center w-100">
-            <select formControlName="state" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="stateChanged()">
+            <select formControlName="state" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="getPropertiesList()">
               <option value="Rio de Janeiro">Rio de Janeiro</option>
             </select>
           </div>
@@ -37,7 +37,7 @@
         <div class="search-form-field rounded" style="min-width: 180px;">
           <label class="form-label">Bairro</label>
           <div class="d-flex flex-row align-items-center w-100">
-            <select formControlName="district" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="districtChanged()">
+            <select formControlName="district" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="getPropertiesList()">
               <option value="">Todos</option>
               <option *ngFor="let col of districts" value="{{col.name}}">{{col.name}}</option>
             </select>
@@ -47,7 +47,7 @@
         <div class="search-form-field rounded" style="min-width: 180px;">
           <label class="form-label">Tipologia</label>
           <div class="d-flex flex-row align-items-center w-100">
-            <select formControlName="typology" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="typologyChanged()">
+            <select formControlName="typology" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="getPropertiesList()">
               <option *ngFor="let col of propertyTypes" value="{{col.id}}" selected>{{col.name}}</option>
             </select>
           </div>
@@ -70,7 +70,7 @@
         <div class="search-form-field rounded">
           <label class="form-label">Quartos</label>
           <div class="d-flex flex-row align-items-center w-100">
-            <select formControlName="rooms" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="roomChanged()">
+            <select formControlName="rooms" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="getPropertiesList()">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -82,7 +82,7 @@
         <div class="search-form-field rounded">
           <label class="form-label">Área</label>
           <div class="d-flex flex-row align-items-center w-100">
-            <select formControlName="area" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="areaChanged()">
+            <select formControlName="area" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="getPropertiesList()">
               <option value="40">40 m&#x00B2;</option>
               <option value="50">50 m&#x00B2;</option>
               <option value="60">60 m&#x00B2;</option>
@@ -101,7 +101,7 @@
         <div class="search-form-field rounded">
           <label class="form-label">Vagas</label>
           <div class="d-flex flex-row align-items-center w-100">
-            <select formControlName="parking_spot" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="parkingSpotChanged()">
+            <select formControlName="parking_spot" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="getPropertiesList()">
               <option value="0" selected>0</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -113,7 +113,7 @@
         <div class="search-form-field rounded" style="min-width: 180px;">
           <label class="form-label">Incorporadoras</label>
           <div class="d-flex flex-row align-items-center w-100">
-            <select formControlName="property_developer" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="propertyDeveloperChanged()">
+            <select formControlName="property_developer" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="getPropertiesList()">
               <option value="">Todas</option>
               <option *ngFor="let col of propertyDevelopers" value="{{col.id}}">{{col.name}}</option>
             </select>
@@ -130,7 +130,7 @@
         <div class="search-form-field rounded flex-fill">
           <label class="form-label">Estado</label>
           <div class="d-flex flex-row align-items-center w-100">
-            <select formControlName="state" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="stateChanged()">
+            <select formControlName="state" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="getPropertiesList()">
               <option value="Rio de Janeiro">Rio de Janeiro</option>
             </select>
           </div>
@@ -146,7 +146,7 @@
         <div class="search-form-field rounded flex-fill">
           <label class="form-label">Bairro</label>
           <div class="d-flex flex-row align-items-center w-100">
-            <select formControlName="district" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="districtChanged()">
+            <select formControlName="district" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="getPropertiesList()">
               <option value="">Todos</option>
               <option *ngFor="let col of districts" value="{{col.name}}">{{col.name}}</option>
             </select>
@@ -157,7 +157,7 @@
        <div class="search-form-field rounded">
          <label class="form-label">Tipologia</label>
          <div class="d-flex flex-row align-items-center w-100">
-          <select formControlName="typology" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="typologyChanged()">
+          <select formControlName="typology" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="getPropertiesList()">
             <option *ngFor="let col of propertyTypes" value="{{col.id}}">{{col.name}}</option>
           </select>
          </div>
@@ -181,7 +181,7 @@
         <div class="search-form-field rounded flex-fill">
           <label class="form-label">Área</label>
           <div class="d-flex flex-row align-items-center w-100">
-            <select formControlName="area" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="areaChanged()">
+            <select formControlName="area" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="getPropertiesList()">
               <option value="40">40 m&#x00B2;</option>
               <option value="50">50 m&#x00B2;</option>
               <option value="60">60 m&#x00B2;</option>
@@ -200,7 +200,7 @@
         <div class="search-form-field rounded flex-fill">
           <label class="form-label">Quartos</label>
           <div class="d-flex flex-row align-items-center w-100">
-            <select formControlName="rooms" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="roomChanged()">
+            <select formControlName="rooms" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="getPropertiesList()">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -212,7 +212,7 @@
         <div class="search-form-field rounded flex-fill">
           <label class="form-label">Vagas</label>
           <div class="d-flex flex-row align-items-center w-100">
-            <select formControlName="parking_spot" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="parkingSpotChanged()">
+            <select formControlName="parking_spot" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="getPropertiesList()">
               <option value="0" selected>0</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -225,7 +225,7 @@
        <div class="search-form-field rounded" style="min-width: 180px;">
          <label class="form-label">Incorporadoras</label>
          <div class="d-flex flex-row align-items-center w-100">
-           <select formControlName="property_developer" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="propertyDeveloperChanged()">
+           <select formControlName="property_developer" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="getPropertiesList()">
             <option value="">Todas</option>
             <option *ngFor="let col of propertyDevelopers" value="{{col.id}}">{{col.name}}</option>
            </select>
@@ -237,9 +237,9 @@
     
     <!-- RESULT -->
 
-    <app-search-result *ngIf="!gettingPropertiesList && propertiesList.length > 0" [propertiesList]="propertiesList"></app-search-result>
+    <app-search-result *ngIf="!gettingPropertiesList && propertiesList.length > 0" [propertiesList]="propertiesList" (property)="emitProperty($event)"></app-search-result>
 
-    
+    <app-contact-modal [property]="property"></app-contact-modal>
     
     <!-- LOADING -->
 

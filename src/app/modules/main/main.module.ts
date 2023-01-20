@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskModule} from 'ngx-mask';
 
 import { MainService } from './shared/main.service';
+import { ContactModalComponent } from './pages/search-property/components/contact-modal/contact-modal.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { MainService } from './shared/main.service';
     AppNavBarComponent,
     SearchPropertyComponent,
     SearchResultComponent,
-    SimulateInvestmentComponent
+    SimulateInvestmentComponent,
+    ContactModalComponent
   ],
   imports: [
     CommonModule,

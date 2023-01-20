@@ -1,0 +1,56 @@
+<div class="modal rounded-0" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Dados de contato</h5>
+        <button class="btn-close" id="close" type="button" data-bs-dismiss="modal" aria-label="Close" (click)="modalClosed()"></button>
+      </div>
+
+      <div class="modal-body">
+        <form [formGroup]="contactSpecialistForm" (submit)="validateContactSpecialistForm()">
+         <div class="m-3">
+           <input class="text-form-fild form-control"
+            formControlName="name" 
+            type="text"
+            placeholder="Nome"
+            [ngStyle]="form['name'].dirty && form['name'].hasError('required') || formError ? {'border-color':'red'} : {'':''}">
+            <small class="form-text" style="color:red;" *ngIf="form['name'].dirty && form['name'].hasError('required') || formError && form['name'].hasError('required')">
+              Campo obrigatório &nbsp;&nbsp;<i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+            </small>
+         </div>
+         <div class="m-3">
+           <input class="text-form-fild form-control" 
+            formControlName="email" 
+            type="email" 
+            placeholder="E-mail"
+            [ngStyle]="form['email'].dirty && form['email'].hasError('required') || formError ? {'border-color':'red'} : {'':''}">
+            <small class="form-text" style="color:red;" *ngIf="form['email'].dirty && form['email'].hasError('required') || formError && form['email'].hasError('required')">
+              Campo obrigatório &nbsp;&nbsp;<i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+            </small>
+         </div>
+         <div class="m-3">
+           <input class="text-form-fild form-control" 
+            formControlName="phone" 
+            type="tel" 
+            placeholder="Telefone"
+            [ngStyle]="form['phone'].dirty && form['phone'].hasError('required') || formError ? {'border-color':'red'} : {'':''}">
+            <small class="form-text" style="color:red;" *ngIf="form['phone'].dirty && form['phone'].hasError('required') || formError && form['phone'].hasError('required')">
+              Campo obrigatório &nbsp;&nbsp;<i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+            </small>
+         </div>
+         
+         <div class="m-3 form-check">
+           <input type="checkbox" class="form-check-input" id="exampleCheck1">
+           <label class="fs-6">Aceito os Termos de uso, as Políticas de privacidade e autorizo o compartilhamento dos meus dados de contato com outros anunciantes parceiros para ofertas similiares.</label>
+         </div>
+
+         <div class="d-flex justify-content-end p-3">
+          <button type="submit" class="submit-button btn">Enviar</button>
+         </div>
+       </form>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-export interface PropertyType {
-  id: number;
-  name: string;
+export class PropertyType {
+  id: number = 0;
+  name: string = '';
 }
