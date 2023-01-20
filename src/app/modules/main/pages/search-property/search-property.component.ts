@@ -12,8 +12,7 @@ import { PropertyType } from '../../shared/models/property-type/property-type';
 import { PropertyDeveloper } from '../../shared/models/property/property-developer';
 import { RequestPropertyResult } from '../../shared/models/property/request-property-result';
 import { Property } from '../../shared/models/property/property';
-import { debounceTime, filter, Observable, Subscription, switchMap } from 'rxjs';
-import { ViewportScroller } from '@angular/common';
+import { debounceTime, filter, fromEvent, Observable, Subject, Subscription, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-search-property',
@@ -34,9 +33,10 @@ export class SearchPropertyComponent implements OnInit {
 
   propertiesList: Property[] = [];
 
-  price: string = '';
+  // Property Price Input
 
-  subscription: Observable<RequestPropertyResult> = new Observable();
+  propertyPrice: Subject<string> = new Subject<string>();
+  propertyPriceSubscription: Subscription = new Subscription();
 
   get form() {
     return this.propertySearchForm.controls;
@@ -53,9 +53,10 @@ export class SearchPropertyComponent implements OnInit {
       district: [''],
       typology: [''],
       price: [''],
+      area: [100],
       rooms: [0],
       parking_spot: [0],
-      property_developer: ['1'],
+      property_developer: [''],
     });
    }
 
@@ -66,12 +67,20 @@ export class SearchPropertyComponent implements OnInit {
     this.form['price'].setValue(this.currentRoute.snapshot.params['price']);
     this.form['rooms'].setValue(this.currentRoute.snapshot.params['rooms']);
     this.form['parking_spot'].setValue(this.currentRoute.snapshot.params['parking_spot']);
-    
-    this.price = this.currentRoute.snapshot.params['price'];
 
     this.getProperties();
     this.loadMap();
     
+    this.propertyPriceSubscription = this.propertyPrice
+    .pipe(
+      debounceTime(1000),
+    ).subscribe(() => {
+      console.log('works')
+      if(this.form['price'].value != '') {
+        this.getPropertiesList();
+      }
+    });
+
   }
 
   getProperties() {
@@ -146,11 +155,7 @@ export class SearchPropertyComponent implements OnInit {
     }
     
     this.propertySearchForm.controls['price'].setValue(valor);
-
-    let value = Number(valor.replace(',', '.'));
-
-    console.log(value);
-
+    
   }
 
   // SEARCH ROUTINES
@@ -159,26 +164,22 @@ export class SearchPropertyComponent implements OnInit {
     
     this.gettingPropertiesList = true;
     
-    this.cancelPendingRequests();
-
     let params = {
       'limit': 20,
       'offset': 0,
-      'area': 100,
+      'area': parseInt(this.propertySearchForm.get('area')?.value),
       'state': this.propertySearchForm.get('state')?.value,
       'city': this.propertySearchForm.get('city')?.value,
-      // 'district': this.propertySearchForm.get('district')?.value,
-      // 'minimumPrice': 3000,
-      // 'maximumPrice': parseFloat(this.propertySearchForm.get('price')?.value),
-      // 'parkingSpots': parseInt(this.propertySearchForm.get('parking_spot')?.value),
-      // 'propertyDeveloperId': parseInt(this.propertySearchForm.get('property_developer')?.value),
+      'district': this.propertySearchForm.get('district')?.value,
+      'minimumPrice': 500000,
+      'maximumPrice': this.propertySearchForm.get('price')?.value.replace(',',''),
+      'parkingSpots': parseInt(this.propertySearchForm.get('parking_spot')?.value),
+      'propertyDeveloperId': (Number.isNaN(parseInt(this.propertySearchForm.get('property_developer')?.value))) ? null : parseInt(this.propertySearchForm.get('property_developer')?.value),
       // 'propertyStateId': 1,
-      // 'propertyTypeId': parseInt(this.propertySearchForm.get('typology')?.value),
-      // 'rooms': parseInt(this.propertySearchForm.get('rooms')?.value),
+      'propertyTypeId': parseInt(this.propertySearchForm.get('typology')?.value),
+      'rooms': parseInt(this.propertySearchForm.get('rooms')?.value),
     }
 
-    // this.subscription 
-    
     this.mainService.getPropertiesList(params)
     .subscribe((data: RequestPropertyResult) => {
       this.propertiesList = data.result.results;
@@ -187,10 +188,6 @@ export class SearchPropertyComponent implements OnInit {
     })
   }
   
-  cancelPendingRequests() {
-    // this.request.unsubscribe();
-  }
-
   // CHANGE ROUTINES
 
   stateChanged() {
@@ -224,13 +221,14 @@ export class SearchPropertyComponent implements OnInit {
   typologyChanged() {
     this.getPropertiesList();
   }
-
+  
+  
   priceChanged() {
-    
-    setTimeout(() => {
-      this.getPropertiesList();
-      this.gettingPropertiesList = false;
-    }, 5000);
+    this.propertyPrice.next('');
+  }
+
+  areaChanged() {
+    this.getPropertiesList();
   }
 
   roomChanged() {

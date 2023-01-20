@@ -20,7 +20,7 @@ export class SearchResultComponent implements OnInit {
   }
 
   getFormattedPrice(price: number) {
-    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(price);
+    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', 'notation': 'scientific' }).format(price);
   }
   
   getFormattedPercent(num: number) {
@@ -29,6 +29,28 @@ export class SearchResultComponent implements OnInit {
         style: 'percent', 
         minimumFractionDigits: 1,
     }).format(num / 100);
+  }
+  
+  propertyPriceCurrencyMask(i: any) {
+  
+    var valor = i;
+
+    valor = valor + '';
+
+    valor = valor.replace(/[\D]+/g,'');
+
+    if(valor.trim() != ''){
+      valor = parseFloat(valor);
+    }
+    valor = valor + '';
+    valor = valor.replace(/([0-9]{2})$/g, ",$1");
+
+    if (valor.length > 13) {
+      valor = valor.replace(/([0-9]{3}),([0-9]{2}$)/g, ".$1,$2");
+    }
+
+    return valor;
+    
   }
 
 }  

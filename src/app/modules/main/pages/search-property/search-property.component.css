@@ -122,7 +122,7 @@ select {
 
 /* MEDIA QUERY */
 
-@media screen and (max-width: 1160px) {
+@media screen and (max-width: 1562px) {
   .web {
     display: none;
   }
