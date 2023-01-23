@@ -1,3 +1,3 @@
-export interface Price {
-  minimumPrice: number;
+export class Price {
+  minimumPrice: number = 0;
 }

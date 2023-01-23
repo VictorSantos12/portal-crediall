@@ -1,5 +1,5 @@
-export interface PropertyDeveloper {
-  id: number;
-  name: string;
-  logoUrl: string;
+export class PropertyDeveloper {
+  id: number = 0;
+  name: string = '';
+  logoUrl: string = '';
 }

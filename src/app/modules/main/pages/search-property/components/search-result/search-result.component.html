@@ -1,4 +1,4 @@
-<div class="col-md-12 mt-4 p-4">
+<div class="col-md-12 mt-2 p-2">
   <div class="d-flex flex-row flex-wrap justify-content-center">
     <div class="row justify-content-center">
 
@@ -31,18 +31,13 @@
         </div>
 
         <div class="card-body justify-content-center">
-
-          <div class="d-flex flex-row justify-content-between pb-2" style="height:22px;">
+          <div class="d-flex pb-2 pt-2" style="height:22px;">
             <div class="d-flex align-items-center">
               <img src="/assets/icons/homer.png">
               &nbsp;&nbsp;
               <p class="fs-5 fw-semibold pt-4">HOMER</p>
             </div>
-            <a href="#" style="color:#012942;">
-              <i class="bi bi-three-dots-vertical"></i>
-            </a>
           </div>
-
           <div class="d-flex flex-row pt-4 pb-2">
             <p style="line-height: 18px;">
               <span class="fs-5 fw-semibold">
@@ -58,14 +53,14 @@
           </p>
           <p class="pb-2" style="line-height: 18px;">
             <span class="fs-5 fw-semibold">
-              A partir de {{getFormattedPrice(col.price.minimumPrice)}}
+              A partir de {{ col.price.minimumPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }}
             </span>
             <br>
           </p>
           <div class="column pb-2">
-            <label class="form-label pt-1"><i class="bi bi-lamp"></i>&nbsp;{{col.size.roomsCount}}</label>
+            <label class="form-label pt-1"><i class="fa fa-bed"></i>&nbsp;{{col.size.roomsCount}}</label>
             &nbsp;
-            <label class="form-label pt-1"><i class="bi bi-car-front-fill"></i>&nbsp;{{col.size.parkingSpotsCount}}</label>
+            <label class="form-label pt-1"><i class="fa fa-car"></i>&nbsp;{{col.size.parkingSpotsCount}}</label>
           </div>
           <div class="d-flex flex-row pb-2">
             <p style="line-height: 18px;">
@@ -77,8 +72,13 @@
               </span>
             </p>
           </div>
-          <div class="text-center">
-            <button type="button" class="btn btn-outline-danger fw-semibold">Fale com o Especialista</button>
+          <div class="d-flex flex-row text-center">
+            <button type="button" class="btn btn-sm btn-danger fw-semibold col-4">
+              Simule
+            </button>&nbsp;
+            <button class="btn btn-sm btn-outline-danger fw-semibold col-6 flex-fill" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="setPropertData(col)">
+              Fale com o Especialista
+            </button>
           </div>
         </div>
       </div>

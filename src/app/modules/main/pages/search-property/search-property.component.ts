@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Loader } from '@googlemaps/js-api-loader';
 import { ActivatedRoute } from '@angular/router';
 
@@ -12,8 +12,7 @@ import { PropertyType } from '../../shared/models/property-type/property-type';
 import { PropertyDeveloper } from '../../shared/models/property/property-developer';
 import { RequestPropertyResult } from '../../shared/models/property/request-property-result';
 import { Property } from '../../shared/models/property/property';
-import { debounceTime, filter, Observable, Subscription, switchMap } from 'rxjs';
-import { ViewportScroller } from '@angular/common';
+import { debounceTime, Subject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-search-property',
@@ -23,6 +22,8 @@ import { ViewportScroller } from '@angular/common';
 export class SearchPropertyComponent implements OnInit {
   
   propertySearchForm: FormGroup;
+
+  property: Property = new Property();
   
   states: State[] = [];
   cities: City[] = [];
@@ -34,9 +35,8 @@ export class SearchPropertyComponent implements OnInit {
 
   propertiesList: Property[] = [];
 
-  price: string = '';
-
-  subscription: Observable<RequestPropertyResult> = new Observable();
+  propertyPrice: Subject<string> = new Subject<string>();
+  propertyPriceSubscription: Subscription = new Subscription();
 
   get form() {
     return this.propertySearchForm.controls;
@@ -53,11 +53,12 @@ export class SearchPropertyComponent implements OnInit {
       district: [''],
       typology: [''],
       price: [''],
+      area: [100],
       rooms: [0],
       parking_spot: [0],
-      property_developer: ['1'],
+      property_developer: [''],
     });
-   }
+  }
 
   ngOnInit(): void {
   
@@ -66,12 +67,19 @@ export class SearchPropertyComponent implements OnInit {
     this.form['price'].setValue(this.currentRoute.snapshot.params['price']);
     this.form['rooms'].setValue(this.currentRoute.snapshot.params['rooms']);
     this.form['parking_spot'].setValue(this.currentRoute.snapshot.params['parking_spot']);
-    
-    this.price = this.currentRoute.snapshot.params['price'];
 
     this.getProperties();
     this.loadMap();
     
+    this.propertyPriceSubscription = this.propertyPrice
+    .pipe(
+      debounceTime(1000),
+    ).subscribe(() => {
+      if(this.form['price'].value != '') {
+        this.getPropertiesList();
+      }
+    });
+
   }
 
   getProperties() {
@@ -146,11 +154,7 @@ export class SearchPropertyComponent implements OnInit {
     }
     
     this.propertySearchForm.controls['price'].setValue(valor);
-
-    let value = Number(valor.replace(',', '.'));
-
-    console.log(value);
-
+    
   }
 
   // SEARCH ROUTINES
@@ -159,26 +163,22 @@ export class SearchPropertyComponent implements OnInit {
     
     this.gettingPropertiesList = true;
     
-    this.cancelPendingRequests();
-
     let params = {
       'limit': 20,
       'offset': 0,
-      'area': 100,
+      'area': parseInt(this.propertySearchForm.get('area')?.value),
       'state': this.propertySearchForm.get('state')?.value,
       'city': this.propertySearchForm.get('city')?.value,
-      // 'district': this.propertySearchForm.get('district')?.value,
-      // 'minimumPrice': 3000,
-      // 'maximumPrice': parseFloat(this.propertySearchForm.get('price')?.value),
-      // 'parkingSpots': parseInt(this.propertySearchForm.get('parking_spot')?.value),
-      // 'propertyDeveloperId': parseInt(this.propertySearchForm.get('property_developer')?.value),
+      'district': this.propertySearchForm.get('district')?.value,
+      'minimumPrice': 500000,
+      'maximumPrice': this.propertySearchForm.get('price')?.value.replace(',',''),
+      'parkingSpots': parseInt(this.propertySearchForm.get('parking_spot')?.value),
+      'propertyDeveloperId': (Number.isNaN(parseInt(this.propertySearchForm.get('property_developer')?.value))) ? null : parseInt(this.propertySearchForm.get('property_developer')?.value),
       // 'propertyStateId': 1,
-      // 'propertyTypeId': parseInt(this.propertySearchForm.get('typology')?.value),
-      // 'rooms': parseInt(this.propertySearchForm.get('rooms')?.value),
+      'propertyTypeId': parseInt(this.propertySearchForm.get('typology')?.value),
+      'rooms': parseInt(this.propertySearchForm.get('rooms')?.value),
     }
 
-    // this.subscription 
-    
     this.mainService.getPropertiesList(params)
     .subscribe((data: RequestPropertyResult) => {
       this.propertiesList = data.result.results;
@@ -187,23 +187,7 @@ export class SearchPropertyComponent implements OnInit {
     })
   }
   
-  cancelPendingRequests() {
-    // this.request.unsubscribe();
-  }
-
   // CHANGE ROUTINES
-
-  stateChanged() {
-
-    this.getCities(this.propertySearchForm.get('state')?.value);
-    this.getDistrict(this.propertySearchForm.get('city')?.value, this.propertySearchForm.get('state')?.value);
-
-    this.propertySearchForm.controls['city'].setValue('');
-    this.propertySearchForm.controls['district'].setValue('');
-
-    this.getPropertiesList();
-
-  }
 
   cityChanged() {
 
@@ -217,35 +201,15 @@ export class SearchPropertyComponent implements OnInit {
 
   }
 
-  districtChanged() {
-    this.getPropertiesList();
+  priceChanged() {
+    this.propertyPrice.next('');
   }
 
-  typologyChanged() {
-    this.getPropertiesList();
+  emitProperty(property: Property) {
+    this.property = property;
   }
 
-  priceChanged(data: string) {
-    this.gettingPropertiesList = true;
-    setTimeout(() => {
-      this.getPropertiesList();
-      this.gettingPropertiesList = false;
-    }, 5000);
-  }
-
-  roomChanged() {
-    this.getPropertiesList();
-  }
-
-  parkingSpotChanged() {
-    this.getPropertiesList();
-  }
-
-  propertyDeveloperChanged() {
-    this.getPropertiesList();
-  }
-
-  //  
+  //  MAP
 
   loadMap() {
     this.loader.loadCallback(e => {

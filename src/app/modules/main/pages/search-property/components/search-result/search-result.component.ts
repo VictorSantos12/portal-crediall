@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Property } from 'src/app/modules/main/shared/models/property/property';
 
 @Component({
@@ -8,20 +8,14 @@ import { Property } from 'src/app/modules/main/shared/models/property/property';
 })
 export class SearchResultComponent implements OnInit {
   
-  @Input()
-  propertiesList: Property[] = [];
+  @Input() propertiesList: Property[] = [];
   
-  openInstallmentsDetails: boolean[] = [];
+  @Output() property: EventEmitter<any> = new EventEmitter<any>;
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
 
-  }
-
-  getFormattedPrice(price: number) {
-    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(price);
-  }
   
   getFormattedPercent(num: number) {
     return new Intl.NumberFormat(
@@ -29,6 +23,10 @@ export class SearchResultComponent implements OnInit {
         style: 'percent', 
         minimumFractionDigits: 1,
     }).format(num / 100);
+  }
+  
+  setPropertData(property: Property) {
+    this.property.emit(property);
   }
 
 }  

@@ -1,4 +1,4 @@
-export interface ResponsibleUser {
-  id: number;
-  name: string;
+export class ResponsibleUser {
+  id: number = 0;
+  name: string = '';
 }

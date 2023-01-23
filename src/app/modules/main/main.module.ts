@@ -1,14 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainRoutingModule } from './main-routing.module';
+
 import { HomeComponent } from './pages/home/home.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { AppNavBarComponent } from './pages/home/components/app-nav-bar/app-nav-bar.component';
 import { SearchPropertyComponent } from './pages/search-property/search-property.component';
-import { SearchResultComponent } from './pages/search-property/components/search-result/search-result.component';
-import { MainService } from './shared/main.service';
+import { AppNavBarComponent } from './pages/home/components/app-nav-bar/app-nav-bar.component';
 import { SimulateInvestmentComponent } from './pages/simulate-investment/simulate-investment.component';
+import { SearchResultComponent } from './pages/search-property/components/search-result/search-result.component';
+
+import { ReactiveFormsModule } from '@angular/forms';
+
 import { NgxMaskModule} from 'ngx-mask';
+
+import { MainService } from './shared/main.service';
+import { ContactModalComponent } from './pages/search-property/components/contact-modal/contact-modal.component';
+
 
 @NgModule({
   declarations: [
@@ -16,7 +22,8 @@ import { NgxMaskModule} from 'ngx-mask';
     AppNavBarComponent,
     SearchPropertyComponent,
     SearchResultComponent,
-    SimulateInvestmentComponent
+    SimulateInvestmentComponent,
+    ContactModalComponent
   ],
   imports: [
     CommonModule,
