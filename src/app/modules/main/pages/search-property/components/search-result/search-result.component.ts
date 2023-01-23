@@ -16,9 +16,6 @@ export class SearchResultComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  getFormattedPrice(price: number) {
-    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', 'notation': 'scientific' }).format(price);
-  }
   
   getFormattedPercent(num: number) {
     return new Intl.NumberFormat(

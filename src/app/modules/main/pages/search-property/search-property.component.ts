@@ -35,8 +35,6 @@ export class SearchPropertyComponent implements OnInit {
 
   propertiesList: Property[] = [];
 
-  // Property Price Input
-
   propertyPrice: Subject<string> = new Subject<string>();
   propertyPriceSubscription: Subscription = new Subscription();
 
@@ -77,7 +75,6 @@ export class SearchPropertyComponent implements OnInit {
     .pipe(
       debounceTime(1000),
     ).subscribe(() => {
-      console.log('works')
       if(this.form['price'].value != '') {
         this.getPropertiesList();
       }

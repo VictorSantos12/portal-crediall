@@ -30,7 +30,7 @@ export class SimulateInvestmentComponent implements OnInit {
 
   formError: boolean = false;
 
-  constructor(private mainService: MainService,  private formBuilder: FormBuilder) { 
+  constructor(private mainService: MainService, private formBuilder: FormBuilder) { 
     this.simulatorForm = this.formBuilder.group({
       propertyPrice: ['', Validators.compose([Validators.required])],
       financingPrice: ['', Validators.compose([Validators.required])],

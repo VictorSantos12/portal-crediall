@@ -24,6 +24,7 @@
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.3",
     "font-awesome": "^4.7.0",
+    "ngx-device-detector": "^5.0.1",
     "ngx-mask": "^12.0.0",
     "ngx-number-format": "^15.0.0",
     "rxjs": "~7.4.0",

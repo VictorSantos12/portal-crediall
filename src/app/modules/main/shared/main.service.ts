@@ -5,6 +5,7 @@ import { ApiService } from 'src/app/core/services/api/api.service';
 import { RequestResult } from './models/request_result';
 import { RequestPropertyResult } from './models/property/request-property-result';
 import { SimulatorResult } from './models/simulator/simulator-result';
+import { PropertyData } from './models/contact/property-data';
 
 @Injectable({
   providedIn: 'root'
@@ -51,8 +52,10 @@ export class MainService {
       params: params,
     });
   }
-
-  // https://api-test.homer.com.br/v1/
+  
+  setPropertyData(property: PropertyData) : Observable<any>{
+    return this.http.post<any>(`https://api.desenv.app.logbits.com.br/simulador/dadosimovel/v1`, property);
+  }
 
   simulateInvestment(min: number, max: number, date: string, deadline: number): Observable<SimulatorResult> {
     return this.http.get<SimulatorResult>(
