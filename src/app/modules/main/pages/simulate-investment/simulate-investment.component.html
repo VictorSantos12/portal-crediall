@@ -41,10 +41,10 @@
               (keyup)="financingPriceCurrencyMask($event.target)"
               [ngStyle]="form['financingPrice'].dirty && form['financingPrice'].hasError('required') || formError ? {'border-color':'red'} : {'':''}">
           </div>
-          <div class="d-flex col-md-12 align-items-center justify-content-start col-md-6 p-3 w-100" *ngIf="simulatorForm.get('financingPrice')?.value != '' ">
+          <div class="d-flex col-md-12 align-items-center justify-content-start col-md-6 p-3 w-100" *ngIf="financingPrice != '' ">
             <label class="text-uppercase pb-1 w-100">Renda Mínima</label>
-            <div class="fw-semibold text-end fs-5 w-100"  mask="separator.2" style="color: #0F71F2;">
-              {{ (financingPrice * 0.36).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }} 
+            <div class="fw-semibold text-end fs-5 w-100"  style="color: #0F71F2;">
+              {{ financingPrice }} 
             </div>
           </div>
           <div class="search-form-field p-2">
@@ -58,6 +58,29 @@
               {{simulatorForm.get('months')?.value}}
              </div>
           </div>
+
+          <hr style="margin-left: 10px; margin-right: 10px;">
+
+          <div class="search-form-field p-2">
+            <label class="text-uppercase pb-1">&nbsp;Nome</label>
+            <input formControlName="name" type="text" class="form-control" [ngStyle]="form['name'].dirty && form['name'].hasError('required') || formError ? {'border-color':'red'} : {'':''}">
+          </div>
+
+          <div class="search-form-field p-2">
+            <label class="text-uppercase pb-1">&nbsp;CPF</label>
+            <input formControlName="cpf" type="text" class="form-control" [ngStyle]="form['cpf'].dirty && form['cpf'].hasError('required') || formError ? {'border-color':'red'} : {'':''}" mask="000.000.000-00">
+          </div>
+
+          <div class="search-form-field p-2">
+            <label class="text-uppercase pb-1">&nbsp;Telefone</label>
+            <input formControlName="phone" type="text" class="form-control" [ngStyle]="form['phone'].dirty && form['phone'].hasError('required') || formError ? {'border-color':'red'} : {'':''}" mask="(00) 00000-0000">
+          </div>
+
+          <div class="search-form-field p-2">
+            <label class="text-uppercase pb-1">&nbsp;E-mail</label>
+            <input formControlName="email" type="email" class="form-control" [ngStyle]="form['email'].dirty && form['email'].hasError('required') || formError || form['email'].hasError('email')? {'border-color':'red'} : {'':''}">
+          </div>
+
           <button type="submit" class="simple-elevated-red-button btn m-2">
             SIMULAR AGORA
           </button>
@@ -114,10 +137,32 @@
               </div>
             </div>
 
-            <div class="d-flex col-md-12 align-items-center justify-content-start col-md-6 p-3 w-100" *ngIf="simulatorForm.get('financingPrice')?.value != '' ">
+            <hr>
+            
+            <div class="search-form-field p-2">
+              <label class="text-uppercase pb-1">&nbsp;Nome</label>
+              <input formControlName="name" type="text" class="form-control" [ngStyle]="form['name'].dirty && form['name'].hasError('required') || formError ? {'border-color':'red'} : {'':''}">
+            </div>
+  
+            <div class="search-form-field p-2">
+              <label class="text-uppercase pb-1">&nbsp;CPF</label>
+              <input formControlName="cpf" type="text" class="form-control" [ngStyle]="form['cpf'].dirty && form['cpf'].hasError('required') || formError ? {'border-color':'red'} : {'':''}" mask="000.000.000-00">
+            </div>
+  
+            <div class="search-form-field p-2">
+              <label class="text-uppercase pb-1">&nbsp;Telefone</label>
+              <input formControlName="phone" type="text" class="form-control" [ngStyle]="form['phone'].dirty && form['phone'].hasError('required') || formError ? {'border-color':'red'} : {'':''}" mask="(00) 00000-0000">
+            </div>
+  
+            <div class="search-form-field p-2">
+              <label class="text-uppercase pb-1">&nbsp;E-mail</label>
+              <input formControlName="email" type="email" class="form-control" [ngStyle]="form['email'].dirty && form['email'].hasError('required') || formError || form['email'].hasError('email')? {'border-color':'red'} : {'':''}">
+            </div>
+
+            <div class="d-flex col-md-12 align-items-center justify-content-start col-md-6 p-3 w-100" *ngIf="financingPrice != '' ">
               <label class="text-uppercase pb-1 w-100">Renda Mínima</label>
-              <div class="fw-semibold text-end fs-5 w-100" style="color: #0F71F2;">
-                {{ (financingPrice * 0.36).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }}
+              <div class="fw-semibold text-end fs-5 w-100"  style="color: #0F71F2;">
+                {{ financingPrice }} 
               </div>
             </div>
             <button class="simple-elevated-red-button btn m-2" type="submit">

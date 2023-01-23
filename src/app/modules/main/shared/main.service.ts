@@ -54,9 +54,9 @@ export class MainService {
 
   // https://api-test.homer.com.br/v1/
 
-  simulateInvestment(min: number, max: number, date: string, deadline: number): Observable<SimulatorResult> {
-    return this.http.get<SimulatorResult>(
-      `https://api.desenv.app.logbits.com.br/simulador/SimuladorFinanciamento/${min}/${max}/${date}/${deadline}`
+  simulateInvestment(dados: any): Observable<SimulatorResult> {
+    return this.http.post<SimulatorResult>(
+      `https://api.desenv.app.logbits.com.br/simulador/SimuladorFinanciamento/v1`, dados
     );
   }
 
