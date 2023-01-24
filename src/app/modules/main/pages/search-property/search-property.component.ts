@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Loader } from '@googlemaps/js-api-loader';
 
 import { Observable } from 'rxjs';
-import { AppState } from '../../store';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MainService } from '../../shared/main.service';
@@ -17,8 +15,9 @@ import { RequestPropertyResult } from '../../shared/models/property/request-prop
 import { Property } from '../../shared/models/property/property';
 import { debounceTime, Subject, Subscription } from 'rxjs';
 import { PropertyFilter } from '../../shared/models/filter/property-filter';
-import { deleteProperties, getProperties } from '../../store/search-property/property.actions';
 import { Router } from '@angular/router';
+import { PropertyResult } from '../../shared/models/property/property-result';
+import { MyStore } from '../../store/my-store';
 
 @Component({
   selector: 'app-search-property',
@@ -49,7 +48,7 @@ export class SearchPropertyComponent implements OnInit {
 
   gettingPropertiesList: boolean = false;
 
-  requestPropertyResult: Observable<Property[]> = new Observable<Property[]>;
+  propertyResult: Observable<PropertyResult> = new Observable<PropertyResult>();
   propertiesList: Property[] = [];
 
   propertyPrice: Subject<string> = new Subject<string>();
@@ -62,8 +61,8 @@ export class SearchPropertyComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private mainService: MainService,
-    private store: Store<AppState>,
     private router: Router,
+    private myStore: MyStore,
   ) {
     this.propertySearchForm = this.formBuilder.group({
       state: ['Rio de Janeiro'],
@@ -101,7 +100,6 @@ export class SearchPropertyComponent implements OnInit {
     }
     
     this.getProperties();
-    this.loadMap();
     
     this.propertyPriceSubscription = this.propertyPrice
     .pipe(
@@ -115,7 +113,7 @@ export class SearchPropertyComponent implements OnInit {
 
   backToOrigin() {
     this.router.navigate([``]);
-    // this.store.dispatch(new deleteProperties([]));
+    this.myStore.clearProperties();
   }
 
   getProperties() {
@@ -124,14 +122,11 @@ export class SearchPropertyComponent implements OnInit {
     this.getPropertyTypes();
     this.getPropertyDevelopers();
     
-    this.requestPropertyResult = this.store.pipe(select('properties'))
-    this.requestPropertyResult.subscribe((data: Property[]) => {
-      if(data.length != 0) {
-        this.propertiesList = data;
-      } else {
-        this.getPropertiesList();    
-      }
-    });
+     if(this.myStore.propertyResult.results.length != 0) {
+       this.propertiesList = this.myStore.propertyResult.results;
+     } else {
+       this.getPropertiesList();    
+     }
   }
    
   // GET ROUTINES
@@ -208,10 +203,9 @@ export class SearchPropertyComponent implements OnInit {
       'city': this.propertySearchForm.get('city')?.value,
       'district': this.propertySearchForm.get('district')?.value,
       'minimumPrice': 500000,
-      'maximumPrice': this.propertySearchForm.get('price')?.value.replace(',',''),
+      'maximumPrice': (this.propertySearchForm.get('price')?.value ? this.propertySearchForm.get('price')?.value.replace(',','') : '1000000000'),
       'parkingSpots': parseInt(this.propertySearchForm.get('parking_spot')?.value),
       'propertyDeveloperId': (Number.isNaN(parseInt(this.propertySearchForm.get('property_developer')?.value))) ? null : parseInt(this.propertySearchForm.get('property_developer')?.value),
-      // 'propertyStateId': 1,
       'propertyTypeId': parseInt(this.propertySearchForm.get('typology')?.value),
       'rooms': parseInt(this.propertySearchForm.get('rooms')?.value),
     }
@@ -219,8 +213,8 @@ export class SearchPropertyComponent implements OnInit {
     this.mainService.getPropertiesList(params)
     .subscribe((data: RequestPropertyResult) => {
       
-      this.propertiesList = data.result?.results!;
-      this.store.dispatch(new getProperties(data.result?.results!));
+      this.myStore.setNewProperties(data.result);
+      this.propertiesList = data.result.results;
 
     }).add(() => {
       this.filter = {
@@ -258,31 +252,5 @@ export class SearchPropertyComponent implements OnInit {
   emitProperty(property: Property) {
     this.property = property;
   }
-
-  //  MAP
-
-  loadMap() {
-    this.loader.loadCallback(e => {
-      if (e) {
-        console.log(e);
-      } else {
-        new google.maps.Map(document.getElementById("map") as HTMLAnchorElement, this.mapOptions);
-      }
-    });
-  }
-
-  loader = new Loader({
-    apiKey: "",
-    version: "weekly",
-    libraries: ["places"]
-  });
-  
-  mapOptions = {
-    center: {
-      lat: -22.983781298015188,
-      lng: -43.3612144413545
-    },
-    zoom: 11
-  };
 
 }

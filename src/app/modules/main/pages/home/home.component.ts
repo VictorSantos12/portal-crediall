@@ -22,6 +22,8 @@ export class HomeComponent implements OnInit {
   
   cities: City[] = [];
   propertyTypes: PropertyType[] = [];
+  
+  validaModal = localStorage.getItem('validaModal');
 
   constructor(
     private formBuilder: FormBuilder, 
@@ -38,6 +40,11 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.validaModal != 'false'){
+      let element: HTMLElement = document.getElementById('botao-modal') as HTMLElement;
+      element.click();
+    }
+    
     // this.loadMap();
     this.getCities();
     this.getPropertyTypes();
@@ -75,7 +82,7 @@ export class HomeComponent implements OnInit {
       let rooms = this.propertySearchForm.get('rooms')?.value;
       let parking_spot = this.propertySearchForm.get('parking_spot')?.value;
 
-      this.router.navigateByUrl(`home/search-property`, {
+      this.router.navigateByUrl(`/search-property`, {
         state: {
           'city': city,
           'district': '',
@@ -116,7 +123,7 @@ export class HomeComponent implements OnInit {
   }  
 
   simulateInvestment() {
-    this.router.navigate([`home/simulate-investment/''/${true}`]);
+    this.router.navigate([`/simulate-investment/''/${true}`]);
   }
 
   openLink() {
