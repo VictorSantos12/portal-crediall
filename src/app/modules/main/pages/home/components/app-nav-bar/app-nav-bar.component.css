@@ -2,3 +2,14 @@ a {
   color: #012942;
   font-weight: 500;
 }
+
+.simulate-button {
+  color: white; 
+  background-color: #00479C;
+}
+
+.simulate-button:hover {
+  color: #00479C; 
+  background-color: white;
+  border: solid 1px #00479C;
+}

@@ -30,15 +30,15 @@ export class HomeComponent implements OnInit {
   ) {
     this.propertySearchForm = this.formBuilder.group({
       city: ['Rio de Janeiro', Validators.compose([Validators.required])],
-      typology: [1, Validators.compose([Validators.required])],
-      price: ['', Validators.compose([Validators.required])],
-      rooms: ['1', Validators.compose([Validators.required])],
+      typology: [1],
+      price: [''],
+      rooms: ['1'],
       parking_spot: ['1'],
     });
   }
 
   ngOnInit(): void {
-    this.loadMap();
+    // this.loadMap();
     this.getCities();
     this.getPropertyTypes();
   }
@@ -117,6 +117,14 @@ export class HomeComponent implements OnInit {
 
   simulateInvestment() {
     this.router.navigate([`home/simulate-investment/''/${true}`]);
+  }
+
+  openLink() {
+    window.open('https://www.sympla.com.br/evento/salao-de-imoveis-coren-e-caixa-clube-de-beneficios/1832241');
+  }
+
+  openLink2() {
+    window.open('https://www.sympla.com.br/evento/salao-de-imoveis/1841756');
   }
 
   loadMap() {
