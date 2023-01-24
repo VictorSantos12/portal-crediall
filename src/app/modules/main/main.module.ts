@@ -13,6 +13,7 @@ import { NgxMaskModule} from 'ngx-mask';
 
 import { MainService } from './shared/main.service';
 import { ContactModalComponent } from './pages/search-property/components/contact-modal/contact-modal.component';
+import { ModalSalaoImoveisComponent } from './pages/home/components/modal-salao-imoveis/modal-salao-imoveis.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { ContactModalComponent } from './pages/search-property/components/contac
     SearchPropertyComponent,
     SearchResultComponent,
     SimulateInvestmentComponent,
-    ContactModalComponent
+    ContactModalComponent,
+    ModalSalaoImoveisComponent
   ],
   imports: [
     CommonModule,

@@ -208,7 +208,7 @@ export class SearchPropertyComponent implements OnInit {
       'city': this.propertySearchForm.get('city')?.value,
       'district': this.propertySearchForm.get('district')?.value,
       'minimumPrice': 500000,
-      'maximumPrice': this.propertySearchForm.get('price')?.value.replace(',',''),
+      'maximumPrice': (this.propertySearchForm.get('price')?.value ? this.propertySearchForm.get('price')?.value.replace(',','') : '1000000000'),
       'parkingSpots': parseInt(this.propertySearchForm.get('parking_spot')?.value),
       'propertyDeveloperId': (Number.isNaN(parseInt(this.propertySearchForm.get('property_developer')?.value))) ? null : parseInt(this.propertySearchForm.get('property_developer')?.value),
       // 'propertyStateId': 1,
