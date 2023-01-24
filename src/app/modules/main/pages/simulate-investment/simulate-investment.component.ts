@@ -6,6 +6,7 @@ import { Installment } from '../../shared/models/simulator/installment';
 import { SimulatorResult } from '../../shared/models/simulator/simulator-result';
 
 import Swal from 'sweetalert2';
+import { ClientData } from '../../shared/models/simulator/clientData';
 
 @Component({
   selector: 'app-simulate-investment',
@@ -36,6 +37,10 @@ export class SimulateInvestmentComponent implements OnInit {
       financingPrice: ['', Validators.compose([Validators.required])],
       birthDate: ['', Validators.compose([Validators.required])],
       months: ['12'],
+      name: ['', Validators.required],
+      cpf: ['', Validators.required],
+      phone: ['', Validators.required],
+      email: ['',  Validators.compose([Validators.required, Validators.email])]
     });
   }
 
@@ -60,14 +65,23 @@ export class SimulateInvestmentComponent implements OnInit {
   simulateInvestment() {
     this.gettingInstallments = true;
 
-    let propertyPrice =  parseInt(this.simulatorForm.get('propertyPrice')?.value);
-    let financingPrice = parseInt(this.simulatorForm.get('financingPrice')?.value);
-    let birthDate = this.simulatorForm.get('birthDate')?.value;
-    let months = parseInt(this.simulatorForm.get('months')?.value);
+    let clientData: ClientData;
+    
+    clientData = {
+      Nome: this.form['name'].value,
+      Cpf: this.form['cpf'].value,
+      DataNascimento: this.form['birthDate'].value,
+      Telefone: this.form['phone'].value,
+      EMail: this.form['email'].value,
+      ValorImovel: parseInt(this.simulatorForm.get('propertyPrice')?.value),
+      ValorFinanciado: parseInt(this.simulatorForm.get('financingPrice')?.value),
+      Prazo: parseInt(this.simulatorForm.get('months')?.value)
+    }
 
-    this.mainService.simulateInvestment(propertyPrice, financingPrice, this.dateInverter(birthDate), months)
+    this.mainService.simulateInvestment(clientData)
     .subscribe((data: SimulatorResult) => {
       this.installments = data.parcelas;
+      this.financingPrice = data.rendaMinima;
     }).add(() => {
       this.gettingInstallments = false;
     })
@@ -100,11 +114,6 @@ export class SimulateInvestmentComponent implements OnInit {
     }
     
     this.simulatorForm.controls['propertyPrice'].setValue(valor);
-
-    let value = Number(valor.replace(',', '.'));
-
-    console.log(value);
-
   }
 
   financingPriceCurrencyMask(i: any) {
@@ -125,13 +134,6 @@ export class SimulateInvestmentComponent implements OnInit {
       valor = valor.replace(/([0-9]{3}),([0-9]{2}$)/g, ".$1,$2");
     }
     this.simulatorForm.controls['financingPrice'].setValue(valor);
-    
-    let value = Number(valor.replace(',', '.'));
-
-    console.log(value);
-
-    this.financingPrice = value;
-
   }  
 
 }

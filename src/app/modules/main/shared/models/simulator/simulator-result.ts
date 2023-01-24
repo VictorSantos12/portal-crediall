@@ -5,4 +5,5 @@ export interface SimulatorResult {
   valorFinanciado: string;
   taxaJuros: string;
   parcelas: Installment[];
+  rendaMinima: string;
 }

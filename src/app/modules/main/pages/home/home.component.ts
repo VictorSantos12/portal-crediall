@@ -76,7 +76,7 @@ export class HomeComponent implements OnInit {
       let rooms = this.propertySearchForm.get('rooms')?.value;
       let parking_spot = this.propertySearchForm.get('parking_spot')?.value;
 
-      this.myRoute.navigate([`home/search-property/${city}/${typology}/${price}/${rooms}/${parking_spot}`
+      this.myRoute.navigate([`/search-property/${city}/${typology}/${price}/${rooms}/${parking_spot}`
 
      ]);
     }
