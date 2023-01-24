@@ -10,9 +10,6 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HomerConfigInterceptor } from './core/interceptors/homer/homer-config.interceptor';
 import { LogbitsConfigInterceptor } from './core/interceptors/logbits/logbits-config.interceptor';
 
-import { StoreModule } from '@ngrx/store';
-import { appReducers } from './modules/main/store';
-
 
 @NgModule({
   declarations: [
@@ -23,12 +20,6 @@ import { appReducers } from './modules/main/store';
     AppRoutingModule,
     HttpClientModule,
     NoopAnimationsModule,
-    StoreModule.forRoot(appReducers, {
-      runtimeChecks: {
-        strictStateImmutability: false,
-        strictActionImmutability: false,
-      }
-    }),
   ],
   providers: [
     {

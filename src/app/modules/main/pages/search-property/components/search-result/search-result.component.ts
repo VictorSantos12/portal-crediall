@@ -3,8 +3,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Property } from 'src/app/modules/main/shared/models/property/property';
 import { PropertyFilter } from 'src/app/modules/main/shared/models/filter/property-filter';
 
-import { AppState } from 'src/app/modules/main/store';
-
 @Component({
   selector: 'app-search-result',
   templateUrl: './search-result.component.html',

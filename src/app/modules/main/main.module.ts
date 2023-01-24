@@ -13,6 +13,7 @@ import { NgxMaskModule} from 'ngx-mask';
 
 import { MainService } from './shared/main.service';
 import { ContactModalComponent } from './pages/search-property/components/contact-modal/contact-modal.component';
+import { MyStore } from './store/my-store';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { ContactModalComponent } from './pages/search-property/components/contac
     MainRoutingModule,
     ReactiveFormsModule,
     NgxMaskModule.forRoot(),
+    MyStore
   ],
   providers: [
     MainService,
