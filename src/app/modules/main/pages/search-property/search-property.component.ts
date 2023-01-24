@@ -1,6 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Loader } from '@googlemaps/js-api-loader';
-import { ActivatedRoute } from '@angular/router';
+
+import { Observable } from 'rxjs';
+import { AppState } from '../../store';
+import { select, Store } from '@ngrx/store';
 
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MainService } from '../../shared/main.service';
@@ -13,6 +16,9 @@ import { PropertyDeveloper } from '../../shared/models/property/property-develop
 import { RequestPropertyResult } from '../../shared/models/property/request-property-result';
 import { Property } from '../../shared/models/property/property';
 import { debounceTime, Subject, Subscription } from 'rxjs';
+import { PropertyFilter } from '../../shared/models/filter/property-filter';
+import { deleteProperties, getProperties } from '../../store/search-property/property.actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-property',
@@ -24,6 +30,16 @@ export class SearchPropertyComponent implements OnInit {
   propertySearchForm: FormGroup;
 
   property: Property = new Property();
+
+  filter: PropertyFilter = new PropertyFilter();
+
+  district: string = '';
+  typology: string = '';
+  price: string = '';
+  area: number = 0;
+  rooms: number = 0;
+  parkingSpot: number = 0;
+  propertyDeveloper: string = '';
   
   states: State[] = [];
   cities: City[] = [];
@@ -33,6 +49,7 @@ export class SearchPropertyComponent implements OnInit {
 
   gettingPropertiesList: boolean = false;
 
+  requestPropertyResult: Observable<Property[]> = new Observable<Property[]>;
   propertiesList: Property[] = [];
 
   propertyPrice: Subject<string> = new Subject<string>();
@@ -43,9 +60,10 @@ export class SearchPropertyComponent implements OnInit {
   }
 
   constructor(
-    private currentRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
     private mainService: MainService,
+    private store: Store<AppState>,
+    private router: Router,
   ) {
     this.propertySearchForm = this.formBuilder.group({
       state: ['Rio de Janeiro'],
@@ -61,13 +79,27 @@ export class SearchPropertyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  
-    this.form['city'].setValue(this.currentRoute.snapshot.params['city']);
-    this.form['typology'].setValue(this.currentRoute.snapshot.params['typology']);
-    this.form['price'].setValue(this.currentRoute.snapshot.params['price']);
-    this.form['rooms'].setValue(this.currentRoute.snapshot.params['rooms']);
-    this.form['parking_spot'].setValue(this.currentRoute.snapshot.params['parking_spot']);
-
+    
+    this.form['city'].setValue(history.state['city']);
+    this.form['district'].setValue(history.state['district']);
+    this.form['typology'].setValue(history.state['typology']);
+    this.form['price'].setValue(history.state['price']);
+    this.form['area'].setValue(history.state['area']);
+    this.form['rooms'].setValue(history.state['rooms']);
+    this.form['parking_spot'].setValue(history.state['parkingSpot']);
+    this.form['property_developer'].setValue(history.state['propertyDeveloper']);
+    
+    this.filter = {
+      city: this.propertySearchForm.get('city')?.value,
+      district: this.propertySearchForm.get('district')?.value,
+      typology: this.propertySearchForm.get('typology')?.value,
+      price: this.propertySearchForm.get('price')?.value,
+      area: this.propertySearchForm.get('area')?.value,
+      rooms: this.propertySearchForm.get('rooms')?.value,
+      parkingSpot: this.propertySearchForm.get('parking_spot')?.value,
+      propertyDeveloper: this.propertySearchForm.get('property_developer')?.value,  
+    }
+    
     this.getProperties();
     this.loadMap();
     
@@ -79,7 +111,11 @@ export class SearchPropertyComponent implements OnInit {
         this.getPropertiesList();
       }
     });
+  }
 
+  backToOrigin() {
+    this.router.navigate([``]);
+    // this.store.dispatch(new deleteProperties([]));
   }
 
   getProperties() {
@@ -88,7 +124,14 @@ export class SearchPropertyComponent implements OnInit {
     this.getPropertyTypes();
     this.getPropertyDevelopers();
     
-    this.getPropertiesList();
+    this.requestPropertyResult = this.store.pipe(select('properties'))
+    this.requestPropertyResult.subscribe((data: Property[]) => {
+      if(data.length != 0) {
+        this.propertiesList = data;
+      } else {
+        this.getPropertiesList();    
+      }
+    });
   }
    
   // GET ROUTINES
@@ -111,27 +154,21 @@ export class SearchPropertyComponent implements OnInit {
     this.mainService.getDistricts(city, state)
     .subscribe((data: RequestResult) => {
       this.districts = data.result;
-    }).add(() => {
-
-    });
+    }).add(() => {});
   }
 
   getPropertyTypes() {
     this.mainService.getPropertyTypes()
     .subscribe((data: RequestResult) => {
       this.propertyTypes = data.result;
-    }).add(() => {
-
-    });
+    }).add(() => {});
   }
 
   getPropertyDevelopers() {
     this.mainService.getPropertyDevelopers()
     .subscribe((data: RequestResult) => {
       this.propertyDevelopers = data.result;
-    }).add(() => {
-
-    });
+    }).add(() => {});
   }
  
 
@@ -181,8 +218,21 @@ export class SearchPropertyComponent implements OnInit {
 
     this.mainService.getPropertiesList(params)
     .subscribe((data: RequestPropertyResult) => {
-      this.propertiesList = data.result.results;
+      
+      this.propertiesList = data.result?.results!;
+      this.store.dispatch(new getProperties(data.result?.results!));
+
     }).add(() => {
+      this.filter = {
+        city: this.propertySearchForm.get('city')?.value,
+        district: this.propertySearchForm.get('district')?.value,
+        typology: this.propertySearchForm.get('typology')?.value,
+        price: this.propertySearchForm.get('price')?.value,
+        area: this.propertySearchForm.get('area')?.value,
+        rooms: this.propertySearchForm.get('rooms')?.value,
+        parkingSpot: this.propertySearchForm.get('parking_spot')?.value,
+        propertyDeveloper: this.propertySearchForm.get('property_developer')?.value,  
+      }
       this.gettingPropertiesList = false;
     })
   }

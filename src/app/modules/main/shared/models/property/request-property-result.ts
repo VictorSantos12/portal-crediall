@@ -1,6 +1,6 @@
 import { PropertyResult } from "./property-result";
 
-export interface RequestPropertyResult {
-   result: PropertyResult;
-   succeeded: boolean;
+export class RequestPropertyResult {
+   result?: PropertyResult = new PropertyResult();
+   succeeded?: boolean = false;
 }

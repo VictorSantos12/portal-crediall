@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder, 
-    private myRoute: Router, 
+    private router: Router, 
     private mainService: MainService, 
   ) {
     this.propertySearchForm = this.formBuilder.group({
@@ -57,7 +57,6 @@ export class HomeComponent implements OnInit {
     }).add(() => {});
   }
 
-
   searchProperty() {
     if(this.propertySearchForm.invalid) {
       Swal.fire({
@@ -76,9 +75,18 @@ export class HomeComponent implements OnInit {
       let rooms = this.propertySearchForm.get('rooms')?.value;
       let parking_spot = this.propertySearchForm.get('parking_spot')?.value;
 
-      this.myRoute.navigate([`/search-property/${city}/${typology}/${price}/${rooms}/${parking_spot}`
-
-     ]);
+      this.router.navigateByUrl(`home/search-property`, {
+        state: {
+          'city': city,
+          'district': '',
+          'typology': typology,
+          'price': price,
+          'area': 100,
+          'rooms': rooms,
+          'parkingSpot': parking_spot,
+          'propertyDeveloper': '',
+        }}
+      );
     }
   }
 
@@ -108,7 +116,7 @@ export class HomeComponent implements OnInit {
   }  
 
   simulateInvestment() {
-    this.myRoute.navigate([`home/simulate-investment`]);
+    this.router.navigate([`home/simulate-investment/''/${true}`]);
   }
 
   loadMap() {

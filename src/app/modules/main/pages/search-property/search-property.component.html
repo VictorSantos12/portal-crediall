@@ -1,5 +1,5 @@
 <div id="nav-bar" class="d-flex align-items-baseline justify-content-between p-3 w-100">
-  <a routerLink="/" style="font-size: 25px; color:#012942;">
+  <a (click)="backToOrigin()" style="font-size: 25px; color:#012942; cursor: pointer;">
     <i class="fa fa-arrow-circle-left mb-4" aria-hidden="true"></i>
   </a>  
   <a class="navbar-brand" href="#">
@@ -225,7 +225,7 @@
     
     <!-- RESULT -->
 
-    <app-search-result *ngIf="!gettingPropertiesList && propertiesList.length > 0" [propertiesList]="propertiesList" (property)="emitProperty($event)"></app-search-result>
+    <app-search-result *ngIf="!gettingPropertiesList && propertiesList.length > 0" [propertiesList]="propertiesList" [filter]="filter" (property)="emitProperty($event)"></app-search-result>
 
     <app-contact-modal [property]="property"></app-contact-modal>
     

@@ -7,6 +7,7 @@ import { SimulatorResult } from '../../shared/models/simulator/simulator-result'
 
 import Swal from 'sweetalert2';
 import { ClientData } from '../../shared/models/simulator/clientData';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-simulate-investment',
@@ -31,7 +32,12 @@ export class SimulateInvestmentComponent implements OnInit {
 
   formError: boolean = false;
 
-  constructor(private mainService: MainService, private formBuilder: FormBuilder) { 
+  constructor(
+    private mainService: MainService, 
+    private formBuilder: FormBuilder,
+    private currentRoute: ActivatedRoute,
+    private router: Router,
+  ) { 
     this.simulatorForm = this.formBuilder.group({
       propertyPrice: ['', Validators.compose([Validators.required])],
       financingPrice: ['', Validators.compose([Validators.required])],
@@ -44,7 +50,34 @@ export class SimulateInvestmentComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+    let price = this.currentRoute.snapshot.params['propertyPrice'];
+    this.form['propertyPrice'].setValue(price);
+
+  }
+
+  backToOrigin() {
+
+    let origin = this.currentRoute.snapshot.params['origin']; // Determines the origin component
+
+    if(origin === "true") {
+      this.router.navigate([``]);
+    } else {
+      this.router.navigateByUrl(`home/search-property`, {
+        state: {
+          'city': history.state['city'],
+          'district': history.state['district'],
+          'typology': history.state['typology'],
+          'price': history.state['price'],
+          'area': history.state['area'],
+          'rooms': history.state['rooms'],
+          'parkingSpot': history.state['parkingSpot'],
+          'propertyDeveloper': history.state['propertyDeveloper'],
+        }}   
+      );
+    }
+  }
 
   validateSimulatorFormFields() {
     if(this.simulatorForm.invalid) {

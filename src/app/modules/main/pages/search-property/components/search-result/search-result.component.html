@@ -73,10 +73,10 @@
             </p>
           </div>
           <div class="d-flex flex-row text-center">
-            <button type="button" class="btn btn-sm btn-danger fw-semibold col-4">
+            <button type="button" class="btn btn-sm btn-danger fw-semibold col-4" (click)="goToSimulator(col.price.minimumPrice)">
               Simule
             </button>&nbsp;
-            <button class="btn btn-sm btn-outline-danger fw-semibold col-6 flex-fill" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="setPropertData(col)">
+            <button class="btn btn-sm btn-outline-danger fw-semibold col-6 flex-fill" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="setPropertyData(col)">
               Fale com o Especialista
             </button>
           </div>

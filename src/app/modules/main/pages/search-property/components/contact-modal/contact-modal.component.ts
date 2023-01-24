@@ -13,7 +13,7 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 export class ContactModalComponent implements OnInit {
 
   @Input() property: Property = new Property();
-  
+
   chosenPorperty: PropertyData = new PropertyData();
 
   contactSpecialistForm: FormGroup;

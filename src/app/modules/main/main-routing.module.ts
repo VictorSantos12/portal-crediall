@@ -6,8 +6,8 @@ import { SimulateInvestmentComponent } from './pages/simulate-investment/simulat
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'search-property/:city/:typology/:price/:rooms/:parking_spot', component: SearchPropertyComponent },
-  { path: 'simulate-investment', component: SimulateInvestmentComponent }
+  { path: 'search-property', component: SearchPropertyComponent },
+  { path: 'simulate-investment/:propertyPrice/:origin', component: SimulateInvestmentComponent }
 ];
 
 @NgModule({

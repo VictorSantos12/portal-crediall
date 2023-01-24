@@ -7,7 +7,6 @@ import { SearchPropertyComponent } from './pages/search-property/search-property
 import { AppNavBarComponent } from './pages/home/components/app-nav-bar/app-nav-bar.component';
 import { SimulateInvestmentComponent } from './pages/simulate-investment/simulate-investment.component';
 import { SearchResultComponent } from './pages/search-property/components/search-result/search-result.component';
-
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { NgxMaskModule} from 'ngx-mask';
