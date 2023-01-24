@@ -19,8 +19,8 @@ export class AppNavBarComponent implements OnInit {
   scrollToFindProperty() {
     this.scroller.scrollToAnchor("findProperty");
   }
-  scrollToPartners() {
-    this.scroller.scrollToAnchor("partners");
+  scrollToSimulate() {
+    this.scroller.scrollToAnchor("simulate");
   }
 
 }

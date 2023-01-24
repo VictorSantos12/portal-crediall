@@ -30,9 +30,9 @@ export class HomeComponent implements OnInit {
   ) {
     this.propertySearchForm = this.formBuilder.group({
       city: ['Rio de Janeiro', Validators.compose([Validators.required])],
-      typology: [1, Validators.compose([Validators.required])],
-      price: ['', Validators.compose([Validators.required])],
-      rooms: ['1', Validators.compose([Validators.required])],
+      typology: [1],
+      price: [''],
+      rooms: ['1'],
       parking_spot: ['1'],
     });
   }
