@@ -64,7 +64,7 @@ export class SimulateInvestmentComponent implements OnInit {
     if(origin === "true") {
       this.router.navigate([``]);
     } else {
-      this.router.navigateByUrl(`home/search-property`, {
+      this.router.navigateByUrl(`/search-property`, {
         state: {
           'city': history.state['city'],
           'district': history.state['district'],

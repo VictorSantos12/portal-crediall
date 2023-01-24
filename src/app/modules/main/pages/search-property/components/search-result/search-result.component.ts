@@ -33,7 +33,7 @@ export class SearchResultComponent implements OnInit {
   }
 
   goToSimulator(propertyPrice: number) {
-    this.router.navigateByUrl(`home/simulate-investment/${propertyPrice}/${false}`, {
+    this.router.navigateByUrl(`/simulate-investment/${propertyPrice}/${false}`, {
       state: {
         'city': this.filter.city,
         'district': this.filter.district,

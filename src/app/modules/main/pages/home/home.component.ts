@@ -75,7 +75,7 @@ export class HomeComponent implements OnInit {
       let rooms = this.propertySearchForm.get('rooms')?.value;
       let parking_spot = this.propertySearchForm.get('parking_spot')?.value;
 
-      this.router.navigateByUrl(`home/search-property`, {
+      this.router.navigateByUrl(`/search-property`, {
         state: {
           'city': city,
           'district': '',
@@ -116,7 +116,7 @@ export class HomeComponent implements OnInit {
   }  
 
   simulateInvestment() {
-    this.router.navigate([`home/simulate-investment/''/${true}`]);
+    this.router.navigate([`/simulate-investment/''/${true}`]);
   }
 
   openLink() {
