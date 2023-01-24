@@ -49,7 +49,7 @@ export class SearchPropertyComponent implements OnInit {
 
   gettingPropertiesList: boolean = false;
 
-  requestPropertyResult: Observable<Property[]> = new Observable<Property[]>;
+  requestPropertyResult: Observable<Property[]> = new Observable<Property[]>();
   propertiesList: Property[] = [];
 
   propertyPrice: Subject<string> = new Subject<string>();
@@ -101,7 +101,7 @@ export class SearchPropertyComponent implements OnInit {
     }
     
     this.getProperties();
-    this.loadMap();
+    // this.loadMap();
     
     this.propertyPriceSubscription = this.propertyPrice
     .pipe(
