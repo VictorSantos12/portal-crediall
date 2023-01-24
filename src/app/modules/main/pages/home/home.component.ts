@@ -22,6 +22,8 @@ export class HomeComponent implements OnInit {
   
   cities: City[] = [];
   propertyTypes: PropertyType[] = [];
+  
+  validaModal = localStorage.getItem('validaModal');
 
   constructor(
     private formBuilder: FormBuilder, 
@@ -38,6 +40,11 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.validaModal != 'false'){
+      let element: HTMLElement = document.getElementById('botao-modal') as HTMLElement;
+      element.click();
+    }
+    
     // this.loadMap();
     this.getCities();
     this.getPropertyTypes();
