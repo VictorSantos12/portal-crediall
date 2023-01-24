@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadMap();
+    // this.loadMap();
     this.getCities();
     this.getPropertyTypes();
   }
