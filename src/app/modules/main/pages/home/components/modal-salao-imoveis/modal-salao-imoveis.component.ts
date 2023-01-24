@@ -16,7 +16,6 @@ export class ModalSalaoImoveisComponent {
   }
 
   fecharModal(){
-    console.log("teste")
     localStorage.setItem('validaModal', 'false');
   }
 
