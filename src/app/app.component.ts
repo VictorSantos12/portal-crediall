@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'portal-crediall';
+  
+  constructor() {   
+    window.onbeforeunload = function() {
+      localStorage.clear();
+      return '';
+    };
+  }
 }

@@ -32,9 +32,9 @@ export class ContactModalComponent implements OnInit {
     private deviceService: DeviceDetectorService,
   ) {
     this.contactSpecialistForm = this.formBuilder.group({
-      name: ['', Validators.compose([Validators.required])],
-      email: ['', Validators.compose([Validators.required])],
-      phone: ['', Validators.compose([Validators.required])],
+      name: ['', Validators.required],
+      email: ['', Validators.compose([Validators.required, Validators.email])],
+      phone: ['', Validators.required],
     });
   }
 
@@ -107,5 +107,4 @@ export class ContactModalComponent implements OnInit {
   getFormattedPrice(price: number) {
     return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', }).format(price);
   }
-
 }

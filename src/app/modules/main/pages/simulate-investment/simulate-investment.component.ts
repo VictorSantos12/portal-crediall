@@ -24,7 +24,7 @@ export class SimulateInvestmentComponent implements OnInit {
 
   openInstallmentsDetails: boolean[] = [];
 
-  financingPrice: any;
+  financingPrice: string = '';
   
   get form() {
     return this.simulatorForm.controls;
@@ -51,6 +51,12 @@ export class SimulateInvestmentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
+    window.scroll({ 
+      top: 0, 
+      left: 0, 
+      behavior: 'smooth' 
+    });
 
     let price = this.currentRoute.snapshot.params['propertyPrice'];
     this.form['propertyPrice'].setValue(price);
@@ -64,7 +70,7 @@ export class SimulateInvestmentComponent implements OnInit {
     if(origin === "true") {
       this.router.navigate([``]);
     } else {
-      this.router.navigateByUrl(`home/search-property`, {
+      this.router.navigateByUrl(`/search-property`, {
         state: {
           'city': history.state['city'],
           'district': history.state['district'],
@@ -97,9 +103,9 @@ export class SimulateInvestmentComponent implements OnInit {
 
   simulateInvestment() {
     this.gettingInstallments = true;
-
+ 
     let clientData: ClientData;
-    
+
     clientData = {
       Nome: this.form['name'].value,
       Cpf: this.form['cpf'].value,
@@ -110,7 +116,7 @@ export class SimulateInvestmentComponent implements OnInit {
       ValorFinanciado: parseInt(this.simulatorForm.get('financingPrice')?.value),
       Prazo: parseInt(this.simulatorForm.get('months')?.value)
     }
-
+    
     this.mainService.simulateInvestment(clientData)
     .subscribe((data: SimulatorResult) => {
       this.installments = data.parcelas;

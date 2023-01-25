@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 @Injectable({
   providedIn: 'root'
 })
-export class HomerConfigInterceptor {
+export class HttpConfigInterceptor {
 
   constructor() {}
 

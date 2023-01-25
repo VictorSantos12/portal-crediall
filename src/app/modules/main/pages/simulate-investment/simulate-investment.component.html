@@ -1,4 +1,4 @@
-<div class="d-flex align-items-baseline justify-content-between p-3 w-100">
+<div id="nav-bar" class="d-flex align-items-baseline justify-content-between p-3 w-100">
   <a (click)="backToOrigin()" style="font-size: 25px; color:#012942; cursor: pointer;">
     <i class="fa fa-arrow-circle-left mb-4" aria-hidden="true"></i>
   </a>  
@@ -8,12 +8,12 @@
   <a class="navbar-brand" href="#"></a>
 </div>
 
-<div class="p-3" style="background-color: #01294200;">
-   <div class="d-flex flex-row flex-wrap justify-content -start">
+<div class="col-md-12 p-3">
+   <div class="d-flex flex-row flex-wrap justify-content-start">
     
     <!-- WEB -->
 
-    <div class="web col-md-3 col-12 p-3" >
+    <div class="web col-md-3 col-12 p-3">
       <form [formGroup]="simulatorForm" (submit)="validateSimulatorFormFields()">
         <div class="card shadow-sm border-0 p-3">
           <div class="search-form-field p-2">
@@ -41,7 +41,7 @@
               (keyup)="financingPriceCurrencyMask($event.target)"
               [ngStyle]="form['financingPrice'].dirty && form['financingPrice'].hasError('required') || formError ? {'border-color':'red'} : {'':''}">
           </div>
-          <div class="d-flex col-md-12 align-items-center justify-content-start col-md-6 p-3 w-100" *ngIf="financingPrice != '' ">
+          <div class="d-flex col-md-12 align-items-center justify-content-start col-md-6 p-3 w-100" *ngIf="financingPrice != ''">
             <label class="text-uppercase pb-1 w-100">Renda Mínima</label>
             <div class="fw-semibold text-end fs-5 w-100"  style="color: #0F71F2;">
               {{ financingPrice }} 
@@ -159,12 +159,13 @@
               <input formControlName="email" type="email" class="form-control" [ngStyle]="form['email'].dirty && form['email'].hasError('required') || formError || form['email'].hasError('email')? {'border-color':'red'} : {'':''}">
             </div>
 
-            <div class="d-flex col-md-12 align-items-center justify-content-start col-md-6 p-3 w-100" *ngIf="financingPrice != '' ">
+            <div class="d-flex col-md-12 align-items-center justify-content-start col-md-6 p-3 w-100" *ngIf="financingPrice != ''">
               <label class="text-uppercase pb-1 w-100">Renda Mínima</label>
-              <div class="fw-semibold text-end fs-5 w-100"  style="color: #0F71F2;">
+              <div class="fw-semibold text-end fs-5 w-100" style="color: #0F71F2;">
                 {{ financingPrice }} 
               </div>
             </div>
+
             <button class="simple-elevated-red-button btn m-2" type="submit">
               SIMULAR AGORA
             </button>

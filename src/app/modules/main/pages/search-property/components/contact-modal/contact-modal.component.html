@@ -33,7 +33,7 @@
                placeholder="E-mail"
                [ngStyle]="form['email'].dirty && form['email'].hasError('required') || formError ? {'border-color':'red'} : {'':''}">
                <small class="form-text" style="color:red;" *ngIf="form['email'].dirty && form['email'].hasError('required') || formError && form['email'].hasError('required')">
-                 Campo obrigatório &nbsp;&nbsp;<i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                 Digite um e-mail válido &nbsp;&nbsp;<i class="fa fa-exclamation-circle" aria-hidden="true"></i>
                </small>
             </div>
             <div class="m-3">
@@ -41,9 +41,10 @@
                formControlName="phone" 
                type="tel" 
                placeholder="Telefone"
+               mask="(00) 00000-0000"
                [ngStyle]="form['phone'].dirty && form['phone'].hasError('required') || formError ? {'border-color':'red'} : {'':''}">
                <small class="form-text" style="color:red;" *ngIf="form['phone'].dirty && form['phone'].hasError('required') || formError && form['phone'].hasError('required')">
-                 Campo obrigatório &nbsp;&nbsp;<i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                Digite um número válido &nbsp;&nbsp;<i class="fa fa-exclamation-circle" aria-hidden="true"></i>
                </small>
             </div>
             

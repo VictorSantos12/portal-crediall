@@ -7,11 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { HomerConfigInterceptor } from './core/interceptors/homer/homer-config.interceptor';
-import { LogbitsConfigInterceptor } from './core/interceptors/logbits/logbits-config.interceptor';
-
-import { StoreModule } from '@ngrx/store';
-import { appReducers } from './modules/main/store';
+import { HttpConfigInterceptor } from './core/interceptor/http-config.interceptor';
 
 
 @NgModule({
@@ -23,22 +19,11 @@ import { appReducers } from './modules/main/store';
     AppRoutingModule,
     HttpClientModule,
     NoopAnimationsModule,
-    StoreModule.forRoot(appReducers, {
-      runtimeChecks: {
-        strictStateImmutability: false,
-        strictActionImmutability: false,
-      }
-    }),
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS, 
-      useClass: HomerConfigInterceptor, 
-      multi: true,
-    },
-    {
-      provide: HTTP_INTERCEPTORS, 
-      useClass: LogbitsConfigInterceptor, 
+      useClass: HttpConfigInterceptor, 
       multi: true,
     },
   ],

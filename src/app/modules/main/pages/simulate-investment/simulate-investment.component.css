@@ -14,15 +14,6 @@
     height: 70px;
   }
 
-  /* input[type='number'] {
-    appearance:textfield;
-  } */
-  
-  /* input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-  } */
-
   .simple-elevated-red-button {
     color: white;
     height: 50px;

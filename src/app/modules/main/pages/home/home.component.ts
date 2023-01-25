@@ -10,6 +10,7 @@ import { RequestResult } from '../../shared/models/request_result';
 import { PropertyType } from '../../shared/models/property-type/property-type';
 import { City } from '../../shared/models/city/city';
 import { ViewportScroller } from '@angular/common';
+import { District } from '../../shared/models/district/district';
 
 @Component({
   selector: 'app-home',
@@ -20,8 +21,10 @@ export class HomeComponent implements OnInit {
   
   propertySearchForm: FormGroup;
   
-  cities: City[] = [];
+  districts: District[] = [];
   propertyTypes: PropertyType[] = [];
+  
+  validaModal = localStorage.getItem('validaModal');
 
   constructor(
     private formBuilder: FormBuilder, 
@@ -29,7 +32,8 @@ export class HomeComponent implements OnInit {
     private mainService: MainService, 
   ) {
     this.propertySearchForm = this.formBuilder.group({
-      city: ['Rio de Janeiro', Validators.compose([Validators.required])],
+      city: ['Rio de Janeiro'],
+      district: [''],
       typology: [1],
       price: [''],
       rooms: ['1'],
@@ -38,15 +42,19 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.loadMap();
-    this.getCities();
+    if (this.validaModal != 'false'){
+      let element: HTMLElement = document.getElementById('botao-modal') as HTMLElement;
+      element.click();
+    }
+    
+    this.getDistrict('Rio de Janeiro', 'Rio de Janeiro');
     this.getPropertyTypes();
   }
 
-  getCities() {
-    this.mainService.getCities('Rio de Janeiro')
+  getDistrict(city: string, state: string) {
+    this.mainService.getDistricts(city, state)
     .subscribe((data: RequestResult) => {
-      this.cities = data.result;
+      this.districts = data.result;
     }).add(() => {});
   }
 
@@ -58,36 +66,25 @@ export class HomeComponent implements OnInit {
   }
 
   searchProperty() {
-    if(this.propertySearchForm.invalid) {
-      Swal.fire({
-        title: 'Preencha todos campos do formulário',
-        icon: 'warning',
-        iconHtml: '',
-        confirmButtonText: 'ok',
-        confirmButtonColor: '#012942',
-        showCloseButton: true,
-      })
-    } else {
+    let city = this.propertySearchForm.get('city')?.value;
+    let district = this.propertySearchForm.get('district')?.value;
+    let typology = this.propertySearchForm.get('typology')?.value;
+    let price = this.propertySearchForm.get('price')?.value;
+    let rooms = this.propertySearchForm.get('rooms')?.value;
+    let parking_spot = this.propertySearchForm.get('parking_spot')?.value;
 
-      let city = this.propertySearchForm.get('city')?.value;
-      let typology = this.propertySearchForm.get('typology')?.value;
-      let price = this.propertySearchForm.get('price')?.value;
-      let rooms = this.propertySearchForm.get('rooms')?.value;
-      let parking_spot = this.propertySearchForm.get('parking_spot')?.value;
-
-      this.router.navigateByUrl(`home/search-property`, {
-        state: {
-          'city': city,
-          'district': '',
-          'typology': typology,
-          'price': price,
-          'area': 100,
-          'rooms': rooms,
-          'parkingSpot': parking_spot,
-          'propertyDeveloper': '',
-        }}
-      );
-    }
+    this.router.navigateByUrl(`/search-property`, {
+      state: {
+        'city': city,
+        'district': district,
+        'typology': typology,
+        'price': price,
+        'area': 100,
+        'rooms': rooms,
+        'parkingSpot': parking_spot,
+        'propertyDeveloper': '',
+      }}
+    );
   }
 
   propertyPriceCurrencyMask(i: any) {
@@ -108,15 +105,11 @@ export class HomeComponent implements OnInit {
       valor = valor.replace(/([0-9]{3}),([0-9]{2}$)/g, ".$1,$2");
     }
     this.propertySearchForm.controls['price'].setValue(valor);
-    
-    let value = Number(valor.replace(',', '.'));
-
-    console.log(value);
-
+  
   }  
 
   simulateInvestment() {
-    this.router.navigate([`home/simulate-investment/''/${true}`]);
+    this.router.navigate([`/simulate-investment/''/${true}`]);
   }
 
   openLink() {
@@ -127,27 +120,16 @@ export class HomeComponent implements OnInit {
     window.open('https://www.sympla.com.br/evento/salao-de-imoveis/1841756');
   }
 
-  loadMap() {
-    this.loader.loadCallback(e => {
-      if (e) {
-        console.log(e);
-      } else {
-        new google.maps.Map(document.getElementById("map") as HTMLAnchorElement, this.mapOptions);
-      }
-    });
+  linkdin() {
+    window.open('https://www.linkedin.com/in/crediall-solu%C3%A7%C3%B5es-em-cr%C3%A9dito-49a6681ba/?originalSubdomain=br');
+  }
+  
+  facebook() {
+    window.open('https://www.facebook.com/credialltechoficial');
   }
 
-  loader = new Loader({
-    apiKey: "",
-    version: "weekly",
-    libraries: ["places"]
-  });
-  
-  mapOptions = {
-    center: {
-      lat: -22.983781298015188,
-      lng: -43.3612144413545
-    },
-    zoom: 11
-  };
+  instagram() {
+    window.open('https://www.instagram.com/credialltechoficial/');
+  }
+
 }
