@@ -231,9 +231,19 @@
     
     <!-- RESULT -->
 
-    <app-search-result *ngIf="!gettingPropertiesList && propertiesList.length != 0" [propertiesList]="propertiesList" [filter]="filter" (property)="emitProperty($event)"></app-search-result>
+    <app-search-result *ngIf="!gettingPropertiesList && propertiesList.length != 0" [propertiesList]="propertiesList" [total]="total" [filter]="filter" (property)="emitProperty($event)"></app-search-result>
+    
+    <!-- GET MORE PROPERTIES -->
 
-    <app-contact-modal [property]="property"></app-contact-modal>
+    <div *ngIf="!gettingPropertiesList && total > propertiesList.length && !gettingMoreProperties" class="d-flex justify-content-center m-4 w-100">
+      <button class="btn btn-danger fw-semibold" (click)="getMoreProperties()">Ver mais</button> 
+    </div>
+
+    <div *ngIf="gettingMoreProperties" class="d-flex align-items-center w-100">
+      <div class="w-100 p-5 text-center">
+        <div class="spinner-border" style="height: 3rem; width: 3rem; color: #012942;"></div>
+      </div>
+    </div>
     
     <!-- LOADING -->
 
@@ -248,6 +258,10 @@
         <p class="fs-4 fw-semibold text-muted">Nenhum resultado encontrado</p>
       </div>
     </div>
+    
+    <!-- CONTACT SPECIALIST -->
+
+    <app-contact-modal [property]="property"></app-contact-modal>
 
   </div>
 </div>

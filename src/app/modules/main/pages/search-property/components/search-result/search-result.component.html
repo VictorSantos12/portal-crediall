@@ -1,90 +1,87 @@
 <div class="col-md-12 mt-2 p-2">
   <div class="d-flex flex-row flex-wrap justify-content-center">
-    <div class="row justify-content-center">
 
-      <div class="card border border-dark rounded-3 p-0 m-3" *ngFor="let col of propertiesList; let i = index;">
-        <div class="d-flex justify-content-center w-100 rounded-top p-1" style="height:22px; background-color: #012942;">
-          <p class="text-white" style="font-size: 11px;">
-            IMÓVEL DE INCORPORADORA
-          </p>
-        </div>
-        
-        <div class="card-img-top">
-          <div class="carousel slide carousel-fade" [attr.id]="'carousel-' + i" data-bs-ride="true">
-            <div class="carousel-indicators">
-              <button *ngFor="let media of col.medias; let m = index;" type="button" [attr.data-bs-target]="'#carousel-' + i" data-bs-slide-to="i" class="active" aria-current="true" aria-label="Slide 1"></button>
-            </div>
-            <div class="carousel-inner">
-              <div class="carousel-item" *ngFor="let media of col.medias; let m = index;" [ngClass]="{'active': m == 0 }">
-                <img class="d-flex flex-fill img-fluid w-100" src="{{media.url}}" style="height: 250px;">
-              </div>
-            </div>
-            <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carousel-' + i" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#carousel-' + i" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
+    <div class="card border border-dark rounded-3 p-0 m-3" *ngFor="let col of propertiesList; let i = index;">
+      <div class="d-flex justify-content-center w-100 rounded-top p-1" style="height:22px; background-color: #012942;">
+        <p class="text-white" style="font-size: 11px;">
+          IMÓVEL DE INCORPORADORA
+        </p>
+      </div>
+      
+      <div class="card-img-top">
+        <div class="carousel slide carousel-fade" [attr.id]="'carousel-' + i" data-bs-ride="true">
+          <div class="carousel-indicators">
+            <button *ngFor="let media of col.medias; let m = index;" type="button" [attr.data-bs-target]="'#carousel-' + i" data-bs-slide-to="i" class="active" aria-current="true" aria-label="Slide 1"></button>
           </div>
-        </div>
-
-        <div class="card-body justify-content-center">
-          <div class="d-flex pb-2 pt-2" style="height:22px;">
-            <div class="d-flex align-items-center">
-              <img src="/assets/icons/homer.png">
-              &nbsp;&nbsp;
-              <p class="fs-5 fw-semibold pt-4">HOMER</p>
+          <div class="carousel-inner">
+            <div class="carousel-item" *ngFor="let media of col.medias; let m = index;" [ngClass]="{'active': m == 0 }">
+              <img class="d-flex flex-fill img-fluid w-100" src="{{media.url}}" style="height: 250px;">
             </div>
           </div>
-          <div class="d-flex flex-row pt-4 pb-2">
-            <p style="line-height: 18px;">
-              <span class="fs-5 fw-semibold">
-                Apartamento
-              </span>
-              <span class="fs-5 fw-normal text-success">
-                à vista
-              </span>
-            </p>
-          </div>
-          <p class="location pb-2">
-            {{col.location}}
-          </p>
-          <p class="pb-2" style="line-height: 18px;">
-            <span class="fs-5 fw-semibold">
-              A partir de {{ col.price.minimumPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }}
-            </span>
-            <br>
-          </p>
-          <div class="column pb-2">
-            <label class="form-label pt-1"><i class="fa fa-bed"></i>&nbsp;{{col.size.roomsCount}}</label>
-            &nbsp;
-            <label class="form-label pt-1"><i class="fa fa-car"></i>&nbsp;{{col.size.parkingSpotsCount}}</label>
-            &nbsp;
-            <label class="form-label pt-1"><b>{{col.size.area}}&nbsp;m&#x00B2;</b></label>
-          </div>
-          <div class="d-flex flex-row pb-2">
-            <p style="line-height: 18px;">
-              <span class="fw-semibold">
-                Empreendimento:
-              </span>
-              <span class="fw-bold">
-                {{col.propertyDeveloper.name}}
-              </span>
-            </p>
-          </div>
-          <div class="d-flex flex-row text-center">
-            <button type="button" class="btn btn-sm btn-danger fw-semibold col-4" (click)="goToSimulator(col.price.minimumPrice)">
-              Simule
-            </button>&nbsp;
-            <button class="btn btn-sm btn-outline-danger fw-semibold col-6 flex-fill" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="setPropertyData(col)">
-              Fale com o Especialista
-            </button>
-          </div>
+          <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carousel-' + i" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#carousel-' + i" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
         </div>
       </div>
 
-    </div>
+      <div class="card-body justify-content-center">
+        <div class="d-flex pb-2 pt-2" style="height:22px;">
+          <div class="d-flex align-items-center">
+            <img src="/assets/icons/homer.png">
+            &nbsp;&nbsp;
+            <p class="fs-5 fw-semibold pt-4">HOMER</p>
+          </div>
+        </div>
+        <div class="d-flex flex-row pt-4 pb-2">
+          <p style="line-height: 18px;">
+            <span class="fs-5 fw-semibold">
+              Apartamento
+            </span>
+            <span class="fs-5 fw-normal text-success">
+              à vista
+            </span>
+          </p>
+        </div>
+        <p class="location pb-2">
+          {{col.location}}
+        </p>
+        <p class="pb-2" style="line-height: 18px;">
+          <span class="fs-5 fw-semibold">
+            A partir de {{ col.price.minimumPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }}
+          </span>
+          <br>
+        </p>
+        <div class="column pb-2">
+          <label class="form-label pt-1"><i class="fa fa-bed"></i>&nbsp;{{col.size.roomsCount}}</label>
+          &nbsp;
+          <label class="form-label pt-1"><i class="fa fa-car"></i>&nbsp;{{col.size.parkingSpotsCount}}</label>
+          &nbsp;
+          <label class="form-label pt-1"><b>{{col.size.area}}&nbsp;m&#x00B2;</b></label>
+        </div>
+        <div class="d-flex flex-row pb-2">
+          <p style="line-height: 18px;">
+            <span class="fw-semibold">
+              Empreendimento:
+            </span>
+            <span class="fw-bold">
+              {{col.propertyDeveloper.name}}
+            </span>
+          </p>
+        </div>
+        <div class="d-flex flex-row text-center">
+          <button type="button" class="btn btn-sm btn-danger fw-semibold col-4" (click)="goToSimulator(col.price.minimumPrice)">
+            Simule
+          </button>&nbsp;
+          <button class="btn btn-sm btn-outline-danger fw-semibold col-6 flex-fill" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="setPropertyData(col)">
+            Fale com o Especialista
+          </button>
+        </div>
+      </div>
+     </div>
   </div>
 </div>

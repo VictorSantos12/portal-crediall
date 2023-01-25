@@ -80,6 +80,7 @@ export class SimulateInvestmentComponent implements OnInit {
           'rooms': history.state['rooms'],
           'parkingSpot': history.state['parkingSpot'],
           'propertyDeveloper': history.state['propertyDeveloper'],
+          'total': history.state['total'], // allows to keep the 'ver mais' button up to date
         }}   
       );
     }

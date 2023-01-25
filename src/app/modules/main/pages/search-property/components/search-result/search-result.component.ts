@@ -12,6 +12,8 @@ export class SearchResultComponent implements OnInit {
 
   @Input() propertiesList: Property[] = [];
 
+  @Input() total: number = 0;
+
   @Input() filter: PropertyFilter = new PropertyFilter();
 
   @Output() property: EventEmitter<any> = new EventEmitter<any>;
@@ -39,8 +41,9 @@ export class SearchResultComponent implements OnInit {
         'price': this.filter.price,
         'area': this.filter.area,
         'rooms': this.filter.rooms,
-        'parkingSpot': this.filter.rooms,
+        'parkingSpot': this.filter.parkingSpot,
         'propertyDeveloper': this.filter.propertyDeveloper,
+        'total': this.total, // allows to keep the 'ver mais' button up to date
       },
     });
   }
