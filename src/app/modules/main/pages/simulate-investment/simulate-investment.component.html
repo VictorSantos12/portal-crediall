@@ -41,7 +41,7 @@
               (keyup)="financingPriceCurrencyMask($event.target)"
               [ngStyle]="form['financingPrice'].dirty && form['financingPrice'].hasError('required') || formError ? {'border-color':'red'} : {'':''}">
           </div>
-          <div class="d-flex col-md-12 align-items-center justify-content-start col-md-6 p-3 w-100" *ngIf="financingPrice != '' ">
+          <div class="d-flex col-md-12 align-items-center justify-content-start col-md-6 p-3 w-100" *ngIf="financingPrice != ''">
             <label class="text-uppercase pb-1 w-100">Renda Mínima</label>
             <div class="fw-semibold text-end fs-5 w-100"  style="color: #0F71F2;">
               {{ financingPrice }} 
@@ -159,12 +159,13 @@
               <input formControlName="email" type="email" class="form-control" [ngStyle]="form['email'].dirty && form['email'].hasError('required') || formError || form['email'].hasError('email')? {'border-color':'red'} : {'':''}">
             </div>
 
-            <div class="d-flex col-md-12 align-items-center justify-content-start col-md-6 p-3 w-100" *ngIf="financingPrice != '' ">
+            <div class="d-flex col-md-12 align-items-center justify-content-start col-md-6 p-3 w-100" *ngIf="financingPrice != ''">
               <label class="text-uppercase pb-1 w-100">Renda Mínima</label>
-              <div class="fw-semibold text-end fs-5 w-100"  style="color: #0F71F2;">
+              <div class="fw-semibold text-end fs-5 w-100" style="color: #0F71F2;">
                 {{ financingPrice }} 
               </div>
             </div>
+
             <button class="simple-elevated-red-button btn m-2" type="submit">
               SIMULAR AGORA
             </button>

@@ -24,7 +24,7 @@ export class SimulateInvestmentComponent implements OnInit {
 
   openInstallmentsDetails: boolean[] = [];
 
-  financingPrice: any;
+  financingPrice: string = '';
   
   get form() {
     return this.simulatorForm.controls;
@@ -103,9 +103,9 @@ export class SimulateInvestmentComponent implements OnInit {
 
   simulateInvestment() {
     this.gettingInstallments = true;
-
+ 
     let clientData: ClientData;
-    
+
     clientData = {
       Nome: this.form['name'].value,
       Cpf: this.form['cpf'].value,
@@ -116,7 +116,7 @@ export class SimulateInvestmentComponent implements OnInit {
       ValorFinanciado: parseInt(this.simulatorForm.get('financingPrice')?.value),
       Prazo: parseInt(this.simulatorForm.get('months')?.value)
     }
-
+    
     this.mainService.simulateInvestment(clientData)
     .subscribe((data: SimulatorResult) => {
       this.installments = data.parcelas;

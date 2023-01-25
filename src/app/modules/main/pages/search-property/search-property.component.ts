@@ -257,5 +257,25 @@ export class SearchPropertyComponent implements OnInit {
   emitProperty(property: Property) {
     this.property = property;
   }
+  
+  openLink() {
+    window.open('https://www.sympla.com.br/evento/salao-de-imoveis-coren-e-caixa-clube-de-beneficios/1832241');
+  }
+
+  openLink2() {
+    window.open('https://www.sympla.com.br/evento/salao-de-imoveis/1841756');
+  }
+
+  linkdin() {
+    window.open('https://www.linkedin.com/in/crediall-solu%C3%A7%C3%B5es-em-cr%C3%A9dito-49a6681ba/?originalSubdomain=br');
+  }
+  
+  facebook() {
+    window.open('https://www.facebook.com/credialltechoficial');
+  }
+
+  instagram() {
+    window.open('https://www.instagram.com/credialltechoficial/');
+  }
 
 }
