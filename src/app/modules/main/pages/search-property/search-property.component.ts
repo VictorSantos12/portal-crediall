@@ -53,6 +53,11 @@ export class SearchPropertyComponent implements OnInit {
   propertyPrice: Subject<string> = new Subject<string>();
   propertyPriceSubscription: Subscription = new Subscription();
 
+  limit: number = 60;
+  total: number = 0;
+  
+  gettingMoreProperties: boolean = false;
+
   get form() {
     return this.propertySearchForm.controls;
   }
@@ -92,6 +97,10 @@ export class SearchPropertyComponent implements OnInit {
     this.form['rooms'].setValue(history.state['rooms']);
     this.form['parking_spot'].setValue(history.state['parkingSpot']);
     this.form['property_developer'].setValue(history.state['propertyDeveloper']);
+
+    this.total = history.state['total']; // allows to keep the 'ver mais' button up to date
+
+    console.log(this.total);
     
     this.filter = {
       city: this.propertySearchForm.get('city')?.value,
@@ -201,7 +210,7 @@ export class SearchPropertyComponent implements OnInit {
     this.gettingPropertiesList = true;
     
     let params = {
-      'limit': 20,
+      'limit': this.limit,
       'offset': 0,
       'area': parseInt(this.propertySearchForm.get('area')?.value),
       'state': this.propertySearchForm.get('state')?.value,
@@ -221,6 +230,8 @@ export class SearchPropertyComponent implements OnInit {
       this.myStore.setNewProperties(data.result);
       this.propertiesList = data.result.results;
 
+      this.total = data.result.total;
+
     }).add(() => {
       this.filter = {
         city: this.propertySearchForm.get('city')?.value,
@@ -233,9 +244,51 @@ export class SearchPropertyComponent implements OnInit {
         propertyDeveloper: this.propertySearchForm.get('property_developer')?.value,  
       }
       this.gettingPropertiesList = false;
-    })
+    });
   }
   
+  getMoreProperties() {
+
+    this.gettingMoreProperties = true;
+    
+    let params = {
+      'limit': this.limit + (this.total - this.limit),
+      'offset': 0,
+      'area': parseInt(this.propertySearchForm.get('area')?.value),
+      'state': this.propertySearchForm.get('state')?.value,
+      'city': this.propertySearchForm.get('city')?.value,
+      'district': this.propertySearchForm.get('district')?.value,
+      'minimumPrice': 1000,
+      'maximumPrice': (this.propertySearchForm.get('price')?.value ? this.propertySearchForm.get('price')?.value.split(',')[0] : '1000000000'),
+      'parkingSpots': parseInt(this.propertySearchForm.get('parking_spot')?.value),
+      'propertyDeveloperId': (Number.isNaN(parseInt(this.propertySearchForm.get('property_developer')?.value))) ? null : parseInt(this.propertySearchForm.get('property_developer')?.value),
+      'propertyTypeId': parseInt(this.propertySearchForm.get('typology')?.value),
+      'rooms': parseInt(this.propertySearchForm.get('rooms')?.value),
+    }
+
+    this.mainService.getPropertiesList(params)
+    .subscribe((data: RequestPropertyResult) => {
+      
+      this.myStore.setNewProperties(data.result);
+      this.propertiesList = data.result.results;
+
+      this.total = data.result.total;
+
+    }).add(() => {
+      this.filter = {
+        city: this.propertySearchForm.get('city')?.value,
+        district: this.propertySearchForm.get('district')?.value,
+        typology: this.propertySearchForm.get('typology')?.value,
+        price: this.propertySearchForm.get('price')?.value,
+        area: this.propertySearchForm.get('area')?.value,
+        rooms: this.propertySearchForm.get('rooms')?.value,
+        parkingSpot: this.propertySearchForm.get('parking_spot')?.value,
+        propertyDeveloper: this.propertySearchForm.get('property_developer')?.value,  
+      }
+      this.gettingMoreProperties = false;
+    });
+  }
+
   // CHANGE ROUTINES
 
   cityChanged() {
