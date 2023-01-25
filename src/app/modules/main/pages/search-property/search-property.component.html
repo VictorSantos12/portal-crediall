@@ -42,7 +42,7 @@
           </div>
         </div>
         <div class="search-form-field m-2 rounded" style="min-width: 180px;">
-          <label class="form-label">Tipologia</label>
+          <label class="form-label">Tipo de imóvel</label>
           <div class="d-flex flex-row align-items-center w-100">
             <select formControlName="typology" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="getPropertiesList()">
               <option *ngFor="let col of propertyTypes" value="{{col.id}}" selected>{{col.name}}</option>
@@ -50,7 +50,7 @@
           </div>
         </div>
         <div class="search-form-field m-2 rounded" style="max-width: 180px;">
-          <label class="form-label">Valor Máx</label>
+          <label class="form-label">Imóvel até</label>
           <div class="d-flex flex-row align-items-baseline w-100">
             <input class="input-style form-control" formControlName="price" (change)="priceChanged()"
               matInput
@@ -63,7 +63,7 @@
           </div>
         </div>
         <div class="search-form-field m-2 rounded">
-          <label class="form-label">Área</label>
+          <label class="form-label">A partir de</label>
           <div class="d-flex flex-row align-items-center w-100">
             <select formControlName="area" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="getPropertiesList()">
               <option value="40">40 m&#x00B2;</option>
@@ -147,7 +147,7 @@
        </div>
        <div class="d-flex flex-row flex-wrap">
         <div class="search-form-field rounded flex-fill m-2">
-          <label class="form-label">Tipologia</label>
+          <label class="form-label">Tipo de imóvel</label>
           <div class="d-flex flex-row align-items-center w-100">
            <select formControlName="typology" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="getPropertiesList()">
              <option *ngFor="let col of propertyTypes" value="{{col.id}}">{{col.name}}</option>
@@ -155,7 +155,7 @@
           </div>
         </div>
         <div class="search-form-field rounded flex-fill m-2">
-         <label class="form-label">Valor Máx</label>
+         <label class="form-label">Imóvel até</label>
          <div class="d-flex flex-row align-items-baseline w-100">
            <input class="input-style form-control" formControlName="price" (keydown)="priceChanged()"
              matInput
@@ -170,7 +170,7 @@
        </div>
        <div class="d-flex flex-row flex-wrap">
         <div class="search-form-field rounded flex-fill m-2">
-          <label class="form-label">Área</label>
+          <label class="form-label">A partir de</label>
           <div class="d-flex flex-row align-items-center w-100">
             <select formControlName="area" class="input-style form-control form-select" aria-label=".form-select-lg example" (change)="getPropertiesList()">
               <option value="40">40 m&#x00B2;</option>

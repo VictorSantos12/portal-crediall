@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { Store } from '@ngrx/store';
 
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MainService } from '../../shared/main.service';
@@ -66,7 +65,7 @@ export class SearchPropertyComponent implements OnInit {
   ) {
     this.propertySearchForm = this.formBuilder.group({
       state: ['Rio de Janeiro'],
-      city: [''],
+      city: ['Rio de Janeiro'],
       district: [''],
       typology: [''],
       price: [''],
@@ -78,6 +77,12 @@ export class SearchPropertyComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
+    window.scroll({ 
+      top: 0, 
+      left: 0, 
+      behavior: 'smooth' 
+    });
     
     this.form['city'].setValue(history.state['city']);
     this.form['district'].setValue(history.state['district']);
@@ -202,8 +207,8 @@ export class SearchPropertyComponent implements OnInit {
       'state': this.propertySearchForm.get('state')?.value,
       'city': this.propertySearchForm.get('city')?.value,
       'district': this.propertySearchForm.get('district')?.value,
-      'minimumPrice': 500000,
-      'maximumPrice': (this.propertySearchForm.get('price')?.value ? this.propertySearchForm.get('price')?.value.replace(',','') : '1000000000'),
+      'minimumPrice': 1000,
+      'maximumPrice': (this.propertySearchForm.get('price')?.value ? this.propertySearchForm.get('price')?.value.split(',')[0] : '1000000000'),
       'parkingSpots': parseInt(this.propertySearchForm.get('parking_spot')?.value),
       'propertyDeveloperId': (Number.isNaN(parseInt(this.propertySearchForm.get('property_developer')?.value))) ? null : parseInt(this.propertySearchForm.get('property_developer')?.value),
       'propertyTypeId': parseInt(this.propertySearchForm.get('typology')?.value),

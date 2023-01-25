@@ -1,152 +1,150 @@
 <app-modal-salao-imoveis></app-modal-salao-imoveis>
 <app-app-nav-bar></app-app-nav-bar>
 
-<div class="first col-md-12">
-  <div class="d-flex justify-content-center align-items-center">
-    <div id="web">
-      <div class="d-flex justify-content-start align-items-center" style="height: 80vh; width: 60%; position: absolute; left: 50px;">
+<div id="findProperty" class="first col-md-12">
     
-        <form [formGroup]="propertySearchForm" (submit)="searchProperty()" class="d-flex flex-column flex-wrap align-items-center w-75">
-          <div class="input-group w-75">
-            <div class="search-form-field" style="width: 99.5%; border-radius: 10px 10px 0px 0px;">
-              <label class="form-label mt-2 pl-2" style="font-size: 14px;"><i class="fas fa-map-marker-alt"></i>&nbsp;Cidade</label>
-              <div class="d-flex flex-row align-items-center w-100">
-                <select formControlName="city" class="input-style form-control form-select" aria-label=".form-select-lg example">
-                  <option *ngFor="let col of cities" value="{{col.name}}">{{col.name}}</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="input-group w-75">
-            <div class="search-form-field" style="width: 30%; border-radius: 0px 0px 0px 10px;">
-              <label class="form-label mt-2 pl-2" style="font-size: 14px;"><i class="bi bi-house-fill"></i>&nbsp;Tipo do imóvel</label>
-              <div class="d-flex flex-row align-items-center w-100">
-                <select formControlName="typology" class="input-style form-control form-select" aria-label=".form-select-lg example">
-                  <option *ngFor="let col of propertyTypes" value="{{col.id}}">{{col.name}}</option>
-                </select>
-              </div>
-            </div>
-            <div class="search-form-field" style="width: 30%;">
-              <label class="form-label mt-2 pl-2" style="font-size: 14px;"><i class="bi bi-currency-dollar"></i>&nbsp;Imóvel até</label>
-              <input formControlName="price" class="form-control input-style"
-                matInput
-                type="text" 
-                prefix="R$ " 
-                mask="separator" 
-                thousandSeparator="." 
-                placeholder="Insira o valor" 
-                (keyup)="propertyPriceCurrencyMask($event.target)">
-            </div>
-            <div class="search-form-field" style="width: 20%;">
-              <label class="form-label pt-1" style="font-size: 14px;"><i class="fas fa-bed"></i>&nbsp;Quartos</label>
-              <div class="d-flex flex-row align-items-center w-100">
-                <select formControlName="rooms" class="input-style form-control form-select" aria-label=".form-select-lg example">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                </select>
-              </div>
-            </div>
-            <div class="search-form-field" style="width: 20%; border-radius: 0px 0px 10px 0px;">
-              <label class="form-label pt-1" style="font-size: 14px;"><i class="bi bi-car-front-fill"></i>&nbsp;Vagas</label>
-              <div class="d-flex flex-row align-items-center w-100">
-                <select formControlName="parking_spot" class="input-style form-control form-select" aria-label=".form-select-lg example">
-                  <option value="" selected>0+</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <button type="submit" class="simple-elevated-red-button btn mt-5">
-            Buscar imóveis
-          </button>
-        </form>
-      </div>
-      <div class="banner-img w-100"></div>
-    </div>
-  </div>
+   <div id="web">
+     <div class="d-flex flex-column justify-content-center align-items-center" style="height: 80vh; width: 60%; position: absolute; left: 50px;">
+       <p class="title pb-3 mt-5">Encontre um imóvel próximo de você!</p>
+       <form [formGroup]="propertySearchForm" (submit)="searchProperty()" class="d-flex flex-column flex-wrap align-items-center w-75">
+         <div class="input-group w-75">
+           <div class="search-form-field" style="width: 99.5%; border-radius: 10px 10px 0px 0px;">
+             <label class="form-label mt-2 pl-2" style="font-size: 14px;"><i class="fas fa-map-marker-alt"></i>&nbsp;Bairro</label>
+             <div class="d-flex flex-row align-items-center w-100">
+               <select formControlName="district" class="input-style form-control form-select" aria-label=".form-select-lg example">
+                 <option value="">Todas</option>
+                 <option *ngFor="let col of districts" value="{{col.name}}">{{col.name}}</option>
+               </select>
+             </div>
+           </div>
+         </div>
+         <div class="input-group w-75">
+           <div class="search-form-field" style="width: 30%; border-radius: 0px 0px 0px 10px;">
+             <label class="form-label mt-2 pl-2" style="font-size: 14px;"><i class="bi bi-house-fill"></i>&nbsp;Tipo do imóvel</label>
+             <div class="d-flex flex-row align-items-center w-100">
+               <select formControlName="typology" class="input-style form-control form-select" aria-label=".form-select-lg example">
+                 <option *ngFor="let col of propertyTypes" value="{{col.id}}">{{col.name}}</option>
+               </select>
+             </div>
+           </div>
+           <div class="search-form-field" style="width: 30%;">
+             <label class="form-label mt-2 pl-2" style="font-size: 14px;"><i class="bi bi-currency-dollar"></i>&nbsp;Imóvel até</label>
+             <input formControlName="price" class="form-control input-style"
+               matInput
+               type="text" 
+               prefix="R$ " 
+               mask="separator" 
+               thousandSeparator="." 
+               placeholder="Insira o valor" 
+               (keyup)="propertyPriceCurrencyMask($event.target)">
+           </div>
+           <div class="search-form-field" style="width: 20%;">
+             <label class="form-label pt-1" style="font-size: 14px;"><i class="fas fa-bed"></i>&nbsp;Quartos</label>
+             <div class="d-flex flex-row align-items-center w-100">
+               <select formControlName="rooms" class="input-style form-control form-select" aria-label=".form-select-lg example">
+                 <option value="1">1</option>
+                 <option value="2">2</option>
+                 <option value="3">3</option>
+                 <option value="4">4</option>
+               </select>
+             </div>
+           </div>
+           <div class="search-form-field" style="width: 20%; border-radius: 0px 0px 10px 0px;">
+             <label class="form-label pt-1" style="font-size: 14px;"><i class="bi bi-car-front-fill"></i>&nbsp;Vagas</label>
+             <div class="d-flex flex-row align-items-center w-100">
+               <select formControlName="parking_spot" class="input-style form-control form-select" aria-label=".form-select-lg example">
+                 <option value="" selected>0+</option>
+                 <option value="1">1</option>
+                 <option value="2">2</option>
+                 <option value="3">3</option>
+               </select>
+             </div>
+           </div>
+         </div>
+         <button type="submit" class="simple-elevated-red-button btn mt-5">
+           Buscar imóveis
+         </button>
+       </form>
+     </div>
+     <div class="banner-img w-100"></div>
+   </div>
+   
+    <!-- MOBILE FORM -->
+
+   <div id="mobile" class="fourth col-md-12 p-5">
+     <div class="d-flex flex-column align-items-center text-center">
+       <p class="title pb-3 mt-5">Encontre um imóvel próximo de você!</p>
+       <form [formGroup]="propertySearchForm" (submit)="searchProperty()" class="d-flex flex-column flex-wrap align-items-center w-100">
+        <div class="input-group w-100 mb-3">
+         <div class="search-form-field rounded-3 w-100">
+           <label class="form-label mt-2 pl-2" style="font-size: 14px;"><i class="fas fa-map-marker-alt"></i>&nbsp;Bairro</label>
+           <div class="d-flex flex-row align-items-center w-100">
+             <select formControlName="district" class="input-style form-control form-select" aria-label=".form-select-lg example">
+               <option value="">Todos</option>
+               <option *ngFor="let col of districts" value="{{col.name}}">{{col.name}}</option>
+             </select>
+           </div>
+         </div>
+        </div>
+        <div class="input-group w-100">
+         <div class="search-form-field rounded-3 w-100 mb-3">
+           <label class="form-label mt-2 pl-2" style="font-size: 14px;"><i class="bi bi-house-fill"></i>&nbsp;Tipo do imóvel</label>
+           <div class="d-flex flex-row align-items-center w-100">
+             <select formControlName="typology" class="input-style form-control form-select" aria-label=".form-select-lg example">
+               <option *ngFor="let col of propertyTypes" value="{{col.id}}">{{col.name}}</option>
+             </select>
+           </div>
+         </div>
+         <div class="search-form-field rounded-3 w-100 mb-3">
+           <label class="form-label mt-2 pl-2" style="font-size: 14px;"><i class="bi bi-currency-dollar"></i>&nbsp;Imóvel até</label>
+           <input class="form-control input-style" formControlName="price"
+             matInput
+             type="text" 
+             prefix="R$ " 
+             mask="separator" 
+             thousandSeparator="." 
+             placeholder="Insira o valor" 
+             (keyup)="propertyPriceCurrencyMask($event.target)">
+         </div>
+         <div class="search-form-field flex-fill rounded-3">
+           <label class="form-label mt-2 pl-2" style="font-size: 14px;"><i class="fas fa-bed"></i>&nbsp;Quartos</label>
+           <div class="d-flex flex-row align-items-center w-100">
+             <select formControlName="rooms" class="input-style form-control form-select" aria-label=".form-select-lg example">
+               <option value="1">1</option>
+               <option value="2">2</option>
+               <option value="3">3</option>
+               <option value="4">4</option>
+             </select>
+           </div>
+         </div>
+         &nbsp;
+         &nbsp;
+         <div class="search-form-field flex-fill rounded-3">
+           <label class="form-label mt-2 pl-2" style="font-size: 14px;"><i class="bi bi-car-front-fill"></i>&nbsp;Vagas</label>
+           <div class="d-flex flex-row align-items-center w-100">
+             <select formControlName="parking_spot" class="input-style form-control form-select" aria-label=".form-select-lg example">
+               <option value="" selected>0+</option>
+               <option value="1">1</option>
+               <option value="2">2</option>
+               <option value="3">3</option>
+             </select>
+           </div>
+         </div>
+        </div>
+        <button type="submit" class="simple-elevated-red-button btn mt-5">
+          Buscar imóveis
+        </button>
+       </form>
+     </div>
+   </div>
+
 </div>
 
-    <!-- MOBILE FORM -->
     
-    <div id="mobile">
-      <div id="findProperty" class="fourth col-md-12 p-5">
-      <p class="title pb-3">Encontre um imóvel próximo de você!</p>
-      <div class="d-flex flex-column align-items-center text-center">
-        <form [formGroup]="propertySearchForm" (submit)="searchProperty()" class="d-flex flex-column flex-wrap align-items-center w-100">
-          <div class="input-group w-100 mb-3">
-            <div class="search-form-field rounded-3 w-100">
-              <label class="form-label mt-2 pl-2" style="font-size: 14px;"><i class="fas fa-map-marker-alt"></i>&nbsp;Cidade</label>
-              <div class="d-flex flex-row align-items-center w-100">
-                <select formControlName="city" class="input-style form-control form-select" aria-label=".form-select-lg example">
-                  <option value="">Todas</option>
-                  <option *ngFor="let col of cities" value="{{col.name}}">{{col.name}}</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="input-group w-100">
-            <div class="search-form-field rounded-3 w-100 mb-3">
-              <label class="form-label mt-2 pl-2" style="font-size: 14px;"><i class="bi bi-house-fill"></i>&nbsp;Tipo do imóvel</label>
-              <div class="d-flex flex-row align-items-center w-100">
-                <select formControlName="typology" class="input-style form-control form-select" aria-label=".form-select-lg example">
-                  <option value="0" selected>Todos</option>
-                  <option *ngFor="let col of propertyTypes" value="{{col.id}}">{{col.name}}</option>
-                </select>
-              </div>
-            </div>
-            <div class="search-form-field rounded-3 w-100 mb-3">
-              <label class="form-label mt-2 pl-2" style="font-size: 14px;"><i class="bi bi-currency-dollar"></i>&nbsp;Imóvel até</label>
-              <input class="form-control input-style" formControlName="price"
-                matInput
-                type="text" 
-                prefix="R$ " 
-                mask="separator" 
-                thousandSeparator="." 
-                placeholder="Insira o valor" 
-                (keyup)="propertyPriceCurrencyMask($event.target)">
-            </div>
-            <div class="search-form-field flex-fill rounded-3">
-              <label class="form-label mt-2 pl-2" style="font-size: 14px;"><i class="fas fa-bed"></i>&nbsp;Quartos</label>
-              <div class="d-flex flex-row align-items-center w-100">
-                <select formControlName="rooms" class="input-style form-control form-select" aria-label=".form-select-lg example">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                </select>
-              </div>
-            </div>
-            &nbsp;
-            &nbsp;
-            <div class="search-form-field flex-fill rounded-3">
-              <label class="form-label mt-2 pl-2" style="font-size: 14px;"><i class="bi bi-car-front-fill"></i>&nbsp;Vagas</label>
-              <div class="d-flex flex-row align-items-center w-100">
-                <select formControlName="parking_spot" class="input-style form-control form-select" aria-label=".form-select-lg example">
-                  <option value="" selected>0+</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <button type="submit" class="simple-elevated-red-button btn mt-5">
-            Buscar imóveis
-          </button>
-          </form>
-        </div>
-      </div>
-    </div>
-
 <div id="simulate" class="p-5" style="background-color: #245aa3;">
   <div class="row">
     <div class="col-md-6 text-center">
       <img class="grafico-img" src="../../../../../assets/img/grafico.png">
-      <!-- <div class="grafico-img"></div> -->
     </div>
     <div class="col-md-6 text-left mt-4" style="color: white;">
       <h1 class="fw-bold">
@@ -257,15 +255,15 @@
       <div class="column p-4">
         <img class="pb-5" src="/assets/img/logo_crediall_complete.png">
         <div class="d-flex flex-row justify-content-center pb-5">
-          <a href="https://www.linkedin.com/in/crediall-solu%C3%A7%C3%B5es-em-cr%C3%A9dito-49a6681ba/?originalSubdomain=br">
+          <a (click)="linkdin()" style="cursor: pointer;">
             <img src="/assets/icons/linkdin.png">
           </a>
           &nbsp;&nbsp;&nbsp;
-          <a href="https://www.facebook.com/credialltechoficial">
+          <a (click)="facebook()" style="cursor: pointer;">
             <img src="/assets/icons/facebook.png">
           </a>
           &nbsp;&nbsp;&nbsp;
-          <a href="https://www.instagram.com/credialltechoficial/">
+          <a (click)="instagram()" style="cursor: pointer;">
             <img src="/assets/icons/instagram.png">
           </a>
         </div>
@@ -275,7 +273,6 @@
     <div class="col-md-4 col-12">
       <div class="d-flex justify-content-center">
         <div class="column p-4">
-          <!-- <div id="map"></div> -->
           <div class="d-flex flex-row text-start pt-4" style="max-width: 600px;">
             <img src="/assets/icons/adress-pin.png" style="height: 35px; width: 35px;">
             &nbsp;&nbsp;
@@ -284,21 +281,7 @@
         </div>
       </div>
     </div>
-    <!-- <div class="col-md-4 col-12">
-      <div class="column text-start p-4">
-        <p class="sub-title">ASSINAR</p>
-        <p class="sub-title">Receba notícias e atualizações sobre a Crediall por e-mail.</p>
-        <form>
-          <div class="input-group mb-3">
-            <input type="text" class="form-control border-dark">
-            <button class="btn simple-elevated-button" type="button">Assinar</button>
-          </div>
-        </form>
-      </div>
-    </div> -->
-    <button type="button" style="visibility: hidden;" data-bs-toggle="modal" data-bs-target="#exampleModal" id="botao-modal">
-  
-    </button>
+    <button type="button" style="visibility: hidden;" data-bs-toggle="modal" data-bs-target="#exampleModal" id="botao-modal"></button>
   </div>
 </div>
 

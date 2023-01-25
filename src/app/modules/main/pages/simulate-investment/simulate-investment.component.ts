@@ -51,6 +51,12 @@ export class SimulateInvestmentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
+    window.scroll({ 
+      top: 0, 
+      left: 0, 
+      behavior: 'smooth' 
+    });
 
     let price = this.currentRoute.snapshot.params['propertyPrice'];
     this.form['propertyPrice'].setValue(price);
