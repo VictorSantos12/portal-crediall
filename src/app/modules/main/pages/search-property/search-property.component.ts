@@ -74,7 +74,7 @@ export class SearchPropertyComponent implements OnInit {
       district: [''],
       typology: [''],
       price: [''],
-      area: [100],
+      area: [10],
       rooms: [0],
       parking_spot: [0],
       property_developer: [''],

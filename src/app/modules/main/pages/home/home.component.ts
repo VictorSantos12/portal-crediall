@@ -79,7 +79,7 @@ export class HomeComponent implements OnInit {
         'district': district,
         'typology': typology,
         'price': price,
-        'area': 100,
+        'area': 10,
         'rooms': rooms,
         'parkingSpot': parking_spot,
         'propertyDeveloper': '',
