@@ -15,6 +15,10 @@ export class ModalSalaoImoveisComponent {
     window.open('https://www.sympla.com.br/evento/salao-de-imoveis/1841756');
   }
 
+  openLink3() {
+    window.open('');
+  }
+
   fecharModal(){
     localStorage.setItem('validaModal', 'false');
   }

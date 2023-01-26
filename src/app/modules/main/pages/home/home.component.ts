@@ -120,6 +120,10 @@ export class HomeComponent implements OnInit {
     window.open('https://www.sympla.com.br/evento/salao-de-imoveis/1841756');
   }
 
+  openLink3() {
+    window.open('');
+  }
+
   linkdin() {
     window.open('https://www.linkedin.com/in/crediall-solu%C3%A7%C3%B5es-em-cr%C3%A9dito-49a6681ba/?originalSubdomain=br');
   }
