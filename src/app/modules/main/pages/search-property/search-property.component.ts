@@ -316,11 +316,7 @@ export class SearchPropertyComponent implements OnInit {
   }
 
   openLink2() {
-    window.open('https://www.sympla.com.br/evento/salao-de-imoveis/1841756');
-  }
-
-  openLink3() {
-    window.open('https://www.sympla.com.br/evento/salao-de-imoveis/1841756');
+    window.open('https://www.sympla.com.br/evento/salao-de-imoveis/1841756?token=170b68551743b567e3fb18bd3d31304b');
   }
 
   linkdin() {
