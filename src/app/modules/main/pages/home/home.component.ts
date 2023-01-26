@@ -121,7 +121,7 @@ export class HomeComponent implements OnInit {
   }
 
   openLink3() {
-    window.open('');
+    window.open('https://www.sympla.com.br/evento/salao-de-imoveis/1841756');
   }
 
   linkdin() {
