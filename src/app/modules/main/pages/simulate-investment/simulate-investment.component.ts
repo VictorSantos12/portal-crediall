@@ -118,7 +118,7 @@ export class SimulateInvestmentComponent implements OnInit {
       Prazo: parseInt(this.simulatorForm.get('months')?.value)
     }
     
-    this.mainService.simulateInvestment(clientData)
+    this.mainService.simulateInvestment(clientData, '')
     .subscribe((data: SimulatorResult) => {
       this.installments = data.parcelas;
       this.financingPrice = data.rendaMinima;

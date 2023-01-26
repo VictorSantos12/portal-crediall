@@ -46,7 +46,6 @@ export class MainService {
     return this.http.get<RequestResult>(`${this.url}/v1/new-constructions/property-developers`);
   }
 
-  
   getPropertiesList(params: any): Observable<RequestPropertyResult>{
     return this.http.get<RequestPropertyResult>(`${this.url}/v1/new-constructions/q?`, {
       params: params,
@@ -57,9 +56,13 @@ export class MainService {
     return this.http.post<any>(`https://api.desenv.app.logbits.com.br/simulador/dadosimovel/v1`, property);
   }
 
-  simulateInvestment(dados: any): Observable<SimulatorResult> {
+  simulateInvestment(dados: any, lead: string): Observable<SimulatorResult> {
     return this.http.post<SimulatorResult>(
-      `https://api.desenv.app.logbits.com.br/simulador/SimuladorFinanciamento/v1`, dados
+      `https://api.desenv.app.logbits.com.br/simulador/SimuladorFinanciamento/v1`, dados, {
+        headers: {
+          'crediall_lead': lead,
+        }
+      }
     );
   }
 
