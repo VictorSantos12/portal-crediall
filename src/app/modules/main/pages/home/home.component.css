@@ -233,12 +233,16 @@ select {
   }
 }
 
-@media screen and (max-width: 1294px) {
+@media screen and (max-width: 1400px) {
   #web {
     display: none;
   }
 
   #mobile {
+    display: block;
+  }
+
+  #estateHall {
     display: block;
   }
 }
