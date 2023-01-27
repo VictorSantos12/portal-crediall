@@ -72,7 +72,7 @@ export class ContactModalComponent implements OnInit {
       Vagas: this.property.size.roomsCount,
     }
 
-    this.mainService.setPropertyData(this.chosenPorperty)
+    this.mainService.setPropertyData(this.chosenPorperty, '')
     .subscribe({
       next: (() => { this.contactSpecialist(); }),
       error: (error) => { this.loading = false }

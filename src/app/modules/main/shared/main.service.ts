@@ -52,8 +52,12 @@ export class MainService {
     });
   }
   
-  setPropertyData(property: PropertyData) : Observable<any>{
-    return this.http.post<any>(`https://api.desenv.app.logbits.com.br/simulador/dadosimovel/v1`, property);
+  setPropertyData(property: PropertyData, lead: string) : Observable<any>{
+    return this.http.post<any>(`https://api.desenv.app.logbits.com.br/simulador/dadosimovel/v1`, property, {
+      headers: {
+        'crediall_lead': lead,
+      }
+    });
   }
 
   simulateInvestment(dados: any, lead: string): Observable<SimulatorResult> {
