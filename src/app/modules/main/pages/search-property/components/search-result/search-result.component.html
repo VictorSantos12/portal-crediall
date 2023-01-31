@@ -43,7 +43,7 @@
               Apartamento
             </span>
             <span class="fs-5 fw-normal text-success">
-              à vista
+              à venda
             </span>
           </p>
         </div>
@@ -52,7 +52,7 @@
         </p>
         <p class="pb-2" style="line-height: 18px;">
           <span class="fs-5 fw-semibold">
-            A partir de {{ col.price.minimumPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }}
+            A partir de {{ col.price.minimumPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 0 }) }}
           </span>
           <br>
         </p>
