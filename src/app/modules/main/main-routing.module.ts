@@ -6,7 +6,7 @@ import { SimulateInvestmentComponent } from './pages/simulate-investment/simulat
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'search-property', component: SearchPropertyComponent },
+  // { path: 'search-property', component: SearchPropertyComponent },
   { path: 'simulate-investment/:propertyPrice/:origin', component: SimulateInvestmentComponent }
 ];
 

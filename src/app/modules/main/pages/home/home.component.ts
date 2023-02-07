@@ -132,4 +132,8 @@ export class HomeComponent implements OnInit {
     window.open('https://www.instagram.com/credialltechoficial/');
   }
 
+  acessarPipefy(){
+    window.open('https://app.pipefy.com/public/form/uDoqLeZO');
+  }
+
 }
