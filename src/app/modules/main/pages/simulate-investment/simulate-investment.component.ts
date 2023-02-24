@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { MainService } from '../../shared/main.service';
+import { Bank } from '../../shared/models/simulator/bank';
 import { Installment } from '../../shared/models/simulator/installment';
-import { SimulatorResult } from '../../shared/models/simulator/simulator-result';
 
 import Swal from 'sweetalert2';
 import { ClientData } from '../../shared/models/simulator/clientData';
@@ -17,8 +17,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class SimulateInvestmentComponent implements OnInit {
   
   simulatorForm: FormGroup;
-
-  installments: Installment[] = [];
+  
+  banks: Bank[] = [];
 
   gettingInstallments: boolean = false;
 
@@ -119,9 +119,8 @@ export class SimulateInvestmentComponent implements OnInit {
     }
     
     this.mainService.simulateInvestment(clientData, '')
-    .subscribe((data: SimulatorResult) => {
-      this.installments = data.parcelas;
-      this.financingPrice = data.rendaMinima;
+    .subscribe((data: Bank[]) => {
+      this.banks = data;
     }).add(() => {
       this.gettingInstallments = false;
     })

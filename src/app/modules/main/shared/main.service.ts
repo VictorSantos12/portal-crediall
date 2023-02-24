@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { ApiService } from 'src/app/core/services/api/api.service';
 import { RequestResult } from './models/request_result';
 import { RequestPropertyResult } from './models/property/request-property-result';
-import { SimulatorResult } from './models/simulator/simulator-result';
+import { Bank } from './models/simulator/bank';
 import { PropertyData } from './models/contact/property-data';
 
 @Injectable({
@@ -60,9 +60,9 @@ export class MainService {
     });
   }
 
-  simulateInvestment(dados: any, lead: string): Observable<SimulatorResult> {
-    return this.http.post<SimulatorResult>(
-      `https://api.desenv.app.logbits.com.br/simulador/SimuladorFinanciamento/v1`, dados, {
+  simulateInvestment(dados: any, lead: string): Observable<Bank[]> {
+    return this.http.post<Bank[]>(
+      `https://api.desenv.app.logbits.com.br/simulador/SimuladorFinanciamento/v2`, dados, {
         headers: {
           'crediall_lead': lead,
         }
