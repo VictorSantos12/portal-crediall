@@ -60,7 +60,6 @@ export class SimulateInvestmentComponent implements OnInit {
 
     let price = this.currentRoute.snapshot.params['propertyPrice'];
     this.form['propertyPrice'].setValue(price);
-
   }
 
   backToOrigin() {

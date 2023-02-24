@@ -182,57 +182,60 @@
     <div *ngIf="banks.length > 0" class="col-md-8 col-12 p-3 flex-fill">
       <div class="card shadow-sm border-0 p-3">  
         
-        <div *ngFor="let col of banks; let i = index;" class="card bg-light shadow-sm border-0 p-4 mb-2" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse-' + i" [attr.aria-expanded]="false" [attr.aria-controls] = "'collapse-' + i">
-          
-          <div class="d-flex justify-content-between">
-
-            <img *ngIf="col.codigoBanco == '104'" src="/assets/img/logo_caixa-2.png" style="width: 120px;">
-            <img *ngIf="col.codigoBanco == '001'" src="/assets/img/logo_bb.png" class="rounded" style="width: 120px;">
-            <img *ngIf="col.codigoBanco == '033'" src="/assets/img/logo_santander.png" class="rounded" style="width: 120px;">
-            <img *ngIf="col.codigoBanco == '237'" src="/assets/img/logo_bradesco.png" class="rounded" style="width: 120px;">
-            <img *ngIf="col.codigoBanco == '341'" src="/assets/img/logo_itau.png" style="height: 40px; width: 40px;">
-
-            <div class="fw-semibold text-end w-100" style="color: #0F71F2;">
-              <label class="text-uppercase pb-1 w-100">Renda Mínima: {{ col.rendaMinima }}</label>
+        <div *ngFor="let col of banks; let i = index;" class="card bg-light shadow-sm border-0 p-2 mb-2" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse-' + i" [attr.aria-expanded]="false" [attr.aria-controls] = "'collapse-' + i">
+          <div class="d-flex flex-row flex-wrap justify-content-between">
+            
+            <div class="col-12 col-md-6 d-flex align-items-center p-2" style="background-color: rgba(128, 0, 128, 0);">
+              <img *ngIf="col.codigoBanco == '104'" src="/assets/img/logo_caixa-2.png" style="width: 120px;">
+              <img *ngIf="col.codigoBanco == '001'" src="/assets/img/logo_bb.png" class="rounded" style="width: 120px;">
+              <img *ngIf="col.codigoBanco == '033'" src="/assets/img/logo_santander.png" class="rounded" style="width: 120px;">
+              <img *ngIf="col.codigoBanco == '237'" src="/assets/img/logo_bradesco.png" class="rounded" style="width: 120px;">
+              <img *ngIf="col.codigoBanco == '341'" src="/assets/img/logo_itau.png" style="height: 40px; width: 40px;">
+              <img *ngIf="col.codigoBanco == '077'" src="/assets/img/logo_inter.png" style="width: 120px;">
+              <img *ngIf="col.codigoBanco == '070'" src="/assets/img/logo_brb.png" style="width: 120px;">
             </div>
+
+            <div class="col-12 col-md-6 d-flex flex-row flex-wrap justify-content-between align-items-center p-2 text-end">
+              <div class="col-md-4 d-flex fw-normal">
+                <p>Renda Mínima:</p>
+                <p style="color: #0f71f2;">&nbsp;{{ col.rendaMinima }}</p>
+              </div>
+              <div class="col-md-4 d-flex fw-normal">
+                <p>Primeira Parcela:</p>
+                <p style="color: #0f71f2;">&nbsp;{{ banks[i].parcelas[0].pestacaoFinal }}</p>
+              </div>
+              <div class="col-md-4 d-flex fw-normal">
+                <p>Última Parcela:</p>
+                <p style="color: #0f71f2;">&nbsp;{{ banks[i].parcelas.slice(-1)[0].pestacaoFinal }}</p>
+              </div>
+            </div>
+            
           </div>
 
           <div [attr.id]="'collapse-' + i" class="collapse">
-
             <div class="card mt-3 border-0">
+
               <div class="table-responsive">
-                <div class="t-head m-3">
-                 <div class="d-flex justify-content-around">
-                   <th class="col-2 fw-normal text-muted">Parcela</th>
-                   <th class="col-2 fw-normal text-muted">Amortização</th>
-                   <th class="col-2 fw-normal text-muted">Juros</th>
-                   <th class="col-2 fw-normal text-muted">Prestação Final</th>
-                   <th class="col-2 fw-normal text-muted">Saldo Devedor</th>
-                 </div>
-                </div>
-  
-                <!-- ROWS -->
-  
-                <div *ngFor="let installment of banks[i].parcelas" class="t-body mb-2">
-                  <div class="d-flex justify-content-around bg-light">
-                    <td class="col-2 d-flex align-items-center justify-content-between" style="height: 80px;">
-                     {{installment.parcela}}
-                    </td>
-                    <td class="col-2 d-flex align-items-center justify-content-start">
-                      {{installment.amortizacao}}
-                    </td>
-                    <td class="col-2 d-flex align-items-center justify-content-start">
-                      {{installment.juros}}
-                    </td>
-                    <td class="col-2 d-flex align-items-center justify-content-start">
-                      {{installment.pestacaoFinal}}
-                    </td>
-                    <td class="col-2 d-flex align-items-center justify-content-start">
-                      {{installment.saldoDevedor}}
-                    </td>
-                  </div>
-                </div>
-  
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th style="min-width: 130px;">Parcela</th>
+                      <th style="min-width: 130px;">Amortização</th>
+                      <th style="min-width: 130px;">Juros</th>
+                      <th style="min-width: 130px;">Prestação Final</th>
+                      <th style="min-width: 130px;">Saldo Devedor</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="table-light" *ngFor="let installment of banks[i].parcelas">
+                      <td style="min-width: 90px;">{{installment.parcela}}</td>
+                      <td style="min-width: 90px;">{{installment.amortizacao}}</td>
+                      <td style="min-width: 90px;">{{installment.juros}}</td>
+                      <td style="min-width: 90px;">{{installment.pestacaoFinal}}</td>
+                      <td style="min-width: 90px;">{{installment.saldoDevedor}}</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
